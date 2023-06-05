@@ -122,12 +122,12 @@ gitalk:
   clientSecret: ''
 giscus: # https://giscus.app/zh-CN
   enable: ture # 是否启用 Giscus 评论系统
-  repo: 'blockhaity/giscus'
-  repo_id: 'R_kgDOJoY0xw'
-  category: 'Announcements'
-  category_id: 'DIC_kwDOJoY0x84CWya5'
-  mapping: 'pathname'
-  input_position: 'top'
+  repo: 'blockhaity/blockhaity.github.io'
+  repo_id: 'R_kgDOJoGsSA'
+  category: 'Giscus'
+  category_id: 'DIC_kwDOJoGsSM4CW-qv'
+  mapping: 'title'
+  input_position: 'preferred_color_scheme'
   theme: 'light'
   lang: 'zh-CN'
 waline: # https://waline.js.org/guide/get-started.html
