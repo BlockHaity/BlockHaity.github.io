@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>Hexo写作指南</title>
+      <link href="/2023/06/05/Hexo%E5%86%99%E4%BD%9C%E6%8C%87%E5%8D%97/"/>
+      <url>/2023/06/05/Hexo%E5%86%99%E4%BD%9C%E6%8C%87%E5%8D%97/</url>
+      
+        <content type="html"><![CDATA[<p>！：这片文章是写给作者自己看的 <del>不会考虑其他人的感受</del></p><h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>先将图片上传到图床，然后采用Markdown图片插入即可。</p><p>插入图片语法</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![这是图片](/assets/img/philly-magic-garden.jpg &quot;Magic Gardens&quot;)</span><br></pre></td></tr></table></figure><h2 id="锚点"><a href="#锚点" class="headerlink" title="锚点"></a>锚点</h2><p>链接语法右侧括号内填写 <code>#+二级标题</code> 即可</p><p>链接语法</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Markdown语法](https://markdown.com.cn)</span><br></pre></td></tr></table></figure><h2 id="插入B站视频"><a href="#插入B站视频" class="headerlink" title="插入B站视频"></a>插入B站视频</h2><p>只需要把 <code>//player.bilibili.com/player.html?aid=90978812&amp;cid=155358422&amp;page=1</code> 替换成自己的就行。</p><p>以 <strong>【8K超高清完整版】瑞克·埃斯利（你被骗了）《Never Gonna Give You Up》</strong> 作为演示</p><p>从B战复制过来的</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe src=&quot;//player.bilibili.com/player.html?aid=651820362&amp;bvid=BV1he4y1w7wB&amp;cid=1006811391&amp;page=1&quot; scrolling=&quot;no&quot; border=&quot;0&quot; frameborder=&quot;no&quot; framespacing=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt; &lt;/iframe&gt;</span><br></pre></td></tr></table></figure><p>实际使用的</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;% raw %&#125;</span><br><span class="line">&lt;div style=&quot;position: relative; width: 100%; height: 0; padding-bottom: 75%;&quot;&gt;</span><br><span class="line">&lt;iframe src=&quot;//player.bilibili.com/player.html?aid=651820362&amp;bvid=BV1he4y1w7wB&amp;cid=1006811391&amp;page=1&quot; scrolling=&quot;no&quot; border=&quot;0&quot; frameborder=&quot;no&quot; framespacing=&quot;0&quot; allowfullscreen=&quot;true&quot; style=&quot;position: absolute; width: 100%; height: 100%; Left: 0; top: 0;&quot; &gt;&lt;/iframe&gt;&lt;/div&gt;</span><br><span class="line">&#123;% endraw %&#125;</span><br></pre></td></tr></table></figure><div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;"><iframe src="//player.bilibili.com/player.html?aid=651820362&bvid=BV1he4y1w7wB&cid=1006811391&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; Left: 0; top: 0;" ></iframe></div>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>如何安装Deepin</title>
       <link href="/2023/05/27/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Deepin/"/>
       <url>/2023/05/27/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Deepin/</url>
