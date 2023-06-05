@@ -34,9 +34,9 @@ tags:
 
 从B战复制过来的
 
-~~~
+```
 <iframe src="//player.bilibili.com/player.html?aid=651820362&bvid=BV1he4y1w7wB&cid=1006811391&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-~~~
+```
 
 实际使用的
 
