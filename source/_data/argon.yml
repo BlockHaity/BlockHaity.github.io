@@ -30,7 +30,7 @@ sidebar_banner_subtitle: '--hitokoto--' # 侧栏子标题，留空则不显示�
 sidebar_announcement: '发现问题欢迎来网站仓库提交Isusse 仓库地址为https://github.com/blockhaity/blockhaity.github.io' # 侧栏公告，留空则不显示
 leftbar_menu: # 侧栏顶部菜单，支持无限层级菜单嵌套
   首页: /
-  更多：
+  更多: 
     归档: /archives
   节点选择:
     Github Pages节点: https://blockhaity.github.io
