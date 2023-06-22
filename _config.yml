@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: BlockHaity's Blog
+title: BlockHaity`s Blog
 subtitle: '一个油饼学生的博客'
 description: ''
 keywords:
-author: BlockHaity
-language: zh
+author: blockhaity
+language: zh-CN
 timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://blockhaity.github.io
+url: http://blockhaity.github.io
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -97,16 +97,11 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: argon
+theme: fluid
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/BlockHaity/BlockHaity.github.io
+  repository: git@github.com:blockhaity/blockhaity.github.io.git
   branch: master
-
-search:
-  path: search.xml
-  field: post
-  content: true

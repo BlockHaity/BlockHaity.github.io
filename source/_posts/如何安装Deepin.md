@@ -1,9 +1,10 @@
 ---
 title: 如何安装Deepin
 date: 2023-05-27 19:52:29
-tags:
-thumbnail: https://s1.ax1x.com/2023/04/16/p991nZ8.png
+tags: 瞎说
 ---
+
+![](https://s1.ax1x.com/2023/04/16/p991nZ8.png)
 
 ## 什么是Deepin
 
