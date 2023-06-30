@@ -104,4 +104,4 @@ theme: fluid
 deploy:
   type: git
   repo: https://github.com/BlockHaity/BlockHaity.github.io
-  branch: master
+  branch: gh-pages
