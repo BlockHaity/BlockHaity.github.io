@@ -1,7 +1,10 @@
 ---
 title: 如何安装Deepin
+tags:
+  - 瞎说
+categories: 
+  - 教程
 date: 2023-05-27 19:52:29
-tags: 瞎说
 ---
 
 ![](/images/如何安装Deepin/banner.png)

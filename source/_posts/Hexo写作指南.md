@@ -1,7 +1,9 @@
 ---
 title: Hexo写作指南
+tags:
+  - 瞎说
+categories: []
 date: 2023-06-05 11:27:58
-tags: 瞎说
 ---
 
 ！：这片文章是写给作者自己看的 ~~不会考虑其他人的感受~~
@@ -12,7 +14,7 @@ tags: 瞎说
 
 插入图片语法
 
-```
+``` Markdown
 ![这是图片](/assets/img/philly-magic-garden.jpg "Magic Gardens")
 ```
 
@@ -22,7 +24,7 @@ tags: 瞎说
 
 链接语法
 
-```
+``` Markdown
 [Markdown语法](https://markdown.com.cn)
 ```
 
@@ -34,13 +36,13 @@ tags: 瞎说
 
 从B战复制过来的
 
-```
+``` HTML
 <iframe src="//player.bilibili.com/player.html?aid=651820362&bvid=BV1he4y1w7wB&cid=1006811391&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 ```
 
 实际使用的
 
-```
+``` HTML
 {% raw %}
 <div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
 <iframe src="//player.bilibili.com/player.html?aid=651820362&bvid=BV1he4y1w7wB&cid=1006811391&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; Left: 0; top: 0;" ></iframe></div>

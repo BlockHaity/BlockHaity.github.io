@@ -1,8 +1,10 @@
 ---
 title: XPVPer 一个专注于美观和PVP的Minecraft整合包
-date: 2023-06-19 01:35:17
-tags: Minecraft
-categories: 自制项目
+tags:
+  - Minecraft
+categories:
+  - 自制项目
+date: 2023-07-01 07:44:12
 ---
 
 {%raw%}

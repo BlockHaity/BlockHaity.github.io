@@ -105,3 +105,11 @@ deploy:
   type: git
   repo: https://github.com/BlockHaity/BlockHaity.github.io
   branch: gh-pages
+
+# Admin
+admin:
+    name: blockhaity
+    password: 123qwe
+    secret: hey hexo
+    expire: 60*1
+    # cors: http://localhost:3000
