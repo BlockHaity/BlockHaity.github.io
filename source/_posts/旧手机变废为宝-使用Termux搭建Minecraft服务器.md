@@ -37,19 +37,19 @@ Termux是一款在手机上模拟迷你Linux电脑的应用程序，它提供了
 
 一、打开手机，找到华为手机管家，点击打开。
 
-![](/images/旧手机变废为宝-使用Termux搭建Minecraft服务器/1.webp)
+![](https://s1.ax1x.com/2023/07/03/pCrG1Zq.png)
 
 二、打开华为手机管家后，点击打开“应用启动管理”。
 
-![](/images/旧手机变废为宝-使用Termux搭建Minecraft服务器/2.webp)
+![](https://s1.ax1x.com/2023/07/03/pCrG8oV.png)
 
 三、找到需要设置后台运行的应用，点击右边的开关。
 
-![](/images/旧手机变废为宝-使用Termux搭建Minecraft服务器/3.webp)
+![](https://s1.ax1x.com/2023/07/03/pCrGJiT.png)
 
 四、弹出的手动管理中开启“允许后台活动”，点击“确定”。设置之后该应用就可以在后台运行，且不会被自动清理给清理掉该应用。
 
-![](/images/旧手机变废为宝-使用Termux搭建Minecraft服务器/4.webp)
+![](https://s1.ax1x.com/2023/07/03/pCrGYJU.png)
 
 ### 鸿蒙特别注意
 
@@ -59,7 +59,7 @@ Termux是一款在手机上模拟迷你Linux电脑的应用程序，它提供了
 
 进入ZeroTermux
 
-![ZeroTermux界面](/images/旧手机变废为宝-使用Termux搭建Minecraft服务器/ZeroTermux界面.png)
+![ZeroTermux界面](https://s1.ax1x.com/2023/07/03/pCrG3d0.png)
 
 从左侧向右滑，打开辅助边栏，点击**切换源**，再点击**清华源**，点击**是**。
 
@@ -113,7 +113,7 @@ tar -zxf mcsmanager_linux_release.tar.gz
 
 # 进入面板
 
-打开你的浏览器，进入[localhost:23333](localhost:23333)
+打开你的浏览器，进入`手机IP:23333`
 
 按照浏览器的界面进行设置。
 
@@ -121,19 +121,19 @@ tar -zxf mcsmanager_linux_release.tar.gz
 
 然后看见此界面后，点击**首次使用**。
 
-![](/images/旧手机变废为宝-使用Termux搭建Minecraft服务器/MCSM界面1.png)
+![](https://s1.ax1x.com/2023/07/03/pCrGMss.png)
 
 点击**创建一个Minecraft服务器**
 
-![](/images/旧手机变废为宝-使用Termux搭建Minecraft服务器/MCSM界面2.png)
+![](https://s1.ax1x.com/2023/07/03/pCrGyFK.png)
 
 点击**普通流程创建服务器**，随后点击**Java 版 Minecraft 游戏服务端**
 
-![](/images/旧手机变废为宝-使用Termux搭建Minecraft服务器/MCSM界面3.png)
+![](https://s1.ax1x.com/2023/07/03/pCrG6JO.png)
 
 点击**上传单个服务端软件**，服务端从https://fabricmc.net/use/server/ 下载
 
-![](/images/旧手机变废为宝-使用Termux搭建Minecraft服务器/MCSM界面4.png)
+![](https://s1.ax1x.com/2023/07/03/pCrGcWD.png)
 
 实例名填写 `Minecraft-Fabric-Server`
 
