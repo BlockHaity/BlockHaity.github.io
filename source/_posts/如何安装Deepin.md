@@ -5,7 +5,7 @@ tags:
 categories: 
   - 教程
 date: 2023-05-27 19:52:29
-index_img: https://s1.ax1x.com/2023/04/16/p991nZ8.png
+index_img: /images/如何安装Deepin/p991nZ8.png
 ---
 
 ## 特别注意
@@ -22,7 +22,7 @@ index_img: https://s1.ax1x.com/2023/04/16/p991nZ8.png
 
 他在Linux内核树的关系如下
 
-![Deepin所在内核树的关系](https://s1.ax1x.com/2023/04/08/ppHVZJx.png)
+![Deepin所在内核树的关系](/images/如何安装Deepin/ppHVZJx.png)
 
 ***
 
@@ -32,7 +32,7 @@ index_img: https://s1.ax1x.com/2023/04/16/p991nZ8.png
 
 按下 `Win+R` ，输入 `msinfo32` ,查看 `BIOS模式` 这一栏。
 
-![msinfo32界面](https://s1.ax1x.com/2023/04/09/ppHBMwQ.png)
+![msinfo32界面](/images/如何安装Deepin/ppHBMwQ.png)
 
 如果你 `BIOS模式` 这一栏显示的不是 `UEFI` 的话，那么恭喜你，你可以直接点击[这里](#准备设备和软件)来查看下一步，如果是 `UEFI` 的话，请继续看下去。
 
@@ -48,7 +48,7 @@ index_img: https://s1.ax1x.com/2023/04/16/p991nZ8.png
 
 ### 准备设备和软件
 
-![所需设备和软件](https://s1.ax1x.com/2023/04/14/p9SdTN6.png)
+![所需设备和软件](/images/如何安装Deepin/p9SdTN6.png)
 
 Deepin V20镜像下载地址https://www.deepin.org/zh/download/
 
@@ -68,7 +68,7 @@ DiskGenius下载地址https://blockhaity.lanzoux.com/i6okc0xgahzc
 
 下载并解压Ventoy,将你的U盘插入你的电脑，进入ventoy-1.0.91文件夹，打开Ventoy2Disk。就可以看到如下界面。
 
-![Ventoy界面](https://s1.ax1x.com/2023/04/09/ppHBeQf.png)
+![Ventoy界面](/images/如何安装Deepin/ppHBeQf.png)
 
 在设备一栏选择你的U盘，点击安装，连续点击两次确认。然后将下载好的Deepin V20镜像拷贝到U盘即可。
 
@@ -82,15 +82,15 @@ DiskGenius下载地址https://blockhaity.lanzoux.com/i6okc0xgahzc
 
 下载并解压DiskGenius，进入DiskGenius文件夹，打开DiskGenius。就可以看到如下界面。
 
-![DiskGenius界面](https://s1.ax1x.com/2023/04/15/p9p7z7R.png)
+![DiskGenius界面](/images/如何安装Deepin/p9p7z7R.png)
 
 选择你的C盘或D盘，点击调整分区容量。如下图这样配置。后部容量在40~20GB即可，点击确定
 
-![调整分区容量](https://s1.ax1x.com/2023/04/15/p9pHNEn.png)
+![调整分区容量](/images/如何安装Deepin/p9pHNEn.png)
 
 点击确认，再点击灰色区域，点击建立新分区，如下图这样配置。点击确定
 
-![建立分区](https://s1.ax1x.com/2023/04/15/p9pquSf.png)
+![建立分区](/images/如何安装Deepin/p9pquSf.png)
 
 配置完成后，点击保存修改。
 
@@ -104,19 +104,19 @@ tips：如果正在 [查看启动方式](#查看启动方式) 中查看到是非
 
 启动后，会进入如下图的界面，勾选 **我已仔细阅读.....** 左边的复选框，再点击下一步。
 
-![安装界面](https://s1.ax1x.com/2023/04/16/p991nZ8.png)
+![安装界面](/images/如何安装Deepin/p991nZ8.png)
 
 出现如下图所示的界面，点击手动安装。
 
-![安装界面1](https://s1.ax1x.com/2023/04/16/p991udS.png)
+![安装界面1](/images/如何安装Deepin/p991udS.png)
 
 如下图所示，点击右侧为ext4的分区。
 
-![安装界面2](https://s1.ax1x.com/2023/04/16/p991KIg.png)
+![安装界面2](/images/如何安装Deepin/p991KIg.png)
 
 点击右侧的铅笔✏️图标，按下图所示配置。
 
-![分区配置](https://s1.ax1x.com/2023/04/16/p991udS.png)
+![分区配置](/images/如何安装Deepin/p991udS.png)
 
 点击确定，点击下一步，再点击确定。再点击下一步，再点击继续安装。然后泡杯茶，等待即可
 
