@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>XPVPer 一个专注于美观和PVP的Minecraft整合包</title>
+    <link href="/2023/07/01/XPVPer-%E4%B8%80%E4%B8%AA%E4%B8%93%E6%B3%A8%E4%BA%8E%E7%BE%8E%E8%A7%82%E5%92%8CPVP%E7%9A%84Minecraft%E6%95%B4%E5%90%88%E5%8C%85/"/>
+    <url>/2023/07/01/XPVPer-%E4%B8%80%E4%B8%AA%E4%B8%93%E6%B3%A8%E4%BA%8E%E7%BE%8E%E8%A7%82%E5%92%8CPVP%E7%9A%84Minecraft%E6%95%B4%E5%90%88%E5%8C%85/</url>
+    
+    <content type="html"><![CDATA[<h1 align="center">  <br>  <img src="https://s1.ax1x.com/2023/06/07/pCFC7dK.png"/></a>  <br>  XPVPer  <br></h1><h2 align="center">一个专注于美观和PVP的Minecraft整合包</h2><p><a href="https://github.com/BlockHaity/XPVPer">项目主页</a></p><h1 id="XPVPer是什么"><a href="#XPVPer是什么" class="headerlink" title="XPVPer是什么"></a>XPVPer是什么</h1><p>XPVPer是一个基于Minecraft Java Edition 1.8.9，Forge，LabyMOD制作的整合包</p><p><strong>注意！！！XPVPer不是Minecraft客户端，更不会成为Minecraft客户端</strong></p><h1 id="有什么亮点"><a href="#有什么亮点" class="headerlink" title="有什么亮点"></a>有什么亮点</h1><p><em>注：以下内容皆以原版作为比较</em></p><h2 id="更加美观的UI"><a href="#更加美观的UI" class="headerlink" title="更加美观的UI"></a>更加美观的UI</h2><p><a href="https://imgse.com/i/pCFLKqe"><img src="https://s1.ax1x.com/2023/06/07/pCFLKqe.png" alt="pCFLKqe.png"></a></p><p><em>左侧为XPVPer右侧为原版Minecraft</em></p><p><a href="https://imgse.com/i/pCFXaNj"><img src="https://s1.ax1x.com/2023/06/07/pCFXaNj.png" alt="pCFXaNj.png"></a></p><p>使用FancyMenu，Blur，LabyMOD等MOD实现。</p><h2 id="高度的可自定义性"><a href="#高度的可自定义性" class="headerlink" title="高度的可自定义性"></a>高度的可自定义性</h2><p>作者不封死包括FancyMenu的配置栏 <del>（虽然真的很丑）</del> ，UI资源包在内的所有自定义项，给用户完全的界面自由。</p><p><a href="https://imgse.com/i/pCFX5gx"><img src="https://s1.ax1x.com/2023/06/07/pCFX5gx.png" alt="pCFX5gx.png"></a></p><p><a href="https://imgse.com/i/pCFXO5d"><img src="https://s1.ax1x.com/2023/06/07/pCFXO5d.png" alt="pCFXO5d.png"></a></p><h2 id="还有更多等待挖掘。。。"><a href="#还有更多等待挖掘。。。" class="headerlink" title="还有更多等待挖掘。。。"></a>还有更多等待挖掘。。。</h2><h1 id="如何安装使用"><a href="#如何安装使用" class="headerlink" title="如何安装使用"></a>如何安装使用</h1><ol><li><p>MCBBS整合包格式安装。含有HMCL的压缩包安装。<br>参照 <a href="https://github.com/BlockHaity/XPVPer/releases">Releases</a> 给出的教程即可。</p></li><li><p>命令行安装<br>参照 <a href="https://github.com/BlockHaity/XPVPer/tree/Runner">Runner分支</a> 进行操作即可</p></li></ol><h1 id="如何为此项目做贡献"><a href="#如何为此项目做贡献" class="headerlink" title="如何为此项目做贡献"></a>如何为此项目做贡献</h1><h2 id="发现Bug"><a href="#发现Bug" class="headerlink" title="发现Bug"></a>发现Bug</h2><p>发现Bug后在 <a href="https://github.com/BlockHaity/XPVPer/discussions">Discussions</a> 内进行发帖讨论，获得解决方案后提交issuse。</p><h2 id="提出建议"><a href="#提出建议" class="headerlink" title="提出建议"></a>提出建议</h2><p>在 <a href="https://github.com/BlockHaity/XPVPer/discussions">Discussions</a> 内提出你的建议，探讨出解决方案后提交Issuse</p><h2 id="直接动手改代码（PR）"><a href="#直接动手改代码（PR）" class="headerlink" title="直接动手改代码（PR）"></a>直接动手改代码（PR）</h2><p>在根目录新建一个 <code>PR.md</code> 用来描述你做的改动和实现的功能，后提交PR</p><h2 id="为什么采用先讨论得到方案后再提交issuse的方式"><a href="#为什么采用先讨论得到方案后再提交issuse的方式" class="headerlink" title="为什么采用先讨论得到方案后再提交issuse的方式"></a>为什么采用先讨论得到方案后再提交issuse的方式</h2><p>作者是一名学生，没有太多时间来探讨解决方案，并且作者不太会Java等语言。这样做就可以提升此项目修复Bug的速度。</p><h1 id="已知Bug"><a href="#已知Bug" class="headerlink" title="已知Bug"></a>已知Bug</h1><h2 id="在进入-单人游戏-或-多人游戏-界面后调整窗口大小会导致界面错位的问题。"><a href="#在进入-单人游戏-或-多人游戏-界面后调整窗口大小会导致界面错位的问题。" class="headerlink" title="在进入 单人游戏 或 多人游戏 界面后调整窗口大小会导致界面错位的问题。"></a>在进入 <strong>单人游戏</strong> 或 <strong>多人游戏</strong> 界面后调整窗口大小会导致界面错位的问题。</h2><p>影响评级：高</p><p>是否可以解决：否</p><p>原因：该Bug是由FancyMenu所导致的，而适用于Minecraft 1.8.9 Forge的FancyMenu已经停更。无法通过除改源代码的方法修复。</p><p>治标不治本的方案：先最大化窗口再进入 <strong>单人游戏</strong> 或 <strong>多人游戏</strong> 界面，在后续使用中尽量避免拉伸窗口。</p><h1 id="相关问答"><a href="#相关问答" class="headerlink" title="相关问答"></a>相关问答</h1><p>Q：为什么不制作Minecraft客户端，它明明比整合包更加好</p><p>A：首要原因：不会写。次要原因：我认为不自由，Minecraft客户端只能让用户关闭功能，而不能删除功能。而整合包可以让用户直接删除一些功能。高度模块化是我喜欢的一种制作表现，当然这是有代价的，这样制作无法深度修改Minecraft。</p><p>Q：XPVPer含不含有作弊功能</p><p>A：没有，作者甚至想通过客户端文件覆盖的方法来反作弊，但一直没有一个有效的方案 <del>至少要防个水影和VAPE</del></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>自制项目</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Minecraft</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Hexo写作指南</title>
+    <link href="/2023/06/05/Hexo%E5%86%99%E4%BD%9C%E6%8C%87%E5%8D%97/"/>
+    <url>/2023/06/05/Hexo%E5%86%99%E4%BD%9C%E6%8C%87%E5%8D%97/</url>
+    
+    <content type="html"><![CDATA[<p>！：这片文章是写给作者自己看的 <del>不会考虑其他人的感受</del></p><h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>先将图片上传到图床，然后采用Markdown图片插入即可。</p><p>插入图片语法</p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Markdown">![<span class="hljs-string">这是图片</span>](<span class="hljs-link">/assets/img/philly-magic-garden.jpg &quot;Magic Gardens&quot;</span>)<br></code></pre></td></tr></table></figure><h2 id="锚点"><a href="#锚点" class="headerlink" title="锚点"></a>锚点</h2><p>链接语法右侧括号内填写 <code>#+二级标题</code> 即可</p><p>链接语法</p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Markdown">[<span class="hljs-string">Markdown语法</span>](<span class="hljs-link">https://markdown.com.cn</span>)<br></code></pre></td></tr></table></figure><h2 id="插入B站视频"><a href="#插入B站视频" class="headerlink" title="插入B站视频"></a>插入B站视频</h2><p>只需要把 <code>//player.bilibili.com/player.html?aid=90978812&amp;cid=155358422&amp;page=1</code> 替换成自己的就行。</p><p>以 <strong>【8K超高清完整版】瑞克·埃斯利（你被骗了）《Never Gonna Give You Up》</strong> 作为演示</p><p>从B战复制过来的</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs HTML"><span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;//player.bilibili.com/player.html?aid=651820362&amp;bvid=BV1he4y1w7wB&amp;cid=1006811391&amp;page=1&quot;</span> <span class="hljs-attr">scrolling</span>=<span class="hljs-string">&quot;no&quot;</span> <span class="hljs-attr">border</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">frameborder</span>=<span class="hljs-string">&quot;no&quot;</span> <span class="hljs-attr">framespacing</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">allowfullscreen</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-name">iframe</span>&gt;</span><br></code></pre></td></tr></table></figure><p>实际使用的</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs HTML">&#123;% raw %&#125;<br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;position: relative; width: 100%; height: 0; padding-bottom: 75%;&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;//player.bilibili.com/player.html?aid=651820362&amp;bvid=BV1he4y1w7wB&amp;cid=1006811391&amp;page=1&quot;</span> <span class="hljs-attr">scrolling</span>=<span class="hljs-string">&quot;no&quot;</span> <span class="hljs-attr">border</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">frameborder</span>=<span class="hljs-string">&quot;no&quot;</span> <span class="hljs-attr">framespacing</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">allowfullscreen</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;position: absolute; width: 100%; height: 100%; Left: 0; top: 0;&quot;</span> &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">iframe</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>&#123;% endraw %&#125;<br></code></pre></td></tr></table></figure><div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;"><iframe src="//player.bilibili.com/player.html?aid=651820362&bvid=BV1he4y1w7wB&cid=1006811391&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; Left: 0; top: 0;" ></iframe></div>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>瞎说</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>如何安装Deepin（弃用）</title>
+    <link href="/2023/05/27/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Deepin/"/>
+    <url>/2023/05/27/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Deepin/</url>
+    
+    <content type="html"><![CDATA[<h2 id="特别注意"><a href="#特别注意" class="headerlink" title="特别注意"></a>特别注意</h2><p>本文章已被作者弃用，无法保证这篇文章的有效性。</p><h2 id="什么是Deepin"><a href="#什么是Deepin" class="headerlink" title="什么是Deepin"></a>什么是Deepin</h2><p>（不想看的点击<a href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C">这里</a>）</p><p>深度操作系统是基于Linux内核，以桌面应用为主的开源GNU&#x2F;Linux操作系统，支持笔记本、台式机和一体机。深度操作系统（deepin）包含深度桌面环境（DDE）和近30款深度原创应用，及数款来自开源社区的应用软件，支撑广大用户日常的学习和工作。另外，通过深度商店还能够获得近千款应用软件的支持，满足您对操作系统的扩展需求。深度操作系统由专业的操作系统研发团队和深度技术社区共同打造，其名称来自深度技术社区名称“deepin”一词，意思是对人生和未来深刻的追求和探索。 </p><p>深度操作系统（deepin）是中国第一个具备国际影响力的Linux发行版本，截止至2019年7月25日，深度操作系统支持33种语言，用户遍布除了南极洲的其它六大洲。深度桌面环境（DDE）和大量的应用软件被移植到了包括Fedora、Ubuntu、Arch等十余个国际Linux发行版和社区。 </p><p>他在Linux内核树的关系如下</p><p><img src="https://s1.ax1x.com/2023/04/08/ppHVZJx.png" alt="Deepin所在内核树的关系"></p><hr><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="查看启动方式"><a href="#查看启动方式" class="headerlink" title="查看启动方式"></a>查看启动方式</h3><p>按下 <code>Win+R</code> ，输入 <code>msinfo32</code> ,查看 <code>BIOS模式</code> 这一栏。</p><p><img src="https://s1.ax1x.com/2023/04/09/ppHBMwQ.png" alt="msinfo32界面"></p><p>如果你 <code>BIOS模式</code> 这一栏显示的不是 <code>UEFI</code> 的话，那么恭喜你，你可以直接点击<a href="#%E5%87%86%E5%A4%87%E8%AE%BE%E5%A4%87%E5%92%8C%E8%BD%AF%E4%BB%B6">这里</a>来查看下一步，如果是 <code>UEFI</code> 的话，请继续看下去。</p><h4 id="关闭安全启动"><a href="#关闭安全启动" class="headerlink" title="关闭安全启动"></a>关闭安全启动</h4><p>打开你的浏览器，搜索你电脑品牌或主板品牌的BIOS启动快捷键。</p><p>重启电脑，在电脑屏幕黑掉后狂按BIOS启动快捷键。进入BIOS。</p><p>使用键盘的上下左右按键来定位到 <code>Secure Boot</code> 将右边的 <code>Enabled</code> 改为 <code>Disabled</code> </p><p>按下 <code>Esc</code> ，选择 <code>Save and Exit</code> 回车。退出。</p><h3 id="准备设备和软件"><a href="#准备设备和软件" class="headerlink" title="准备设备和软件"></a>准备设备和软件</h3><p><img src="https://s1.ax1x.com/2023/04/14/p9SdTN6.png" alt="所需设备和软件"></p><p>Deepin V20镜像下载地址<a href="https://www.deepin.org/zh/download/">https://www.deepin.org/zh/download/</a></p><p>Ventoy下载地址<a href="https://blockhaity.lanzoux.com/i6okc0xgahzc">https://blockhaity.lanzoux.com/i6okc0xgahzc</a></p><p>DiskGenius下载地址<a href="https://blockhaity.lanzoux.com/i6okc0xgahzc">https://blockhaity.lanzoux.com/i6okc0xgahzc</a></p><hr><h2 id="制作启动U盘"><a href="#制作启动U盘" class="headerlink" title="制作启动U盘"></a>制作启动U盘</h2><p><strong>注意！该操作会清空你的U盘数据，请备份后操作！！！</strong></p><p><strong>注意！该操作会清空你的U盘数据，请备份后操作！！！</strong></p><p><strong>注意！该操作会清空你的U盘数据，请备份后操作！！！</strong></p><p>下载并解压Ventoy,将你的U盘插入你的电脑，进入ventoy-1.0.91文件夹，打开Ventoy2Disk。就可以看到如下界面。</p><p><img src="https://s1.ax1x.com/2023/04/09/ppHBeQf.png" alt="Ventoy界面"></p><p>在设备一栏选择你的U盘，点击安装，连续点击两次确认。然后将下载好的Deepin V20镜像拷贝到U盘即可。</p><h2 id="进行磁盘分区"><a href="#进行磁盘分区" class="headerlink" title="进行磁盘分区"></a>进行磁盘分区</h2><p><strong>注意！该操作若是不规范或误操作，轻则系统暴毙，数据丢失。重则硬盘分区表损坏！请谨慎操作！！！</strong></p><p><strong>注意！该操作若是不规范或误操作，轻则系统暴毙，数据丢失。重则硬盘分区表损坏！请谨慎操作！！！</strong></p><p><strong>注意！该操作若是不规范或误操作，轻则系统暴毙，数据丢失。重则硬盘分区表损坏！请谨慎操作！！！</strong></p><p>下载并解压DiskGenius，进入DiskGenius文件夹，打开DiskGenius。就可以看到如下界面。</p><p><img src="https://s1.ax1x.com/2023/04/15/p9p7z7R.png" alt="DiskGenius界面"></p><p>选择你的C盘或D盘，点击调整分区容量。如下图这样配置。后部容量在40~20GB即可，点击确定</p><p><img src="https://s1.ax1x.com/2023/04/15/p9pHNEn.png" alt="调整分区容量"></p><p>点击确认，再点击灰色区域，点击建立新分区，如下图这样配置。点击确定</p><p><img src="https://s1.ax1x.com/2023/04/15/p9pquSf.png" alt="建立分区"></p><p>配置完成后，点击保存修改。</p><h2 id="从U盘启动并安装"><a href="#从U盘启动并安装" class="headerlink" title="从U盘启动并安装"></a>从U盘启动并安装</h2><p>如何启动请参考<a href="https://wiki.edgeless.top/v2/guide/boot.html">https://wiki.edgeless.top/v2/guide/boot.html</a></p><p>tips：如果正在 <a href="#%E6%9F%A5%E7%9C%8B%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F">查看启动方式</a> 中查看到是非UEFI的话，就一定再启动时不要选择带UEFI字段的启动项。</p><p>在参照上面的链接的教程进入Ventoy界面后，双击回车。</p><p>启动后，会进入如下图的界面，勾选 <strong>我已仔细阅读…..</strong> 左边的复选框，再点击下一步。</p><p><img src="https://s1.ax1x.com/2023/04/16/p991nZ8.png" alt="安装界面"></p><p>出现如下图所示的界面，点击手动安装。</p><p><img src="https://s1.ax1x.com/2023/04/16/p991udS.png" alt="安装界面1"></p><p>如下图所示，点击右侧为ext4的分区。</p><p><img src="https://s1.ax1x.com/2023/04/16/p991KIg.png" alt="安装界面2"></p><p>点击右侧的铅笔✏️图标，按下图所示配置。</p><p><img src="https://s1.ax1x.com/2023/04/16/p991udS.png" alt="分区配置"></p><p>点击确定，点击下一步，再点击确定。再点击下一步，再点击继续安装。然后泡杯茶，等待即可</p><p><del>Swap分区在消费级领域基本没用了还TM提醒</del></p><p>然后显示如下图的界面，点击立即重启，然后拔掉U盘。等待进入系统后，安装自己的喜好配置即可。</p><p>特别提醒，用户名不可以为中文和特殊符号，密码同理。密码要牢记！！！再后面的相关优化等步骤要用到。</p><h2 id="相关优化（有难度，可以不执行）"><a href="#相关优化（有难度，可以不执行）" class="headerlink" title="相关优化（有难度，可以不执行）"></a>相关优化（有难度，可以不执行）</h2><p>点击左下角的程序列表，找到终端，打开，并执行以下命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs Bash">sudo apt update<br>sudo apt install deepin-wine<br>sudo apt install spark-store<br></code></pre></td></tr></table></figure><h2 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h2><p>Q:软件从哪里下。</p><p>A:可以从Deepin自带的软件商城下载，跑过相关优化的可以从星火应用商店下载（推荐），如果要从软件官网下载的话，要认准Linux版，X64，deb格式</p><p>Q:我想要切换回Windows，要怎么操作</p><p>A:再开机时疯狂按上下键，选择 <code>Windows Boot Manager</code> 按下回车键即可进入Windows。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>教程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>瞎说</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>

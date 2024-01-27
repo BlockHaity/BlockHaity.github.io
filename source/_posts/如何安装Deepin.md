@@ -1,13 +1,16 @@
 ---
-title: 如何安装Deepin
+title: 如何安装Deepin（弃用）
 tags:
   - 瞎说
 categories: 
   - 教程
 date: 2023-05-27 19:52:29
+index_img: https://s1.ax1x.com/2023/04/16/p991nZ8.png
 ---
 
-![](https://s1.ax1x.com/2023/04/16/p991nZ8.png)
+## 特别注意
+本文章已被作者弃用，无法保证这篇文章的有效性。
+
 
 ## 什么是Deepin
 
