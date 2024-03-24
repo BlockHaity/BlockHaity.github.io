@@ -23,6 +23,7 @@ jobs:
         npm install --force
         npm install hexo-cli -g
         npm install --save hexo-theme-fluid
+        npm install --save hexo-deployer-git
 
     - name: 构建
       run: |
