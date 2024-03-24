@@ -33,7 +33,7 @@ jobs:
         git config --global user.name "BlockHaity-GhAction"
         git clone --branch=gh-pages https://github.com/BlockHaity/BlockHaity.github.io.git output
         rm -rf ./output/*
-        cp ./public/* ./output/*
+        cp ./public/* ./output/
         cd ./output/
         git add .
         git commit -m "构建并推送（Action）"
