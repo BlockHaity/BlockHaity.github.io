@@ -30,7 +30,7 @@ jobs:
     - name: 推送
       run: |
         git config --global user.email "1216692740@qq.com"
-        git config --global user.name "BlockHaity"
+        git config --global user.name "blockhaity"
         git clone --branch=gh-pages https://github.com/BlockHaity/BlockHaity.github.io.git output
         rm -rf ./output/*
         cp -rf ./public/* ./output/
