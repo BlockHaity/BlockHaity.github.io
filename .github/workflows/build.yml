@@ -21,18 +21,20 @@ jobs:
     - name: 安装依赖
       run: |
         npm install --force
+        npm install --save hexo-theme-fluid
 
     - name: 构建
       run: |
-        npm run generate
+        npm run build
 
     - name: 推送
       run: |
         git config --global user.email "1216692740@qq.com"
         git config --global user.name "BlockHaity-GhAction"
-        git clone --branch=gh-pages https://github.com/BlockHaity/BlockHaity.github.io.git public
-        cd public
-        cp -r ../public/* .
+        git clone --branch=gh-pages https://github.com/BlockHaity/BlockHaity.github.io.git output
+        rm -rf ./output/*
+        cp ./public/* ./output/*
+        cd ./output/
         git add .
         git commit -m "构建并推送（Action）"
         git push origin gh-pages
