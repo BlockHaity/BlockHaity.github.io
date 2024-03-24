@@ -21,7 +21,7 @@ jobs:
     - name: 安装依赖
       run: |
         npm install --force
-        npm install -g hexo-cil
+        npm install hexo-cli -g
         npm install --save hexo-theme-fluid
 
     - name: 构建
