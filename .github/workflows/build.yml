@@ -1,0 +1,39 @@
+name: 博客自动构建
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 检查代码
+      uses: actions/checkout@v2
+
+    - name: 设置Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
+
+    - name: 安装依赖
+      run: |
+        npm install --force
+
+    - name: 构建
+      run: |
+        npm run generate
+
+    - name: 推送
+      run: |
+        git config --global user.email "1216692740@qq.com"
+        git config --global user.name "BlockHaity-GhAction"
+        git clone --branch=gh-pages https://github.com/BlockHaity/BlockHaity.github.io.git public
+        cd public
+        cp -r ../public/* .
+        git add .
+        git commit -m "构建并推送（Action）"
+        git push origin gh-pages
+
