@@ -1,0 +1,25 @@
+{
+    "language": "zh-hans",
+    "plugins": [
+        "search-pro",
+        "chapter-fold",
+        "expandable-chapters",
+        "anchor-navigation-ex",
+        "accordion",
+        "favicon",
+        "prism",
+        "-lunr",
+        "-search"
+    ],
+    "pluginsConfig": {
+        "anchor-navigation-ex": {
+            "showLevel": true,
+            "showGoTop": true
+        },
+        "favicon": {
+            "shortcut": "https://s1.ax1x.com/2023/04/04/pp5VsD1.jpg",
+            "bookmark": "https://s1.ax1x.com/2023/04/04/pp5VsD1.jpg",
+            "appleTouch": "https://s1.ax1x.com/2023/04/04/pp5VsD1.jpg"
+        }
+    }
+}
