@@ -59,7 +59,7 @@ jobs:
          user: ${{ secrets.FTP_USERNAME }}
          password: ${{ secrets.FTP_PASSWORD }}
          remoteFiles: "*"  # 删除wwwroot目录下所有文件
-         remoteDirs: "/"  # 指定wwwroot目录
+         remoteDirectories: "/"  # 指定wwwroot目录
      - name: clone gh-pages
        run:  git clone -b gh-pages https://github.com/${{ github.repository }}.git wwwroot
      - name: Push files to wwwroot directory on FTP server
