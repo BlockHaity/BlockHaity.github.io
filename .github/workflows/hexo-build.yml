@@ -49,7 +49,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
   deploy-to-ftp:
-    needs: deploy-to-ghpages
+    needs: build
     runs-on: ubuntu-latest
     steps:
      - name: Delete files in wwwroot directory on FTP server
@@ -60,8 +60,19 @@ jobs:
          password: ${{ secrets.FTP_PASSWORD }}
          remoteFiles: "*" 
          remoteDirectories: "."
-     - name: clone gh-pages
-       run:  git clone -b gh-pages https://github.com/${{ github.repository }}.git wwwroot
+     - name: rebuild Hexo website
+       run:  | 
+        git clone https://github.com/${{ github.repository }}.git
+        cd ${{ github.repository }}
+        git checkout ${{ github.event.ref }}
+        npm install
+        npm run build
+     - name: clear files
+       run: |
+        cd ../
+        mkdir wwwroot
+        mv ./${{ github.repository }}/public/* ./wwwroot/
+        rm -rf ${{ github.repository }}
      - name: Push files to wwwroot directory on FTP server
        uses: sebastianpopp/ftp-action@releases/v2
        with:
