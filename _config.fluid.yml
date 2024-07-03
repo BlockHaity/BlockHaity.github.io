@@ -360,6 +360,8 @@ navbar:
           { key: "CloudFalre Pages节点", link: "https://blockhaity.pages.dev/"},
           { key: "Netlify节点", link: "https://blockhaity.netlify.app/"},
           { key: "Github Pages节点", link: "https://blockhaity.github.io/"},
+          { key: "Vercal节点" , link: "https://blockhaity.vercal.app/"},
+          { key: "BlockHaity's Host节点" , link: "http://blockhaity.cloudns.ch/"}
         ]
       }
 
