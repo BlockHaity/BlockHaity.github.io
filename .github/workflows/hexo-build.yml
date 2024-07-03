@@ -1,86 +1,84 @@
-name: Pages
+name: Hexo Deploy to gh-pages Branch
 
 on:
   push:
     branches:
-      - main  # default branch
+      - main  # 触发条件，当 main 分支有 push 事件时触发
 
 jobs:
-  build:
+  build-and-deploy:
+    runs-on: ubuntu-latest  # 运行环境
+
+    steps:
+    - name: Checkout Source
+      uses: actions/checkout@v2  # 检出代码
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'  # 选择 Node.js 版本
+
+    - name: Install Dependencies
+      run: npm install  # 安装 Hexo 依赖
+
+    - name: Hexo Generate
+      run: npm run build  # 构建 Hexo 静态文件
+
+    - name: Deploy to gh-pages Branch
+      run: |
+        # 配置 git 用户信息
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
+
+        # 切换到 HTML 分支
+        git checkout -b gh-pages
+
+        # 清除当前分支内容
+        git rm -rf .
+
+        # 复制生成的静态文件到 HTML 分支
+        cp -r ./public/* .
+
+        # 添加所有文件到 git
+        git add .
+
+        # 提交更改
+        git commit -m "Update HTML branch with latest build"
+
+        # 推送到远程 HTML 分支
+        git push origin gh-ages --force
+
+  build-and-depoly-to-ftp:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          # If your repository depends on submodule, please see: https://github.com/actions/checkout
-          submodules: recursive
-      - name: Use Node.js 20
-        uses: actions/setup-node@v4
-        with:
-          # Examples: 20, 18.19, >=16.20.2, lts/Iron, lts/Hydrogen, *, latest, current, node
-          # Ref: https://github.com/actions/setup-node#supported-version-syntax
-          node-version: '20'
-      - name: Cache NPM dependencies
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-npm-cache
-          restore-keys: |
-            ${{ runner.OS }}-npm-cache
-      - name: Install Dependencies
-        run: npm install
-      - name: Build
-        run: npm run build
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./public
-  deploy-to-ghpages:
-    needs: build
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-  deploy-to-ftp:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-     - name: Delete files in wwwroot directory on FTP server
-       uses: StephanThierry/ftp-delete-action@v2.1
-       with:
-         host: ${{ secrets.FTP_HOST }}
-         user: ${{ secrets.FTP_USERNAME }}
-         password: ${{ secrets.FTP_PASSWORD }}
-         remoteFiles: "*" 
-         remoteDirectories: "."
-     - name: get files
-       run:  git clone https://github.com/${{ github.repository }}.git
-     - name: Use Node.js 20
-       uses: actions/setup-node@v4
-       with:
-         node-version: '20'
-     - name: Build Hexo
-       run: | 
-        npm install
-        npm run build
-     - name: clear files
-       run: |
-        cd ../
-        mkdir wwwroot
-        mv ./${{ github.repository }}/public/* ./wwwroot/
-        rm -rf ${{ github.repository }}
-     - name: Push files to wwwroot directory on FTP server
-       uses: sebastianpopp/ftp-action@releases/v2
-       with:
-         host: ${{ secrets.FTP_HOST }}
-         user: ${{ secrets.FTP_USERNAME }}
-         password: ${{ secrets.FTP_PASSWORD }}
-         localDir: ./wwwroot  # 指定本地要上传的目录，根目录'.'表示仓库根目录
-         remoteDir: /  # 指定FTP服务器上的远程目录
+    - name: Delete files in wwwroot directory on FTP server
+      uses: StephanThierry/ftp-delete-action@v2.1
+      with:
+        host: ${{ secrets.FTP_HOST }}
+        user: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        remoteFiles: "*" 
+        remoteDirectories: "."
+      
+    - name: Checkout Source
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Hexo Generate
+      run: npm run build
+
+    - name: Push files to wwwroot directory on FTP server
+      uses: sebastianpopp/ftp-action@releases/v2
+      with:
+        host: ${{ secrets.FTP_HOST }}
+        user: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        localDir: ./public  # 指定本地要上传的目录，根目录'.'表示仓库根目录
+        remoteDir: /  # 指定FTP服务器上的远程目录
