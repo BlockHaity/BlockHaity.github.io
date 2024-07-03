@@ -68,7 +68,7 @@ jobs:
          node-version: '20'
      - name: Build Hexo
        run: | 
-        npm install --force
+        npm install
         npm run build
      - name: clear files
        run: |
