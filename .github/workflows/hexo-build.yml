@@ -48,24 +48,24 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
   ftp-deploy:
-    name: Deploy to FTP
+    needs: build  
+    runs-on: ubuntu-latest
     steps:
      - name: Delete files in wwwroot directory on FTP server
-        uses: StephanThierry/ftp-delete-action@v2.1
-        with:
-          host: ${{ secrets.FTP_HOST }}
-          user: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          remoteFiles: "*"  # 删除wwwroot目录下所有文件
-          remoteDirectories: "/wwwroot/"  # 指定wwwroot目录
-          workingDir: "."  # 工作目录设置为wwwroot的上级目录
+       uses: StephanThierry/ftp-delete-action@v2.1
+       with:
+         host: ${{ secrets.FTP_HOST }}
+         user: ${{ secrets.FTP_USERNAME }}
+         password: ${{ secrets.FTP_PASSWORD }}
+         remoteFiles: "*"  # 删除wwwroot目录下所有文件
+         remoteDirectories: "/wwwroot/"  # 指定wwwroot目录
+         workingDir: "."  # 工作目录设置为wwwroot的上级目录
      - name: Push files to wwwroot directory on FTP server
-        uses: sebastianpopp/ftp-action@releases/v2
-        with:
-          host: ${{ secrets.FTP_HOST }}
-          user: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          localDir: ./public/  # 指定本地要上传的目录，根目录'.'表示仓库根目录
-          remoteDir: /wwwroot/  # 指定FTP服务器上的远程目录
+       uses: sebastianpopp/ftp-action@releases/v2
+       with:
+         host: ${{ secrets.FTP_HOST }}
+         user: ${{ secrets.FTP_USERNAME }}
+         password: ${{ secrets.FTP_PASSWORD }}
+         localDir: ./public/  # 指定本地要上传的目录，根目录'.'表示仓库根目录
+         remoteDir: /wwwroot/  # 指定FTP服务器上的远程目录
