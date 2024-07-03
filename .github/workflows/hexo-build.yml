@@ -64,7 +64,6 @@ jobs:
        run:  | 
         git clone https://github.com/${{ github.repository }}.git
         cd ${{ github.repository }}
-        git checkout ${{ github.event.ref }}
         npm install
         npm run build
      - name: clear files
