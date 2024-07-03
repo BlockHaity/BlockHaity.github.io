@@ -60,11 +60,15 @@ jobs:
          password: ${{ secrets.FTP_PASSWORD }}
          remoteFiles: "*" 
          remoteDirectories: "."
-     - name: rebuild Hexo website
-       run:  | 
-        git clone https://github.com/${{ github.repository }}.git
-        cd ${{ github.repository }}
-        npm install
+     - name: get files
+       run:  git clone https://github.com/${{ github.repository }}.git
+     - name: Use Node.js 20
+       uses: actions/setup-node@v4
+       with:
+         node-version: '20'
+     - name: Build Hexo
+       run: | 
+        npm install --force
         npm run build
      - name: clear files
        run: |
