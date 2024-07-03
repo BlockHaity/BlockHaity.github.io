@@ -46,7 +46,7 @@ jobs:
         git commit -m "Update HTML branch with latest build"
 
         # 推送到远程 HTML 分支
-        git push origin gh-ages --force
+        git push origin gh-pages --force
 
   build-and-depoly-to-ftp:
     runs-on: ubuntu-latest
