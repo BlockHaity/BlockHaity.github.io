@@ -40,7 +40,7 @@ jobs:
         cp -r ./public/* .
 
         # 删除大文件保证CF Pages的正常构建
-        rm -f ./images/webside/banner.gif
+        rm -f images/webside/banner.gif
 
         # 添加所有文件到 git
         git add .
