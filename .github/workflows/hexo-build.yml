@@ -21,6 +21,9 @@ jobs:
     - name: Install Dependencies
       run: npm install  # 安装 Hexo 依赖
 
+    - name: Remove Banner to build success for Cloudflare Pages
+      run: rm source/images/webside/banner.gif
+
     - name: Hexo Generate
       run: npm run build  # 构建 Hexo 静态文件
 
@@ -35,12 +38,9 @@ jobs:
 
         # 清除当前分支内容
         git rm -rf .
-
+        
         # 复制生成的静态文件到 HTML 分支
         cp -r ./public/* .
-
-        # 删除大文件保证CF Pages的正常构建
-        rm -f images/webside/banner.gif
 
         # 添加所有文件到 git
         git add .
