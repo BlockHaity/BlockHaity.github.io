@@ -6,7 +6,7 @@ on:
       - main  # 触发条件，当 main 分支有 push 事件时触发
 
 jobs:
-  build-and-deploy:
+  build-and-deploy-for-other:
     runs-on: ubuntu-latest  # 运行环境
 
     steps:
@@ -20,9 +20,6 @@ jobs:
 
     - name: Install Dependencies
       run: npm install  # 安装 Hexo 依赖
-
-    - name: Remove Banner to build success for Cloudflare Pages
-      run: rm source/images/webside/banner.gif
 
     - name: Hexo Generate
       run: npm run build  # 构建 Hexo 静态文件
@@ -42,6 +39,9 @@ jobs:
         # 复制生成的静态文件到 HTML 分支
         cp -r ./public/* .
 
+        # 删除大文件保证CloudFlare Pages构建成功
+        rm ./images/webside/banner.gif
+        
         # 添加所有文件到 git
         git add .
 
@@ -50,3 +50,46 @@ jobs:
 
         # 推送到远程 HTML 分支
         git push origin gh-pages --force
+
+  build-for-ghpages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # If your repository depends on submodule, please see: https://github.com/actions/checkout
+          submodules: recursive
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          # Examples: 20, 18.19, >=16.20.2, lts/Iron, lts/Hydrogen, *, latest, current, node
+          # Ref: https://github.com/actions/setup-node#supported-version-syntax
+          node-version: "20"
+      - name: Cache NPM dependencies
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-npm-cache
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache
+      - name: Install Dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+  deploy-for-ghpages:
+    needs: build-for-ghpages
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

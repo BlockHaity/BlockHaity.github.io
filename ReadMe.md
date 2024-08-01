@@ -4,6 +4,8 @@ Person Webside
 
 ## 博客更新日志
 
+2024/8/1 **BlockHaity's Host节点** 暴毙，从网页中移除
+
 2024/7/3 添加节点 **Vercal节点** **BlockHaity`s Host节点**
 
 2024/4/4 发布文章**使用手机搭建家庭服务器实战**，更新依赖。
