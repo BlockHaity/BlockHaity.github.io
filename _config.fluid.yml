@@ -1033,6 +1033,12 @@ links:
       link: "https://github.com/BlockHaity/XPVPer",
       avatar: "https://s1.ax1x.com/2023/06/07/pCFC7dK.png"
     }
+    - {
+      title: "灰狼云",
+      intro: "blockhaity's host使用它的免费主机",
+      link: "https://yun316.net/",
+      avatar: "https://yun316.net/style/img/logo.png"
+    }
 
   # 当成员头像加载失败时，替换为指定图片
   # When the member avatar fails to load, replace the specified image
