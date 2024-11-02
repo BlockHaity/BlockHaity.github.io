@@ -45,6 +45,11 @@ jobs:
         rm -rf ./public
         rm -rf ./node_modules
 
+    - name: clone studynotes
+      run: | 
+       git clone https://github.com/blockhaity/studynotes.git
+       mv studynotes/img/* ./img
+    
     - name: Deploy to gh-pages Branch
       run: |
         # 添加所有文件到 git
