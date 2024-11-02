@@ -48,6 +48,7 @@ jobs:
     - name: clone studynotes
       run: | 
        git clone https://github.com/blockhaity/studynotes.git
+       rm -rf studynotes/.git
        mv studynotes/img/* ./img
     
     - name: Deploy to gh-pages Branch
