@@ -1,4 +1,4 @@
-name: Hexo Deploy to gh-pages Branch
+name: Hexo Deploy
 
 on:
   push:
@@ -56,7 +56,7 @@ jobs:
         # 推送到远程 HTML 分支
         git push origin gh-pages --force
 
-    - name: Delete files on FTP server
+    - name: Push files on FTP server
       uses: SamKirkland/FTP-Deploy-Action@4.1.0
       with:
         server: ${{ secrets.FTP_HOST }}
