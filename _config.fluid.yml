@@ -361,7 +361,7 @@ navbar:
           { key: "Netlify节点", link: "https://blockhaity.netlify.app/"},
           { key: "Github Pages节点", link: "https://blockhaity.github.io/"},
           { key: "Vercal节点" , link: "https://blockhaity.vercal.app/"},
-          { key: "BlockHaity's host节点", link: "https://blockhaity.cloudns.ch/"},
+          { key: "BlockHaity's host节点", link: "http://blockhaity.cloudns.ch/"},
         ]
       }
 
