@@ -44,12 +44,6 @@ jobs:
       run: |
         rm -rf ./public
         rm -rf ./node_modules
-
-    - name: clone studynotes
-      run: | 
-       git clone https://github.com/blockhaity/studynotes.git
-       rm -rf studynotes/.git studynotes/.obsidian
-       mv studynotes/img/* ./img
     
     - name: Deploy to gh-pages Branch
       run: |
