@@ -56,22 +56,3 @@ jobs:
         # 推送到远程 HTML 分支
         git push origin gh-pages --force
 
-    - name: Clean wwwroot directory
-      uses: StephanThierry/ftp-delete-action@v2.1
-      with:
-          host: ${{ secrets.FTP_HOST }}  # FTP 服务器地址
-          user: ${{ secrets.FTP_USERNAME }}  # FTP 用户名
-          password: ${{ secrets.FTP_PASSWORD }}  # FTP 密码
-          remoteDirectories: "wwwroot"  # 要删除的目录
-          workingDir: "/"  # 工作目录（根据需要调整）
-          ignoreSSL: "1"  # 忽略 SSL 证书验证（如果需要）
-
-    - name: Push files on FTP server
-      uses: SamKirkland/FTP-Deploy-Action@4.1.0
-      with:
-        server: ${{ secrets.FTP_HOST }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./
-        server-dir: /wwwroot/
-        dangerous-clean-slate: true
