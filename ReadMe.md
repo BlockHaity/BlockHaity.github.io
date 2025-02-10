@@ -4,6 +4,8 @@ Person Webside
 
 ## 博客更新日志
 
+2025/2/10 新增文章 **BAAH在逆天环境下的运行**
+
 2024/11/2 **BlockHaity's Host节点** 打赢复活赛 ~~man~~ 
 
 2024/8/1 **BlockHaity's Host节点** 暴毙，从网页中移除
