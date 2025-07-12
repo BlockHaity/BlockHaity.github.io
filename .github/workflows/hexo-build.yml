@@ -62,6 +62,6 @@ jobs:
         server: ${{ secrets.FTP_HOST }}  # FTP 服务器地址
         username: ${{ secrets.FTP_USERNAME }}  # FTP 用户名
         password: ${{ secrets.FTP_PASSWORD }}  # FTP 密码
-        local-dir: .
+        local-dir: ./
         server-dir: /wwwroot/
         dangerous-clean-slate: true  # 清空服务器目录
