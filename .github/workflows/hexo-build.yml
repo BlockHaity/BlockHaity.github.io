@@ -69,8 +69,8 @@ jobs:
     - name: Deploy to FTP Server
       run: |
         ftp -n ${{ secrets.FTP_HOST }} <<END_SCRIPT
-        quote USER ${{{ secrets.FTP_USERNAME }}}
-        quote PASS ${{{ secrets.FTP_PASSWORD }}}
+        quote USER ${{ secrets.FTP_USERNAME }}
+        quote PASS ${{ secrets.FTP_PASSWORD }}
         binary
         cd /wwwroot/
         del *
