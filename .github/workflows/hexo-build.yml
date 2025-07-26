@@ -57,7 +57,7 @@ jobs:
         git push origin gh-pages --force
 
     - name: Deploy to FTP Server
-      uses: SamKirkland/FTP-Deploy-Action
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: ${{ secrets.FTP_HOST }}  # FTP 服务器地址
         username: ${{ secrets.FTP_USERNAME }}  # FTP 用户名
