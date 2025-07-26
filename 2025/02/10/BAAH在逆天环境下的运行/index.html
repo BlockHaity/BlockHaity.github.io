@@ -1,0 +1,825 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2023/04/04/pp5VsD1.jpg">
+  <link rel="icon" href="https://s1.ax1x.com/2023/04/04/pp5VsD1.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2196F3">
+  <meta name="author" content="blockhaity">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="前言这可以看成用手机搭建家庭服务器的DLC 因为作为高中牲的作者要去上学了，而没有时间去肝BA，就想自动清日常，所以有了这篇文章。 感谢 BAAH - 问题解答群 中的大佬帮助，有了这篇文章 环境概览Termux neofetch如下 1234567891011121314151617181920~ $  neofetch         -o          o-            u0_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BAAH在逆天环境下的运行">
+<meta property="og:url" content="http://blockhaity.github.io/2025/02/10/BAAH%E5%9C%A8%E9%80%86%E5%A4%A9%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E8%BF%90%E8%A1%8C/index.html">
+<meta property="og:site_name" content="BlockHaity&#96;s Blog">
+<meta property="og:description" content="前言这可以看成用手机搭建家庭服务器的DLC 因为作为高中牲的作者要去上学了，而没有时间去肝BA，就想自动清日常，所以有了这篇文章。 感谢 BAAH - 问题解答群 中的大佬帮助，有了这篇文章 环境概览Termux neofetch如下 1234567891011121314151617181920~ $  neofetch         -o          o-            u0_">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-02-10T11:10:22.000Z">
+<meta property="article:modified_time" content="2025-07-26T10:06:01.296Z">
+<meta property="article:author" content="blockhaity">
+<meta property="article:tag" content="BAAH">
+<meta property="article:tag" content="Termux">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>BAAH在逆天环境下的运行 - BlockHaity`s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blockhaity.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"bash"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BlockHaity`s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>主页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                
+                <span>更多</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/" target="_self">
+                    <i class="iconfont icon-archive-fill"></i>
+                    <span>归档</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/" target="_self">
+                    <i class="iconfont icon-category-fill"></i>
+                    <span>分类</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/" target="_self">
+                    <i class="iconfont icon-tags-fill"></i>
+                    <span>标签</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/about/" target="_self">
+                    <i class="iconfont icon-user-fill"></i>
+                    <span>关于我and留言板</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/links/" target="_self">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>友链</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                
+                <span>节点切换</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blockhaity.pages.dev/" target="_self">
+                    
+                    <span>Cloudflare Pages节点</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blockhaity.netlify.app/" target="_self">
+                    
+                    <span>Netlify节点</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blockhaity.github.io/" target="_self">
+                    
+                    <span>Github Pages节点</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog-vercal.blockhaity.dpdns.org/" target="_self">
+                    
+                    <span>Vercal节点</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blockhaity.vercal.app/" target="_self">
+                    
+                    <span>Vercal节点 (Vercal域)</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog-edgeone.blockhaity.qzz.io" target="_self">
+                    
+                    <span>EdgeOne节点</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/webside/banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="BAAH在逆天环境下的运行"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-02-10 11:10" pubdate>
+          2025年2月10日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">BAAH在逆天环境下的运行</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这可以看成用手机搭建家庭服务器的DLC</p>
+<p>因为作为高中牲的作者要去上学了，而没有时间去肝BA，就想自动清日常，所以有了这篇文章。</p>
+<p>感谢 <strong>BAAH - 问题解答群</strong> 中的大佬帮助，有了这篇文章</p>
+<h1 id="环境概览"><a href="#环境概览" class="headerlink" title="环境概览"></a>环境概览</h1><p>Termux neofetch如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs bash">~ $  neofetch<br><br>         -o          o-            u0_a224@localhost <br>          +hydNNNNdyh+             ----------------- <br>        +mMMMMMMMMMMMMm+           OS: Android 10 aarch64 <br>      `dMMm:NMMMMMMN:mMMd`         Host: HUAWEI ELE-AL00 <br>      hMMMMMMMMMMMMMMMMMMh         Kernel: 4.14.116 <br>  ..  yyyyyyyyyyyyyyyyyyyy  ..     Uptime: 6 days, 22 hours, 43 mins <br>.mMMm`MMMMMMMMMMMMMMMMMMMM`mMMm.   Packages: 364 (dpkg), 1 (pkg) <br>:MMMM-MMMMMMMMMMMMMMMMMMMM-MMMM:   Shell: zsh 5.9 <br>:MMMM-MMMMMMMMMMMMMMMMMMMM-MMMM:   Terminal: /dev/pts/8 <br>:MMMM-MMMMMMMMMMMMMMMMMMMM-MMMM:   CPU: vendor Kirin980 (8) @ 1.805GHz <br>:MMMM-MMMMMMMMMMMMMMMMMMMM-MMMM:   Memory: 4868MiB / 7606MiB <br>-MMMM-MMMMMMMMMMMMMMMMMMMM-MMMM-<br> +yy+ MMMMMMMMMMMMMMMMMMMM +yy+                            <br>      mMMMMMMMMMMMMMMMMMMm                                 <br>      `/++MMMMh++hMMMM++/`<br>          MMMMo  oMMMM<br>          MMMMo  oMMMM<br>          oNMm-  -mMNs<br></code></pre></td></tr></table></figure>
+
+<p>由于直接在termux裸环境下部署会出现轮子构建问题，所以全程在proot容器中运行</p>
+<h1 id="开始部署"><a href="#开始部署" class="headerlink" title="开始部署"></a>开始部署</h1><p>首先，你需要使用shizuku来提供一个模拟设备序列号</p>
+<p><a target="_blank" rel="noopener" href="https://shizuku.rikka.app/zh-hans/guide/setup/">https://shizuku.rikka.app/zh-hans/guide/setup/</a></p>
+<h2 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h2><p>由于proot-distro的容器源在Github，国内连接困难，所以使用tmoe进行安装</p>
+<p>我目前认为你已经对termux环境有了基本的配置，如换源等</p>
+<p>在终端下运行下列命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">pkg install curl -y<br>curl -LO https://gitee.com/mo2/linux/raw/2/2.awk; awk -f 2.awk<br></code></pre></td></tr></table></figure>
+
+<p>如果使用zerotermux则可以直接在侧栏中找到</p>
+<p>这里，有视频教程来安装容器</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV16u4y1M7yG">BiliBili - 在下莫老师 - 坏了，这回手机真变电脑了！给手机安装Linux系统，变身生产力神器</a></p>
+
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=922458285&bvid=BV16u4y1M7yG&cid=1373006711&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; Left: 0; top: 0;" ></iframe></div>
+
+
+<p>不过，需要安装Ubuntu 24.04 LTS容器，此容器提供符合BAAH运行的Python3.12</p>
+<p>容器建议不创建sudo用户，不配置zsh，删除zsh-i，运行tmoe tools，出现CUI后使用方向键和回车退出。</p>
+<p>然后你将会见到 <code>root@localhost ~ #</code></p>
+<p>这时，连续输入三次 <code>exit</code> 并回车，当看见 <code>Press Enter to continue</code> 时回车两次重新进入容器以避免莫名其妙的bug</p>
+<h2 id="获取源码，创建虚拟环境"><a href="#获取源码，创建虚拟环境" class="headerlink" title="获取源码，创建虚拟环境"></a>获取源码，创建虚拟环境</h2><p>运行下列命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">apt-get update<br>apt-get install python3-full git adb -y<br>git <span class="hljs-built_in">clone</span> https://gitee.com/sammusen/BAAH.git<br><span class="hljs-built_in">cd</span> BAAH<br>python -m venv .venv <span class="hljs-comment"># 创建虚拟环境，解决PEP 668</span><br><span class="hljs-built_in">source</span> .venv/bin/activate <span class="hljs-comment"># 激活虚拟环境</span><br></code></pre></td></tr></table></figure>
+
+<p>之后，你可以看到你的shell变成了 <code>(.venv) root@localhost ~/BAAH #</code></p>
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p>由于python3.12移除了部分包的老版本，需要修改依赖列表来强行兼容。</p>
+<p>tips：ubuntu上游python的更新可能使配置的依赖随时失效，可以在群内@BlockHaity</p>
+<p>在终端内运行 <code>nano requirements.txt</code></p>
+<p>然后找到 <code>onnxruntime</code> 将右边的数字改为 1.17.0</p>
+<p>然后按下 ctrl + o 后按下 ctrl + x 保存并退出</p>
+<p>接下来运行下列命令安装依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install -i https://mirrors.ustc.edu.cn/pypi/simple pip -U<br>pip config <span class="hljs-built_in">set</span> global.index-url https://mirrors.ustc.edu.cn/pypi/simple<br>pip install -r requirements.txt<br></code></pre></td></tr></table></figure>
+<p>这时，基本配置好了，可以使用 <code>python3 jsoneditor.py --host &lt;局域网ip&gt; --port 8000</code> 来运行webui</p>
+<h2 id="排障"><a href="#排障" class="headerlink" title="排障"></a>排障</h2><p>在作者的手机上出现了这个问题</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">Error <span class="hljs-keyword">in</span> cpuinfo: failed to parse the list of possible processors <span class="hljs-keyword">in</span> /sys/devices/system/cpu/possible<br>Error <span class="hljs-keyword">in</span> cpuinfo: failed to parse the list of present processors <span class="hljs-keyword">in</span> /sys/devices/system/cpu/present<br>Error <span class="hljs-keyword">in</span> cpuinfo: failed to parse both lists of possible and present processors<br>terminate called after throwing an instance of <span class="hljs-string">&#x27;onnxruntime::OnnxRuntimeException&#x27;</span><br>  what():  /onnxruntime_src/include/onnxruntime/core/common/logging/logging.h:309 static const onnxruntime::logging::Logger&amp; onnxruntime::logging::LoggingManager::DefaultLogger() Attempt to use DefaultLogger but none has been registered.<br><br>已中止<br></code></pre></td></tr></table></figure>
+
+<p>deepseek给出的回答为cpuinfo库解析处理器信息失败，而事实上文件并不存在。</p>
+<p>所以需要伪造文件</p>
+<p>输入 <code>exit</code> 并回车，然后不断选择最下面的项目，退出tmoe。</p>
+<p>然后运行下列命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> .<span class="hljs-built_in">local</span>/share/tmoe-linux/containers/proot/ubuntu-noble_arm64/sys<br><span class="hljs-built_in">mkdir</span> devices<br><span class="hljs-built_in">cd</span> devices<br><span class="hljs-built_in">mkdir</span> system<br><span class="hljs-built_in">cd</span> system<br><span class="hljs-built_in">mkdir</span> cpu<br><span class="hljs-built_in">cd</span> cpu<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;0-7&quot;</span> &gt; possible <span class="hljs-comment"># 0-7应填写soc的实际情况，如为8核心soc,则填写0-7,超线程情况下应填写0-实际线程数减1</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;0-7&quot;</span> &gt; present<br><span class="hljs-built_in">cd</span> ~<br></code></pre></td></tr></table></figure>
+
+<p>然后运行下列命令进入环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">debian<br><span class="hljs-built_in">cd</span> BAAH<br><span class="hljs-built_in">source</span> .venv/bin/activate<br></code></pre></td></tr></table></figure>
+
+<p>这时应该可以运行webui了。</p>
+<h1 id="开始自动化运行"><a href="#开始自动化运行" class="headerlink" title="开始自动化运行"></a>开始自动化运行</h1><p>首先，参考此视频来学习BAAH的配置</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ZxfGYSEVr/">BiliBili - 糖糖-belief - 【蔚蓝档案电脑版】自动化碧蓝档案每日任务工具BAAH教程</a></p>
+
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=113877383648785&bvid=BV1ZxfGYSEVr&cid=28301724347&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; Left: 0; top: 0;" ></iframe></div>
+
+
+<p>在此环境下，配置基本相同，但是要修改一部分</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb devices<br></code></pre></td></tr></table></figure>
+
+<p>此命令用来获取序列号，若弹出授权提示，始终允许即可。作者的为 <code>emulate-5554</code></p>
+<p>将配置中的连接序列号改为你的设备。</p>
+<p>其他设置中adb路径改为 <code>/usr/bin/adb</code></p>
+<hr>
+<p>enjoy</p>
+<h1 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h1><p>如果你的手机分辨率不是1280x720,需要使用 <code>adb shell wm size 1280x720</code> 来设置，<code>adb shell wm size reset</code> 来恢复，dpi将size替换为density即可</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%97%A7%E6%89%8B%E6%9C%BA%E5%88%A9%E7%94%A8/" class="category-chain-item">旧手机利用</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/BAAH/" class="print-no-link">#BAAH</a>
+      
+        <a href="/tags/Termux/" class="print-no-link">#Termux</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>BAAH在逆天环境下的运行</div>
+      <div>http://blockhaity.github.io/2025/02/10/BAAH在逆天环境下的运行/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>blockhaity</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年2月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/04/04/%E4%BD%BF%E7%94%A8%E6%89%8B%E6%9C%BA%E6%90%AD%E5%BB%BA%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E6%88%98/" title="使用手机搭建家庭服务器实战">
+                        <span class="hidden-mobile">使用手机搭建家庭服务器实战</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"blockhaity/blockhaity.github.io","repo-id":"R_kgDOJoGsSA","category":"Giscus","category-id":"DIC_kwDOJoGsSM4CW-qv","theme-light":"title","theme-dark":"dark","mapping":"title","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'title';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
