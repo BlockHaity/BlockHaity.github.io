@@ -56,14 +56,6 @@ jobs:
         # 推送到远程 HTML 分支
         git push origin gh-pages --force
 
-    - name: Clear Server
-      uses: StephanThierry/ftp-delete-action@v2.1
-      with:
-        host: ${{ secrets.FTP_HOST }}
-        user: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        remoteDirectories: /wwwroot/
-
     - name: Deploy to FTP Server
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
@@ -72,3 +64,4 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}  # FTP 密码
         local-dir: ./
         server-dir: /wwwroot/
+        dangerous-clean-slate: true  # 清空服务器目录
