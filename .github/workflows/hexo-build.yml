@@ -56,25 +56,12 @@ jobs:
         # 推送到远程 HTML 分支
         git push origin gh-pages --force
 
-    - name: Deploy to FTP Server
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-      with:
-        server: ${{ secrets.FTP_HOST }}  # FTP 服务器地址
-        username: ${{ secrets.FTP_USERNAME }}  # FTP 用户名
-        password: ${{ secrets.FTP_PASSWORD }}  # FTP 密码
-        local-dir: ./
-        server-dir: /wwwroot/
-        dangerous-clean-slate: true  # 清空服务器目录
-
     # - name: Deploy to FTP Server
-    #   run: |
-    #     ftp -n ${{ secrets.FTP_HOST }} <<END_SCRIPT
-    #     quote USER ${{ secrets.FTP_USERNAME }}
-    #     quote PASS ${{ secrets.FTP_PASSWORD }}
-    #     binary
-    #     cd /wwwroot/
-    #     del *
-    #     mput *
-    #     quit
-    #     END_SCRIPT
-  
+    #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+    #   with:
+    #     server: ${{ secrets.FTP_HOST }}  # FTP 服务器地址
+    #     username: ${{ secrets.FTP_USERNAME }}  # FTP 用户名
+    #     password: ${{ secrets.FTP_PASSWORD }}  # FTP 密码
+    #     local-dir: ./
+    #     server-dir: /wwwroot/
+    #     dangerous-clean-slate: true  # 清空服务器目录

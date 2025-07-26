@@ -362,8 +362,6 @@ navbar:
           { key: "Github Pages节点", link: "https://blockhaity.github.io/"},
           { key: "Vercal节点" , link: "https://blog-vercal.blockhaity.dpdns.org/"},
           { key: "Vercal节点 (Vercal域)" , link: "https://blockhaity.vercal.app/"},
-          { key: "BlockHaity's Host节点" , link: "https://blog.blockhaity.dpdns.org/"},
-          { key: "BlockHaity's Host节点 (CloudFlare IP优选)" , link: "https://blog.blockhaity.qzz.io/"},
           { key: "EdgeOne节点" , link: "https://blockhaity.EdgeOne.app/"},
         ]
       }
