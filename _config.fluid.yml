@@ -547,7 +547,7 @@ index:
 # Post Page
 #---------------------------
 post:
-  banner_img: /img/webside/banner.png
+  banner_img: https://api.blockhaity.qzz.io/images
   banner_img_height: 70
   banner_mask_alpha: 0.3
 
@@ -901,7 +901,7 @@ giscus:
 # Archive Page
 #---------------------------
 archive:
-  banner_img: /img/webside/banner.png
+  banner_img: https://api.blockhaity.qzz.io/images
   banner_img_height: 60
   banner_mask_alpha: 0.3
 
@@ -912,7 +912,7 @@ archive:
 #---------------------------
 category:
   enable: true
-  banner_img: /img/webside/banner.png
+  banner_img: https://api.blockhaity.qzz.io/images
   banner_img_height: 60
   banner_mask_alpha: 0.3
 
@@ -941,7 +941,7 @@ category:
 #---------------------------
 tag:
   enable: true
-  banner_img: /img/webside/banner.png
+  banner_img: https://api.blockhaity.qzz.io/images
   banner_img_height: 80
   banner_mask_alpha: 0.3
   tagcloud:
@@ -958,7 +958,7 @@ tag:
 #---------------------------
 about:
   enable: true
-  banner_img: /img/webside/banner.png
+  banner_img: https://api.blockhaity.qzz.io/images
   banner_img_height: 60
   banner_mask_alpha: 0.3
   avatar: /img/avatar.png
@@ -980,7 +980,7 @@ about:
 # Custom Page through `hexo new page`
 #---------------------------
 page:
-  banner_img: /img/webside/banner.png
+  banner_img: https://api.blockhaity.qzz.io/images
   banner_img_height: 60
   banner_mask_alpha: 0.3
 
@@ -991,7 +991,7 @@ page:
 #---------------------------
 page404:
   enable: true
-  banner_img: /img/webside/banner.png
+  banner_img: https://api.blockhaity.qzz.io/images
   banner_img_height: 85
   banner_mask_alpha: 0.3
   # 重定向到首页的延迟(毫秒)
@@ -1005,7 +1005,7 @@ page404:
 #---------------------------
 links:
   enable: true
-  banner_img: /img/webside/banner.png
+  banner_img: https://api.blockhaity.qzz.io/images
   banner_img_height: 60
   banner_mask_alpha: 0.3
   # 友链的成员项
@@ -1034,12 +1034,6 @@ links:
       intro: "一个专注于美观和PVP的Minecraft整合包",
       link: "https://github.com/BlockHaity/XPVPer",
       avatar: "https://s1.ax1x.com/2023/06/07/pCFC7dK.png"
-    }
-    - {
-      title: "灰狼云",
-      intro: "blockhaity's host使用它的免费主机",
-      link: "https://yun316.net/",
-      avatar: "https://yun316.net/style/img/logo.png"
     }
 
   # 当成员头像加载失败时，替换为指定图片
