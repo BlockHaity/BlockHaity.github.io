@@ -361,7 +361,7 @@ navbar:
           { key: "Cloudflare Pages节点", link: "https://blockhaity.pages.dev/"},
           { key: "Netlify节点", link: "https://blockhaity.netlify.app/"},
           { key: "Github Pages节点", link: "https://blockhaity.github.io/"},
-          { key: "Vercal节点" , link: "https://blog-vercal.blockhaity.qzz.io/"},
+          { key: "Vercal节点" , link: "https://blog-vercal.blockhaity.dpdns.org/"},
           { key: "Vercal节点 (Vercal域)" , link: "https://blockhaity.vercal.app/"},
           { key: "EdgeOne节点" , link: "https://blog-edgeone.blockhaity.qzz.io"},
         ]
@@ -475,7 +475,7 @@ footer:
 index:
   # 首页 Banner 头图，可以是相对路径或绝对路径，以下相同
   # Path of Banner image, can be a relative path or an absolute path, the same on other pages
-  banner_img: /img/webside/banner.png
+  banner_img: https://api.blockhaity.qzz.io/images
 
   # 头图高度，屏幕百分比
   # Height ratio of banner image
