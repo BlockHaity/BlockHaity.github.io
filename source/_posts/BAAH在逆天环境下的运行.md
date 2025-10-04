@@ -120,6 +120,8 @@ pip install -r requirements.txt
 
 ## 排障
 
+### 无法运行
+
 在作者的手机上出现了这个问题
 
 ``` bash
@@ -163,6 +165,197 @@ source .venv/bin/activate
 
 这时应该可以运行webui了。
 
+### aria2无法下载
+
+在proot环境中，aria2是无法正确发送请求的，也无法下载，所以。我们需要把wget伪装成aria2
+
+首先，在容器内运行下面的命令
+
+``` bash
+sudo touch /usr/bin/aria2c
+sudo chmod 777 /usr/bin/aria2c
+```
+
+然后，用`nano /usr/share/aria2c` 来编辑文件，写入下面内容
+
+``` bash
+#!/bin/bash
+
+# aria2伪装脚本 - 使用wget模拟aria2的基本功能
+
+# 显示帮助信息
+show_help() {
+    cat << EOF
+用法: aria2c [选项]... [URL]...
+
+使用wget模拟aria2下载器的基本功能
+
+常用选项:
+  -s, --split=N          分割下载段数(模拟，实际单线程)
+  -j, --max-concurrent-downloads=N  最大并发下载数(模拟)
+  -x, --max-connection-per-server=N 每服务器最大连接数(模拟)
+  -k, --min-split-size=N 最小分割大小
+  -c, --continue         断点续传
+  -d, --dir=DIR          下载目录
+  -o, --out=FILE         输出文件名
+  -V, --version          显示版本信息
+  -h, --help             显示此帮助信息
+
+示例:
+  aria2c http://example.com/file.zip
+  aria2c -s 4 -c http://example.com/largefile.iso
+  aria2c -o myfile.zip http://example.com/file.zip
+
+注意: 这是一个使用wget的模拟脚本，并非真正的aria2
+EOF
+}
+
+# 显示版本信息
+show_version() {
+    echo "aria2c (伪装版) 1.0.0"
+    echo "使用wget ${wget_version} 作为后端"
+    echo "这是一个模拟aria2的伪装脚本"
+}
+
+# 初始化变量
+SPLIT=1
+MAX_CONCURRENT=1
+MAX_CONNECTION=1
+CONTINUE=false
+DOWNLOAD_DIR="."
+OUTPUT_FILE=""
+URLS=()
+WGET_ARGS=()
+exit_code=0  # 初始化退出码
+
+# 获取wget版本
+wget_version=$(wget --version | head -n1 | awk '{print $3}')
+
+# 解析命令行参数
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -s|--split)
+            SPLIT="$2"
+            echo "信息: 分割下载设置为 ${SPLIT} 段(模拟)"
+            shift 2
+            ;;
+        -j|--max-concurrent-downloads)
+            MAX_CONCURRENT="$2"
+            echo "信息: 最大并发下载数设置为 ${MAX_CONCURRENT}(模拟)"
+            shift 2
+            ;;
+        -x|--max-connection-per-server)
+            MAX_CONNECTION="$2"
+            echo "信息: 每服务器最大连接数设置为 ${MAX_CONNECTION}(模拟)"
+            shift 2
+            ;;
+        -k|--min-split-size)
+            echo "信息: 最小分割大小设置为 $2(模拟)"
+            shift 2
+            ;;
+        -c|--continue)
+            CONTINUE=true
+            WGET_ARGS+=("-c")
+            echo "信息: 启用断点续传"
+            shift
+            ;;
+        -d|--dir)
+            DOWNLOAD_DIR="$2"
+            WGET_ARGS+=("-P" "$2")
+            shift 2
+            ;;
+        -o|--out)
+            OUTPUT_FILE="$2"
+            shift 2
+            ;;
+        -V|--version)
+            show_version
+            exit 0
+            ;;
+        -h|--help)
+            show_help
+            exit 0
+            ;;
+        http://*|https://*|ftp://*)
+            URLS+=("$1")
+            shift
+            ;;
+        *)
+            echo "警告: 忽略未知选项 '$1'"
+            shift
+            ;;
+    esac
+done
+
+# 检查是否有URL提供
+if [ ${#URLS[@]} -eq 0 ]; then
+    echo "错误: 没有指定下载URL"
+    echo "使用 -h 选项查看帮助信息"
+    exit 1
+fi
+
+# 检查下载目录是否存在
+if [ ! -d "$DOWNLOAD_DIR" ]; then
+    echo "创建下载目录: $DOWNLOAD_DIR"
+    mkdir -p "$DOWNLOAD_DIR"
+fi
+
+# 模拟aria2的输出格式
+echo "`date +'%Y-%m-%d %H:%M:%S'` Starting aria2c (伪装版) with wget backend"
+
+# 下载每个URL
+for url in "${URLS[@]}"; do
+    echo "`date +'%Y-%m-%d %H:%M:%S'` Downloading: $url"
+    
+    # 构建输出文件参数
+    current_wget_args=("${WGET_ARGS[@]}")
+    if [ -n "$OUTPUT_FILE" ]; then
+        # 如果指定了输出文件名，只对第一个URL使用，或者为每个URL生成唯一文件名
+        if [ ${#URLS[@]} -eq 1 ] || [ "$url" == "${URLS[0]}" ]; then
+            current_wget_args+=("-O" "$OUTPUT_FILE")
+            echo "`date +'%Y-%m-%d %H:%M:%S'` Output file: $OUTPUT_FILE"
+        else
+            # 多个URL时，为后续URL使用默认文件名
+            filename_from_url=$(basename "$url")
+            current_wget_args+=("-O" "$filename_from_url")
+            echo "`date +'%Y-%m-%d %H:%M:%S'` Output file: $filename_from_url"
+        fi
+    fi
+    
+    # 执行wget下载
+    if wget "${current_wget_args[@]}" "$url"; then
+        echo "`date +'%Y-%m-%d %H:%M:%S'` Download complete: $url"
+        
+        # 获取下载的文件信息
+        if [ -n "$OUTPUT_FILE" ] && [ ${#URLS[@]} -eq 1 ]; then
+            filename="$OUTPUT_FILE"
+        else
+            filename=$(basename "$url")
+        fi
+        
+        if [ -f "$DOWNLOAD_DIR/$filename" ]; then
+            size=$(stat -c%s "$DOWNLOAD_DIR/$filename" 2>/dev/null || stat -f%z "$DOWNLOAD_DIR/$filename" 2>/dev/null)
+            echo "`date +'%Y-%m-%d %H:%M:%S'` File: $filename, Size: $size bytes"
+        elif [ -f "$filename" ]; then
+            size=$(stat -c%s "$filename" 2>/dev/null || stat -f%z "$filename" 2>/dev/null)
+            echo "`date +'%Y-%m-%d %H:%M:%S'` File: $filename, Size: $size bytes"
+        fi
+    else
+        echo "`date +'%Y-%m-%d %H:%M:%S'` Download failed: $url"
+        exit_code=1
+        # 不立即退出，继续尝试其他URL（如果有的话）
+    fi
+done
+
+if [ $exit_code -eq 0 ]; then
+    echo "`date +'%Y-%m-%d %H:%M:%S'` All downloads completed successfully"
+else
+    echo "`date +'%Y-%m-%d %H:%M:%S'` Some downloads failed"
+fi
+
+exit $exit_code
+```
+
 # 开始自动化运行
 
 首先，参考此视频来学习BAAH的配置
@@ -185,6 +378,8 @@ adb devices
 将配置中的连接序列号改为你的设备。
 
 其他设置中adb路径改为 `/usr/bin/adb`
+
+将aria2路径设置为 `/usr/bin/aria2c`
 
 ---
 
