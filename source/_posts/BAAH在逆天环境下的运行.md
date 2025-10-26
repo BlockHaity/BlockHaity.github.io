@@ -381,10 +381,71 @@ adb devices
 
 将aria2路径设置为 `/usr/bin/aria2c`
 
+自动运行则使用MCSManager来提供
+
+## 安装MCSManager
+
+为啥要安装MCSManager,因为它可以提供像Windows计划任务程序的自动运行功能
+
+先用exit退出容器，然后再次进入容器，保证目录正确。
+
+首先，安装Nodejs
+
+``` bash
+apt install -y nodejs-lts npm tmux
+npm config set registry https://registry.npmmirror.com #配置镜像
+```
+
+然后，下载并安装MCSManager
+
+``` bash
+wget https://v6.gh-proxy.com/https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz
+tar --strip-components=1 -xzvf mcsmanager_linux_release.tar.gz
+cd mcsmanager
+bash ./install.sh
+```
+然后运行MCSManager
+
+``` bash
+tmux
+
+# 然后你会看到一个代底部绿条的终端，使用Ctrl+B,然后按Shift+“来分屏，使用Ctrl+B然后按上下键来切换光标
+
+# 第一个窗口内
+bash ./start-daemon.sh
+
+# 第二个窗口内
+bash ./start-web.sh
+```
+
+然后打开手机的浏览器，进入 `localhost:23333` 创建管理员账户和密码 **一定要记住！非常重要！**
+
+然后新建一个实例，部署在 **localhost:24444**
+
+程序类型选择 **部署任意控制台程序**
+
+部署方式选择 **无需额外文件**
+
+名称任意，运行命令输入 `bash ./run.sh`
+
+创建完成后，进入文件管理，创建 **run.sh** 然后编辑，输入以下内容.
+
+``` bash
+adb start-server
+sleep 5
+adb devices
+adb shell wm size 1280x720
+cd ~/BAAH
+source .venv/bin/activate
+python3 main.py <你的配置文件名>
+adb shell wm size reset
+adb shell wm density reset
+```
+
+保存后，回到实例控制台，点击计划任务。
+
+点击新增，根据自己实际情况设置即可。
+
 ---
 
 enjoy
-
-# 补充说明
-
-如果你的手机分辨率不是1280x720,需要使用 `adb shell wm size 1280x720` 来设置，`adb shell wm size reset` 来恢复，dpi将size替换为density即可
