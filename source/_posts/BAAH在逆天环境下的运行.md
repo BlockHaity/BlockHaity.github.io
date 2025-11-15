@@ -437,7 +437,7 @@ adb devices
 adb shell wm size 1280x720
 cd ~/BAAH
 source .venv/bin/activate
-python3 main.py <你的配置文件名>
+python3 jsoneditor.py <你的配置文件名>
 adb shell wm size reset
 adb shell wm density reset
 ```
