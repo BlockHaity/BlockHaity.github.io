@@ -24,6 +24,8 @@ jobs:
     - name: Hexo Generate
       run: npm run build  # 构建 Hexo 静态文件
 
+    - name: Run Script
+      run: python3 script.py  # 运行 Python 脚本
 
     - name: Set Git information  # 设置git信息
       run: |
