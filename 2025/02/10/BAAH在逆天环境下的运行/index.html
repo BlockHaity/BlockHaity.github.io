@@ -1,0 +1,875 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2023/04/04/pp5VsD1.jpg">
+  <link rel="icon" href="https://s1.ax1x.com/2023/04/04/pp5VsD1.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2196F3">
+  <meta name="author" content="blockhaity">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="前言这可以看成用手机搭建家庭服务器的DLC 因为作为高中牲的作者要去上学了，而没有时间去肝BA，就想自动清日常，所以有了这篇文章。 感谢 BAAH - 问题解答群 中的大佬帮助，有了这篇文章 环境概览Termux neofetch如下 1234567891011121314151617181920~ $  neofetch         -o          o-            u0_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BAAH在逆天环境下的运行">
+<meta property="og:url" content="http://blockhaity.github.io/2025/02/10/BAAH%E5%9C%A8%E9%80%86%E5%A4%A9%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E8%BF%90%E8%A1%8C/index.html">
+<meta property="og:site_name" content="BlockHaity&#96;s Blog">
+<meta property="og:description" content="前言这可以看成用手机搭建家庭服务器的DLC 因为作为高中牲的作者要去上学了，而没有时间去肝BA，就想自动清日常，所以有了这篇文章。 感谢 BAAH - 问题解答群 中的大佬帮助，有了这篇文章 环境概览Termux neofetch如下 1234567891011121314151617181920~ $  neofetch         -o          o-            u0_">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-02-10T03:10:22.000Z">
+<meta property="article:modified_time" content="2025-11-15T10:44:28.343Z">
+<meta property="article:author" content="blockhaity">
+<meta property="article:tag" content="BAAH">
+<meta property="article:tag" content="Termux">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>BAAH在逆天环境下的运行 - BlockHaity`s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blockhaity.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"bash"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BlockHaity`s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>主页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                
+                <span>更多</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/" target="_self">
+                    <i class="iconfont icon-archive-fill"></i>
+                    <span>归档</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/" target="_self">
+                    <i class="iconfont icon-category-fill"></i>
+                    <span>分类</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/" target="_self">
+                    <i class="iconfont icon-tags-fill"></i>
+                    <span>标签</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/about/" target="_self">
+                    <i class="iconfont icon-user-fill"></i>
+                    <span>关于我and留言板</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/links/" target="_self">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>友链</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                
+                <span>节点切换</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://bas.blockhaity.qzz.io?target=/2025/02/10/BAAH在逆天环境下的运行/index.html" target="_self">
+                    
+                    <span>自动选择</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blockhaity.pages.dev/2025/02/10/BAAH在逆天环境下的运行/index.html" target="_self">
+                    
+                    <span>Cloudflare Pages节点</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blockhaity.netlify.app/2025/02/10/BAAH在逆天环境下的运行/index.html" target="_self">
+                    
+                    <span>Netlify节点</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blockhaity.github.io/2025/02/10/BAAH在逆天环境下的运行/index.html" target="_self">
+                    
+                    <span>Github Pages节点</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog-vercal.blockhaity.dpdns.org/2025/02/10/BAAH在逆天环境下的运行/index.html" target="_self">
+                    
+                    <span>Vercel节点</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blockhaity.vercal.app/2025/02/10/BAAH在逆天环境下的运行/index.html" target="_self">
+                    
+                    <span>Vercel节点 (Vercal域)</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog-edgeone.blockhaity.qzz.io/2025/02/10/BAAH在逆天环境下的运行/index.html" target="_self">
+                    
+                    <span>EdgeOne节点</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog.blockhaity.qzz.io/2025/02/10/BAAH在逆天环境下的运行/index.html" target="_self">
+                    
+                    <span>BlockHaity's Host节点</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://api.blockhaity.qzz.io/images') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="BAAH在逆天环境下的运行"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-02-10 03:10" pubdate>
+          2025年2月10日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">BAAH在逆天环境下的运行</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这可以看成用手机搭建家庭服务器的DLC</p>
+<p>因为作为高中牲的作者要去上学了，而没有时间去肝BA，就想自动清日常，所以有了这篇文章。</p>
+<p>感谢 <strong>BAAH - 问题解答群</strong> 中的大佬帮助，有了这篇文章</p>
+<h1 id="环境概览"><a href="#环境概览" class="headerlink" title="环境概览"></a>环境概览</h1><p>Termux neofetch如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs bash">~ $  neofetch<br><br>         -o          o-            u0_a224@localhost <br>          +hydNNNNdyh+             ----------------- <br>        +mMMMMMMMMMMMMm+           OS: Android 10 aarch64 <br>      `dMMm:NMMMMMMN:mMMd`         Host: HUAWEI ELE-AL00 <br>      hMMMMMMMMMMMMMMMMMMh         Kernel: 4.14.116 <br>  ..  yyyyyyyyyyyyyyyyyyyy  ..     Uptime: 6 days, 22 hours, 43 mins <br>.mMMm`MMMMMMMMMMMMMMMMMMMM`mMMm.   Packages: 364 (dpkg), 1 (pkg) <br>:MMMM-MMMMMMMMMMMMMMMMMMMM-MMMM:   Shell: zsh 5.9 <br>:MMMM-MMMMMMMMMMMMMMMMMMMM-MMMM:   Terminal: /dev/pts/8 <br>:MMMM-MMMMMMMMMMMMMMMMMMMM-MMMM:   CPU: vendor Kirin980 (8) @ 1.805GHz <br>:MMMM-MMMMMMMMMMMMMMMMMMMM-MMMM:   Memory: 4868MiB / 7606MiB <br>-MMMM-MMMMMMMMMMMMMMMMMMMM-MMMM-<br> +yy+ MMMMMMMMMMMMMMMMMMMM +yy+                            <br>      mMMMMMMMMMMMMMMMMMMm                                 <br>      `/++MMMMh++hMMMM++/`<br>          MMMMo  oMMMM<br>          MMMMo  oMMMM<br>          oNMm-  -mMNs<br></code></pre></td></tr></table></figure>
+
+<p>由于直接在termux裸环境下部署会出现轮子构建问题，所以全程在proot容器中运行</p>
+<h1 id="开始部署"><a href="#开始部署" class="headerlink" title="开始部署"></a>开始部署</h1><p>首先，你需要使用shizuku来提供一个模拟设备序列号</p>
+<p><a target="_blank" rel="noopener" href="https://shizuku.rikka.app/zh-hans/guide/setup/">https://shizuku.rikka.app/zh-hans/guide/setup/</a></p>
+<h2 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h2><p>由于proot-distro的容器源在Github，国内连接困难，所以使用tmoe进行安装</p>
+<p>我目前认为你已经对termux环境有了基本的配置，如换源等</p>
+<p>在终端下运行下列命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">pkg install curl -y<br>curl -LO https://gitee.com/mo2/linux/raw/2/2.awk; awk -f 2.awk<br></code></pre></td></tr></table></figure>
+
+<p>如果使用zerotermux则可以直接在侧栏中找到</p>
+<p>这里，有视频教程来安装容器</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV16u4y1M7yG">BiliBili - 在下莫老师 - 坏了，这回手机真变电脑了！给手机安装Linux系统，变身生产力神器</a></p>
+
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=922458285&bvid=BV16u4y1M7yG&cid=1373006711&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; Left: 0; top: 0;" ></iframe></div>
+
+
+<p>不过，需要安装Ubuntu 24.04 LTS容器，此容器提供符合BAAH运行的Python3.12</p>
+<p>容器建议不创建sudo用户，不配置zsh，删除zsh-i，运行tmoe tools，出现CUI后使用方向键和回车退出。</p>
+<p>然后你将会见到 <code>root@localhost ~ #</code></p>
+<p>这时，连续输入三次 <code>exit</code> 并回车，当看见 <code>Press Enter to continue</code> 时回车两次重新进入容器以避免莫名其妙的bug</p>
+<h2 id="获取源码，创建虚拟环境"><a href="#获取源码，创建虚拟环境" class="headerlink" title="获取源码，创建虚拟环境"></a>获取源码，创建虚拟环境</h2><p>运行下列命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">apt-get update<br>apt-get install python3-full git adb -y<br>git <span class="hljs-built_in">clone</span> https://gitee.com/sammusen/BAAH.git<br><span class="hljs-built_in">cd</span> BAAH<br>python -m venv .venv <span class="hljs-comment"># 创建虚拟环境，解决PEP 668</span><br><span class="hljs-built_in">source</span> .venv/bin/activate <span class="hljs-comment"># 激活虚拟环境</span><br></code></pre></td></tr></table></figure>
+
+<p>之后，你可以看到你的shell变成了 <code>(.venv) root@localhost ~/BAAH #</code></p>
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p>由于python3.12移除了部分包的老版本，需要修改依赖列表来强行兼容。</p>
+<p>tips：ubuntu上游python的更新可能使配置的依赖随时失效，可以在群内@BlockHaity</p>
+<p>在终端内运行 <code>nano requirements.txt</code></p>
+<p>然后找到 <code>onnxruntime</code> 将右边的数字改为 1.17.0</p>
+<p>然后按下 ctrl + o 后按下 ctrl + x 保存并退出</p>
+<p>接下来运行下列命令安装依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install -i https://mirrors.ustc.edu.cn/pypi/simple pip -U<br>pip config <span class="hljs-built_in">set</span> global.index-url https://mirrors.ustc.edu.cn/pypi/simple<br>pip install -r requirements.txt<br></code></pre></td></tr></table></figure>
+<p>这时，基本配置好了，可以使用 <code>python3 jsoneditor.py --host &lt;局域网ip&gt; --port 8000</code> 来运行webui</p>
+<h2 id="排障"><a href="#排障" class="headerlink" title="排障"></a>排障</h2><h3 id="无法运行"><a href="#无法运行" class="headerlink" title="无法运行"></a>无法运行</h3><p>在作者的手机上出现了这个问题</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">Error <span class="hljs-keyword">in</span> cpuinfo: failed to parse the list of possible processors <span class="hljs-keyword">in</span> /sys/devices/system/cpu/possible<br>Error <span class="hljs-keyword">in</span> cpuinfo: failed to parse the list of present processors <span class="hljs-keyword">in</span> /sys/devices/system/cpu/present<br>Error <span class="hljs-keyword">in</span> cpuinfo: failed to parse both lists of possible and present processors<br>terminate called after throwing an instance of <span class="hljs-string">&#x27;onnxruntime::OnnxRuntimeException&#x27;</span><br>  what():  /onnxruntime_src/include/onnxruntime/core/common/logging/logging.h:309 static const onnxruntime::logging::Logger&amp; onnxruntime::logging::LoggingManager::DefaultLogger() Attempt to use DefaultLogger but none has been registered.<br><br>已中止<br></code></pre></td></tr></table></figure>
+
+<p>deepseek给出的回答为cpuinfo库解析处理器信息失败，而事实上文件并不存在。</p>
+<p>所以需要伪造文件</p>
+<p>输入 <code>exit</code> 并回车，然后不断选择最下面的项目，退出tmoe。</p>
+<p>然后运行下列命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> .<span class="hljs-built_in">local</span>/share/tmoe-linux/containers/proot/ubuntu-noble_arm64/sys<br><span class="hljs-built_in">mkdir</span> devices<br><span class="hljs-built_in">cd</span> devices<br><span class="hljs-built_in">mkdir</span> system<br><span class="hljs-built_in">cd</span> system<br><span class="hljs-built_in">mkdir</span> cpu<br><span class="hljs-built_in">cd</span> cpu<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;0-7&quot;</span> &gt; possible <span class="hljs-comment"># 0-7应填写soc的实际情况，如为8核心soc,则填写0-7,超线程情况下应填写0-实际线程数减1</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;0-7&quot;</span> &gt; present<br><span class="hljs-built_in">cd</span> ~<br></code></pre></td></tr></table></figure>
+
+<p>然后运行下列命令进入环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">debian<br><span class="hljs-built_in">cd</span> BAAH<br><span class="hljs-built_in">source</span> .venv/bin/activate<br></code></pre></td></tr></table></figure>
+
+<p>这时应该可以运行webui了。</p>
+<h3 id="aria2无法下载"><a href="#aria2无法下载" class="headerlink" title="aria2无法下载"></a>aria2无法下载</h3><p>在proot环境中，aria2是无法正确发送请求的，也无法下载，所以。我们需要把wget伪装成aria2</p>
+<p>首先，在容器内运行下面的命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo <span class="hljs-built_in">touch</span> /usr/bin/aria2c<br>sudo <span class="hljs-built_in">chmod</span> 777 /usr/bin/aria2c<br></code></pre></td></tr></table></figure>
+
+<p>然后，用<code>nano /usr/share/aria2c</code> 来编辑文件，写入下面内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><br><span class="hljs-comment"># aria2伪装脚本 - 使用wget模拟aria2的基本功能</span><br><br><span class="hljs-comment"># 显示帮助信息</span><br><span class="hljs-function"><span class="hljs-title">show_help</span></span>() &#123;<br>    <span class="hljs-built_in">cat</span> &lt;&lt; <span class="hljs-string">EOF</span><br><span class="hljs-string">用法: aria2c [选项]... [URL]...</span><br><span class="hljs-string"></span><br><span class="hljs-string">使用wget模拟aria2下载器的基本功能</span><br><span class="hljs-string"></span><br><span class="hljs-string">常用选项:</span><br><span class="hljs-string">  -s, --split=N          分割下载段数(模拟，实际单线程)</span><br><span class="hljs-string">  -j, --max-concurrent-downloads=N  最大并发下载数(模拟)</span><br><span class="hljs-string">  -x, --max-connection-per-server=N 每服务器最大连接数(模拟)</span><br><span class="hljs-string">  -k, --min-split-size=N 最小分割大小</span><br><span class="hljs-string">  -c, --continue         断点续传</span><br><span class="hljs-string">  -d, --dir=DIR          下载目录</span><br><span class="hljs-string">  -o, --out=FILE         输出文件名</span><br><span class="hljs-string">  -V, --version          显示版本信息</span><br><span class="hljs-string">  -h, --help             显示此帮助信息</span><br><span class="hljs-string"></span><br><span class="hljs-string">示例:</span><br><span class="hljs-string">  aria2c http://example.com/file.zip</span><br><span class="hljs-string">  aria2c -s 4 -c http://example.com/largefile.iso</span><br><span class="hljs-string">  aria2c -o myfile.zip http://example.com/file.zip</span><br><span class="hljs-string"></span><br><span class="hljs-string">注意: 这是一个使用wget的模拟脚本，并非真正的aria2</span><br><span class="hljs-string">EOF</span><br>&#125;<br><br><span class="hljs-comment"># 显示版本信息</span><br><span class="hljs-function"><span class="hljs-title">show_version</span></span>() &#123;<br>    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;aria2c (伪装版) 1.0.0&quot;</span><br>    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;使用wget <span class="hljs-variable">$&#123;wget_version&#125;</span> 作为后端&quot;</span><br>    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;这是一个模拟aria2的伪装脚本&quot;</span><br>&#125;<br><br><span class="hljs-comment"># 初始化变量</span><br>SPLIT=1<br>MAX_CONCURRENT=1<br>MAX_CONNECTION=1<br>CONTINUE=<span class="hljs-literal">false</span><br>DOWNLOAD_DIR=<span class="hljs-string">&quot;.&quot;</span><br>OUTPUT_FILE=<span class="hljs-string">&quot;&quot;</span><br>URLS=()<br>WGET_ARGS=()<br>exit_code=0  <span class="hljs-comment"># 初始化退出码</span><br><br><span class="hljs-comment"># 获取wget版本</span><br>wget_version=$(wget --version | <span class="hljs-built_in">head</span> -n1 | awk <span class="hljs-string">&#x27;&#123;print $3&#125;&#x27;</span>)<br><br><span class="hljs-comment"># 解析命令行参数</span><br><span class="hljs-keyword">while</span> [[ <span class="hljs-variable">$#</span> -gt 0 ]]; <span class="hljs-keyword">do</span><br>    <span class="hljs-keyword">case</span> <span class="hljs-variable">$1</span> <span class="hljs-keyword">in</span><br>        -s|--<span class="hljs-built_in">split</span>)<br>            SPLIT=<span class="hljs-string">&quot;<span class="hljs-variable">$2</span>&quot;</span><br>            <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;信息: 分割下载设置为 <span class="hljs-variable">$&#123;SPLIT&#125;</span> 段(模拟)&quot;</span><br>            <span class="hljs-built_in">shift</span> 2<br>            ;;<br>        -j|--max-concurrent-downloads)<br>            MAX_CONCURRENT=<span class="hljs-string">&quot;<span class="hljs-variable">$2</span>&quot;</span><br>            <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;信息: 最大并发下载数设置为 <span class="hljs-variable">$&#123;MAX_CONCURRENT&#125;</span>(模拟)&quot;</span><br>            <span class="hljs-built_in">shift</span> 2<br>            ;;<br>        -x|--max-connection-per-server)<br>            MAX_CONNECTION=<span class="hljs-string">&quot;<span class="hljs-variable">$2</span>&quot;</span><br>            <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;信息: 每服务器最大连接数设置为 <span class="hljs-variable">$&#123;MAX_CONNECTION&#125;</span>(模拟)&quot;</span><br>            <span class="hljs-built_in">shift</span> 2<br>            ;;<br>        -k|--min-split-size)<br>            <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;信息: 最小分割大小设置为 <span class="hljs-variable">$2</span>(模拟)&quot;</span><br>            <span class="hljs-built_in">shift</span> 2<br>            ;;<br>        -c|--<span class="hljs-built_in">continue</span>)<br>            CONTINUE=<span class="hljs-literal">true</span><br>            WGET_ARGS+=(<span class="hljs-string">&quot;-c&quot;</span>)<br>            <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;信息: 启用断点续传&quot;</span><br>            <span class="hljs-built_in">shift</span><br>            ;;<br>        -d|--<span class="hljs-built_in">dir</span>)<br>            DOWNLOAD_DIR=<span class="hljs-string">&quot;<span class="hljs-variable">$2</span>&quot;</span><br>            WGET_ARGS+=(<span class="hljs-string">&quot;-P&quot;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$2</span>&quot;</span>)<br>            <span class="hljs-built_in">shift</span> 2<br>            ;;<br>        -o|--out)<br>            OUTPUT_FILE=<span class="hljs-string">&quot;<span class="hljs-variable">$2</span>&quot;</span><br>            <span class="hljs-built_in">shift</span> 2<br>            ;;<br>        -V|--version)<br>            show_version<br>            <span class="hljs-built_in">exit</span> 0<br>            ;;<br>        -h|--<span class="hljs-built_in">help</span>)<br>            show_help<br>            <span class="hljs-built_in">exit</span> 0<br>            ;;<br>        http://*|https://*|ftp://*)<br>            URLS+=(<span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span>)<br>            <span class="hljs-built_in">shift</span><br>            ;;<br>        *)<br>            <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;警告: 忽略未知选项 &#x27;<span class="hljs-variable">$1</span>&#x27;&quot;</span><br>            <span class="hljs-built_in">shift</span><br>            ;;<br>    <span class="hljs-keyword">esac</span><br><span class="hljs-keyword">done</span><br><br><span class="hljs-comment"># 检查是否有URL提供</span><br><span class="hljs-keyword">if</span> [ <span class="hljs-variable">$&#123;#URLS[@]&#125;</span> -eq 0 ]; <span class="hljs-keyword">then</span><br>    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;错误: 没有指定下载URL&quot;</span><br>    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;使用 -h 选项查看帮助信息&quot;</span><br>    <span class="hljs-built_in">exit</span> 1<br><span class="hljs-keyword">fi</span><br><br><span class="hljs-comment"># 检查下载目录是否存在</span><br><span class="hljs-keyword">if</span> [ ! -d <span class="hljs-string">&quot;<span class="hljs-variable">$DOWNLOAD_DIR</span>&quot;</span> ]; <span class="hljs-keyword">then</span><br>    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;创建下载目录: <span class="hljs-variable">$DOWNLOAD_DIR</span>&quot;</span><br>    <span class="hljs-built_in">mkdir</span> -p <span class="hljs-string">&quot;<span class="hljs-variable">$DOWNLOAD_DIR</span>&quot;</span><br><span class="hljs-keyword">fi</span><br><br><span class="hljs-comment"># 模拟aria2的输出格式</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;`date +&#x27;%Y-%m-%d %H:%M:%S&#x27;` Starting aria2c (伪装版) with wget backend&quot;</span><br><br><span class="hljs-comment"># 下载每个URL</span><br><span class="hljs-keyword">for</span> url <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;URLS[@]&#125;</span>&quot;</span>; <span class="hljs-keyword">do</span><br>    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;`date +&#x27;%Y-%m-%d %H:%M:%S&#x27;` Downloading: <span class="hljs-variable">$url</span>&quot;</span><br>    <br>    <span class="hljs-comment"># 构建输出文件参数</span><br>    current_wget_args=(<span class="hljs-string">&quot;<span class="hljs-variable">$&#123;WGET_ARGS[@]&#125;</span>&quot;</span>)<br>    <span class="hljs-keyword">if</span> [ -n <span class="hljs-string">&quot;<span class="hljs-variable">$OUTPUT_FILE</span>&quot;</span> ]; <span class="hljs-keyword">then</span><br>        <span class="hljs-comment"># 如果指定了输出文件名，只对第一个URL使用，或者为每个URL生成唯一文件名</span><br>        <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$&#123;#URLS[@]&#125;</span> -eq 1 ] || [ <span class="hljs-string">&quot;<span class="hljs-variable">$url</span>&quot;</span> == <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;URLS[0]&#125;</span>&quot;</span> ]; <span class="hljs-keyword">then</span><br>            current_wget_args+=(<span class="hljs-string">&quot;-O&quot;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$OUTPUT_FILE</span>&quot;</span>)<br>            <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;`date +&#x27;%Y-%m-%d %H:%M:%S&#x27;` Output file: <span class="hljs-variable">$OUTPUT_FILE</span>&quot;</span><br>        <span class="hljs-keyword">else</span><br>            <span class="hljs-comment"># 多个URL时，为后续URL使用默认文件名</span><br>            filename_from_url=$(<span class="hljs-built_in">basename</span> <span class="hljs-string">&quot;<span class="hljs-variable">$url</span>&quot;</span>)<br>            current_wget_args+=(<span class="hljs-string">&quot;-O&quot;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$filename_from_url</span>&quot;</span>)<br>            <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;`date +&#x27;%Y-%m-%d %H:%M:%S&#x27;` Output file: <span class="hljs-variable">$filename_from_url</span>&quot;</span><br>        <span class="hljs-keyword">fi</span><br>    <span class="hljs-keyword">fi</span><br>    <br>    <span class="hljs-comment"># 执行wget下载</span><br>    <span class="hljs-keyword">if</span> wget <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;current_wget_args[@]&#125;</span>&quot;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$url</span>&quot;</span>; <span class="hljs-keyword">then</span><br>        <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;`date +&#x27;%Y-%m-%d %H:%M:%S&#x27;` Download complete: <span class="hljs-variable">$url</span>&quot;</span><br>        <br>        <span class="hljs-comment"># 获取下载的文件信息</span><br>        <span class="hljs-keyword">if</span> [ -n <span class="hljs-string">&quot;<span class="hljs-variable">$OUTPUT_FILE</span>&quot;</span> ] &amp;&amp; [ <span class="hljs-variable">$&#123;#URLS[@]&#125;</span> -eq 1 ]; <span class="hljs-keyword">then</span><br>            filename=<span class="hljs-string">&quot;<span class="hljs-variable">$OUTPUT_FILE</span>&quot;</span><br>        <span class="hljs-keyword">else</span><br>            filename=$(<span class="hljs-built_in">basename</span> <span class="hljs-string">&quot;<span class="hljs-variable">$url</span>&quot;</span>)<br>        <span class="hljs-keyword">fi</span><br>        <br>        <span class="hljs-keyword">if</span> [ -f <span class="hljs-string">&quot;<span class="hljs-variable">$DOWNLOAD_DIR</span>/<span class="hljs-variable">$filename</span>&quot;</span> ]; <span class="hljs-keyword">then</span><br>            size=$(<span class="hljs-built_in">stat</span> -c%s <span class="hljs-string">&quot;<span class="hljs-variable">$DOWNLOAD_DIR</span>/<span class="hljs-variable">$filename</span>&quot;</span> 2&gt;/dev/null || <span class="hljs-built_in">stat</span> -f%z <span class="hljs-string">&quot;<span class="hljs-variable">$DOWNLOAD_DIR</span>/<span class="hljs-variable">$filename</span>&quot;</span> 2&gt;/dev/null)<br>            <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;`date +&#x27;%Y-%m-%d %H:%M:%S&#x27;` File: <span class="hljs-variable">$filename</span>, Size: <span class="hljs-variable">$size</span> bytes&quot;</span><br>        <span class="hljs-keyword">elif</span> [ -f <span class="hljs-string">&quot;<span class="hljs-variable">$filename</span>&quot;</span> ]; <span class="hljs-keyword">then</span><br>            size=$(<span class="hljs-built_in">stat</span> -c%s <span class="hljs-string">&quot;<span class="hljs-variable">$filename</span>&quot;</span> 2&gt;/dev/null || <span class="hljs-built_in">stat</span> -f%z <span class="hljs-string">&quot;<span class="hljs-variable">$filename</span>&quot;</span> 2&gt;/dev/null)<br>            <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;`date +&#x27;%Y-%m-%d %H:%M:%S&#x27;` File: <span class="hljs-variable">$filename</span>, Size: <span class="hljs-variable">$size</span> bytes&quot;</span><br>        <span class="hljs-keyword">fi</span><br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;`date +&#x27;%Y-%m-%d %H:%M:%S&#x27;` Download failed: <span class="hljs-variable">$url</span>&quot;</span><br>        exit_code=1<br>        <span class="hljs-comment"># 不立即退出，继续尝试其他URL（如果有的话）</span><br>    <span class="hljs-keyword">fi</span><br><span class="hljs-keyword">done</span><br><br><span class="hljs-keyword">if</span> [ <span class="hljs-variable">$exit_code</span> -eq 0 ]; <span class="hljs-keyword">then</span><br>    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;`date +&#x27;%Y-%m-%d %H:%M:%S&#x27;` All downloads completed successfully&quot;</span><br><span class="hljs-keyword">else</span><br>    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;`date +&#x27;%Y-%m-%d %H:%M:%S&#x27;` Some downloads failed&quot;</span><br><span class="hljs-keyword">fi</span><br><br><span class="hljs-built_in">exit</span> <span class="hljs-variable">$exit_code</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="开始自动化运行"><a href="#开始自动化运行" class="headerlink" title="开始自动化运行"></a>开始自动化运行</h1><p>首先，参考此视频来学习BAAH的配置</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ZxfGYSEVr/">BiliBili - 糖糖-belief - 【蔚蓝档案电脑版】自动化碧蓝档案每日任务工具BAAH教程</a></p>
+
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=113877383648785&bvid=BV1ZxfGYSEVr&cid=28301724347&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; Left: 0; top: 0;" ></iframe></div>
+
+
+<p>在此环境下，配置基本相同，但是要修改一部分</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb devices<br></code></pre></td></tr></table></figure>
+
+<p>此命令用来获取序列号，若弹出授权提示，始终允许即可。作者的为 <code>emulate-5554</code></p>
+<p>将配置中的连接序列号改为你的设备。</p>
+<p>其他设置中adb路径改为 <code>/usr/bin/adb</code></p>
+<p>将aria2路径设置为 <code>/usr/bin/aria2c</code></p>
+<p>自动运行则使用MCSManager来提供</p>
+<h2 id="安装MCSManager"><a href="#安装MCSManager" class="headerlink" title="安装MCSManager"></a>安装MCSManager</h2><p>为啥要安装MCSManager,因为它可以提供像Windows计划任务程序的自动运行功能</p>
+<p>先用exit退出容器，然后再次进入容器，保证目录正确。</p>
+<p>首先，安装Nodejs</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">apt install -y nodejs-lts npm tmux<br>npm config <span class="hljs-built_in">set</span> registry https://registry.npmmirror.com <span class="hljs-comment">#配置镜像</span><br></code></pre></td></tr></table></figure>
+
+<p>然后，下载并安装MCSManager</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://v6.gh-proxy.com/https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz<br>tar --strip-components=1 -xzvf mcsmanager_linux_release.tar.gz<br><span class="hljs-built_in">cd</span> mcsmanager<br>bash ./install.sh<br></code></pre></td></tr></table></figure>
+<p>然后运行MCSManager</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">tmux<br><br><span class="hljs-comment"># 然后你会看到一个代底部绿条的终端，使用Ctrl+B,然后按Shift+“来分屏，使用Ctrl+B然后按上下键来切换光标</span><br><br><span class="hljs-comment"># 第一个窗口内</span><br>bash ./start-daemon.sh<br><br><span class="hljs-comment"># 第二个窗口内</span><br>bash ./start-web.sh<br></code></pre></td></tr></table></figure>
+
+<p>然后打开手机的浏览器，进入 <code>localhost:23333</code> 创建管理员账户和密码 <strong>一定要记住！非常重要！</strong></p>
+<p>然后新建一个实例，部署在 <strong>localhost:24444</strong></p>
+<p>程序类型选择 <strong>部署任意控制台程序</strong></p>
+<p>部署方式选择 <strong>无需额外文件</strong></p>
+<p>名称任意，运行命令输入 <code>bash ./run.sh</code></p>
+<p>创建完成后，进入文件管理，创建 <strong>run.sh</strong> 然后编辑，输入以下内容.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb start-server<br><span class="hljs-built_in">sleep</span> 5<br>adb devices<br>adb shell wm size 1280x720<br><span class="hljs-built_in">cd</span> ~/BAAH<br><span class="hljs-built_in">source</span> .venv/bin/activate<br>python3 jsoneditor.py &lt;你的配置文件名&gt;<br>adb shell wm size reset<br>adb shell wm density reset<br></code></pre></td></tr></table></figure>
+
+<p>保存后，回到实例控制台，点击计划任务。</p>
+<p>点击新增，根据自己实际情况设置即可。</p>
+<hr>
+<p>enjoy</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%97%A7%E6%89%8B%E6%9C%BA%E5%88%A9%E7%94%A8/" class="category-chain-item">旧手机利用</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/BAAH/" class="print-no-link">#BAAH</a>
+      
+        <a href="/tags/Termux/" class="print-no-link">#Termux</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>BAAH在逆天环境下的运行</div>
+      <div>http://blockhaity.github.io/2025/02/10/BAAH在逆天环境下的运行/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>blockhaity</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年2月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/10/02/hyprland%E4%B8%8B%E8%99%9A%E6%8B%9F%E5%89%AF%E5%B1%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/" title="hyprland下VNC副屏的实现">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">hyprland下VNC副屏的实现</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/04/04/%E4%BD%BF%E7%94%A8%E6%89%8B%E6%9C%BA%E6%90%AD%E5%BB%BA%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E6%88%98/" title="使用手机搭建家庭服务器实战">
+                        <span class="hidden-mobile">使用手机搭建家庭服务器实战</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"blockhaity/blockhaity.github.io","repo-id":"R_kgDOJoGsSA","category":"Giscus","category-id":"DIC_kwDOJoGsSM4CW-qv","theme-light":"title","theme-dark":"dark","mapping":"title","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'title';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

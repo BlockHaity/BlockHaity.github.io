@@ -1,0 +1,830 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2023/04/04/pp5VsD1.jpg">
+  <link rel="icon" href="https://s1.ax1x.com/2023/04/04/pp5VsD1.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2196F3">
+  <meta name="author" content="blockhaity">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="特别注意本文章已被作者弃用，无法保证这篇文章的有效性。 什么是Deepin（不想看的点击这里） 深度操作系统是基于Linux内核，以桌面应用为主的开源GNU&#x2F;Linux操作系统，支持笔记本、台式机和一体机。深度操作系统（deepin）包含深度桌面环境（DDE）和近30款深度原创应用，及数款来自开源社区的应用软件，支撑广大用户日常的学习和工作。另外，通过深度商店还能够获得近千款应用软件的支">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何安装Deepin（弃用）">
+<meta property="og:url" content="http://blockhaity.github.io/2023/05/27/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Deepin/index.html">
+<meta property="og:site_name" content="BlockHaity&#96;s Blog">
+<meta property="og:description" content="特别注意本文章已被作者弃用，无法保证这篇文章的有效性。 什么是Deepin（不想看的点击这里） 深度操作系统是基于Linux内核，以桌面应用为主的开源GNU&#x2F;Linux操作系统，支持笔记本、台式机和一体机。深度操作系统（deepin）包含深度桌面环境（DDE）和近30款深度原创应用，及数款来自开源社区的应用软件，支撑广大用户日常的学习和工作。另外，通过深度商店还能够获得近千款应用软件的支">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blockhaity.github.io/img/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Deepin/p991nZ8.png">
+<meta property="article:published_time" content="2023-05-27T11:52:29.000Z">
+<meta property="article:modified_time" content="2025-06-11T01:43:02.213Z">
+<meta property="article:author" content="blockhaity">
+<meta property="article:tag" content="瞎说">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://blockhaity.github.io/img/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Deepin/p991nZ8.png">
+  
+  
+  
+  <title>如何安装Deepin（弃用） - BlockHaity`s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blockhaity.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"bash"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BlockHaity`s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>主页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                
+                <span>更多</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/" target="_self">
+                    <i class="iconfont icon-archive-fill"></i>
+                    <span>归档</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/" target="_self">
+                    <i class="iconfont icon-category-fill"></i>
+                    <span>分类</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/" target="_self">
+                    <i class="iconfont icon-tags-fill"></i>
+                    <span>标签</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/about/" target="_self">
+                    <i class="iconfont icon-user-fill"></i>
+                    <span>关于我and留言板</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/links/" target="_self">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>友链</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                
+                <span>节点切换</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://bas.blockhaity.qzz.io?target=/2023/05/27/如何安装Deepin/index.html" target="_self">
+                    
+                    <span>自动选择</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blockhaity.pages.dev/2023/05/27/如何安装Deepin/index.html" target="_self">
+                    
+                    <span>Cloudflare Pages节点</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blockhaity.netlify.app/2023/05/27/如何安装Deepin/index.html" target="_self">
+                    
+                    <span>Netlify节点</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blockhaity.github.io/2023/05/27/如何安装Deepin/index.html" target="_self">
+                    
+                    <span>Github Pages节点</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog-vercal.blockhaity.dpdns.org/2023/05/27/如何安装Deepin/index.html" target="_self">
+                    
+                    <span>Vercel节点</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blockhaity.vercal.app/2023/05/27/如何安装Deepin/index.html" target="_self">
+                    
+                    <span>Vercel节点 (Vercal域)</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog-edgeone.blockhaity.qzz.io/2023/05/27/如何安装Deepin/index.html" target="_self">
+                    
+                    <span>EdgeOne节点</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog.blockhaity.qzz.io/2023/05/27/如何安装Deepin/index.html" target="_self">
+                    
+                    <span>BlockHaity's Host节点</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://api.blockhaity.qzz.io/images') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="如何安装Deepin（弃用）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-27 11:52" pubdate>
+          2023年5月27日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">如何安装Deepin（弃用）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="特别注意"><a href="#特别注意" class="headerlink" title="特别注意"></a>特别注意</h2><p>本文章已被作者弃用，无法保证这篇文章的有效性。</p>
+<h2 id="什么是Deepin"><a href="#什么是Deepin" class="headerlink" title="什么是Deepin"></a>什么是Deepin</h2><p>（不想看的点击<a href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C">这里</a>）</p>
+<p>深度操作系统是基于Linux内核，以桌面应用为主的开源GNU&#x2F;Linux操作系统，支持笔记本、台式机和一体机。深度操作系统（deepin）包含深度桌面环境（DDE）和近30款深度原创应用，及数款来自开源社区的应用软件，支撑广大用户日常的学习和工作。另外，通过深度商店还能够获得近千款应用软件的支持，满足您对操作系统的扩展需求。深度操作系统由专业的操作系统研发团队和深度技术社区共同打造，其名称来自深度技术社区名称“deepin”一词，意思是对人生和未来深刻的追求和探索。 </p>
+<p>深度操作系统（deepin）是中国第一个具备国际影响力的Linux发行版本，截止至2019年7月25日，深度操作系统支持33种语言，用户遍布除了南极洲的其它六大洲。深度桌面环境（DDE）和大量的应用软件被移植到了包括Fedora、Ubuntu、Arch等十余个国际Linux发行版和社区。 </p>
+<p>他在Linux内核树的关系如下</p>
+<p><img src="/img/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Deepin/ppHVZJx.png" srcset="/img/loading.gif" lazyload alt="Deepin所在内核树的关系"></p>
+<hr>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="查看启动方式"><a href="#查看启动方式" class="headerlink" title="查看启动方式"></a>查看启动方式</h3><p>按下 <code>Win+R</code> ，输入 <code>msinfo32</code> ,查看 <code>BIOS模式</code> 这一栏。</p>
+<p><img src="/img/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Deepin/ppHBMwQ.png" srcset="/img/loading.gif" lazyload alt="msinfo32界面"></p>
+<p>如果你 <code>BIOS模式</code> 这一栏显示的不是 <code>UEFI</code> 的话，那么恭喜你，你可以直接点击<a href="#%E5%87%86%E5%A4%87%E8%AE%BE%E5%A4%87%E5%92%8C%E8%BD%AF%E4%BB%B6">这里</a>来查看下一步，如果是 <code>UEFI</code> 的话，请继续看下去。</p>
+<h4 id="关闭安全启动"><a href="#关闭安全启动" class="headerlink" title="关闭安全启动"></a>关闭安全启动</h4><p>打开你的浏览器，搜索你电脑品牌或主板品牌的BIOS启动快捷键。</p>
+<p>重启电脑，在电脑屏幕黑掉后狂按BIOS启动快捷键。进入BIOS。</p>
+<p>使用键盘的上下左右按键来定位到 <code>Secure Boot</code> 将右边的 <code>Enabled</code> 改为 <code>Disabled</code> </p>
+<p>按下 <code>Esc</code> ，选择 <code>Save and Exit</code> 回车。退出。</p>
+<h3 id="准备设备和软件"><a href="#准备设备和软件" class="headerlink" title="准备设备和软件"></a>准备设备和软件</h3><p><img src="/img/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Deepin/p9SdTN6.png" srcset="/img/loading.gif" lazyload alt="所需设备和软件"></p>
+<p>Deepin V20镜像下载地址<a target="_blank" rel="noopener" href="https://www.deepin.org/zh/download/">https://www.deepin.org/zh/download/</a></p>
+<p>Ventoy下载地址<a target="_blank" rel="noopener" href="https://blockhaity.lanzoux.com/i6okc0xgahzc">https://blockhaity.lanzoux.com/i6okc0xgahzc</a></p>
+<p>DiskGenius下载地址<a target="_blank" rel="noopener" href="https://blockhaity.lanzoux.com/i6okc0xgahzc">https://blockhaity.lanzoux.com/i6okc0xgahzc</a></p>
+<hr>
+<h2 id="制作启动U盘"><a href="#制作启动U盘" class="headerlink" title="制作启动U盘"></a>制作启动U盘</h2><p><strong>注意！该操作会清空你的U盘数据，请备份后操作！！！</strong></p>
+<p><strong>注意！该操作会清空你的U盘数据，请备份后操作！！！</strong></p>
+<p><strong>注意！该操作会清空你的U盘数据，请备份后操作！！！</strong></p>
+<p>下载并解压Ventoy,将你的U盘插入你的电脑，进入ventoy-1.0.91文件夹，打开Ventoy2Disk。就可以看到如下界面。</p>
+<p><img src="/img/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Deepin/ppHBeQf.png" srcset="/img/loading.gif" lazyload alt="Ventoy界面"></p>
+<p>在设备一栏选择你的U盘，点击安装，连续点击两次确认。然后将下载好的Deepin V20镜像拷贝到U盘即可。</p>
+<h2 id="进行磁盘分区"><a href="#进行磁盘分区" class="headerlink" title="进行磁盘分区"></a>进行磁盘分区</h2><p><strong>注意！该操作若是不规范或误操作，轻则系统暴毙，数据丢失。重则硬盘分区表损坏！请谨慎操作！！！</strong></p>
+<p><strong>注意！该操作若是不规范或误操作，轻则系统暴毙，数据丢失。重则硬盘分区表损坏！请谨慎操作！！！</strong></p>
+<p><strong>注意！该操作若是不规范或误操作，轻则系统暴毙，数据丢失。重则硬盘分区表损坏！请谨慎操作！！！</strong></p>
+<p>下载并解压DiskGenius，进入DiskGenius文件夹，打开DiskGenius。就可以看到如下界面。</p>
+<p><img src="/img/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Deepin/p9p7z7R.png" srcset="/img/loading.gif" lazyload alt="DiskGenius界面"></p>
+<p>选择你的C盘或D盘，点击调整分区容量。如下图这样配置。后部容量在40~20GB即可，点击确定</p>
+<p><img src="/img/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Deepin/p9pHNEn.png" srcset="/img/loading.gif" lazyload alt="调整分区容量"></p>
+<p>点击确认，再点击灰色区域，点击建立新分区，如下图这样配置。点击确定</p>
+<p><img src="/img/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Deepin/p9pquSf.png" srcset="/img/loading.gif" lazyload alt="建立分区"></p>
+<p>配置完成后，点击保存修改。</p>
+<h2 id="从U盘启动并安装"><a href="#从U盘启动并安装" class="headerlink" title="从U盘启动并安装"></a>从U盘启动并安装</h2><p>如何启动请参考<a target="_blank" rel="noopener" href="https://wiki.edgeless.top/v2/guide/boot.html">https://wiki.edgeless.top/v2/guide/boot.html</a></p>
+<p>tips：如果正在 <a href="#%E6%9F%A5%E7%9C%8B%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F">查看启动方式</a> 中查看到是非UEFI的话，就一定再启动时不要选择带UEFI字段的启动项。</p>
+<p>在参照上面的链接的教程进入Ventoy界面后，双击回车。</p>
+<p>启动后，会进入如下图的界面，勾选 <strong>我已仔细阅读…..</strong> 左边的复选框，再点击下一步。</p>
+<p><img src="/img/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Deepin/p991nZ8.png" srcset="/img/loading.gif" lazyload alt="安装界面"></p>
+<p>出现如下图所示的界面，点击手动安装。</p>
+<p><img src="/img/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Deepin/p991udS.png" srcset="/img/loading.gif" lazyload alt="安装界面1"></p>
+<p>如下图所示，点击右侧为ext4的分区。</p>
+<p><img src="/img/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Deepin/p991KIg.png" srcset="/img/loading.gif" lazyload alt="安装界面2"></p>
+<p>点击右侧的铅笔✏️图标，按下图所示配置。</p>
+<p><img src="/img/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Deepin/p991udS.png" srcset="/img/loading.gif" lazyload alt="分区配置"></p>
+<p>点击确定，点击下一步，再点击确定。再点击下一步，再点击继续安装。然后泡杯茶，等待即可</p>
+<p><del>Swap分区在消费级领域基本没用了还TM提醒</del></p>
+<p>然后显示如下图的界面，点击立即重启，然后拔掉U盘。等待进入系统后，安装自己的喜好配置即可。</p>
+<p>特别提醒，用户名不可以为中文和特殊符号，密码同理。密码要牢记！！！再后面的相关优化等步骤要用到。</p>
+<h2 id="相关优化（有难度，可以不执行）"><a href="#相关优化（有难度，可以不执行）" class="headerlink" title="相关优化（有难度，可以不执行）"></a>相关优化（有难度，可以不执行）</h2><p>点击左下角的程序列表，找到终端，打开，并执行以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs Bash">sudo apt update<br>sudo apt install deepin-wine<br>sudo apt install spark-store<br></code></pre></td></tr></table></figure>
+
+<h2 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h2><p>Q:软件从哪里下。</p>
+<p>A:可以从Deepin自带的软件商城下载，跑过相关优化的可以从星火应用商店下载（推荐），如果要从软件官网下载的话，要认准Linux版，X64，deb格式</p>
+<p>Q:我想要切换回Windows，要怎么操作</p>
+<p>A:再开机时疯狂按上下键，选择 <code>Windows Boot Manager</code> 按下回车键即可进入Windows。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%99%E7%A8%8B/" class="category-chain-item">教程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%9E%8E%E8%AF%B4/" class="print-no-link">#瞎说</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>如何安装Deepin（弃用）</div>
+      <div>http://blockhaity.github.io/2023/05/27/如何安装Deepin/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>blockhaity</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年5月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/06/05/Hexo%E5%86%99%E4%BD%9C%E6%8C%87%E5%8D%97/" title="Hexo写作指南">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hexo写作指南</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"blockhaity/blockhaity.github.io","repo-id":"R_kgDOJoGsSA","category":"Giscus","category-id":"DIC_kwDOJoGsSM4CW-qv","theme-light":"title","theme-dark":"dark","mapping":"title","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'title';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
