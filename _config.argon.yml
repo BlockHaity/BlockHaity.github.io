@@ -37,7 +37,7 @@ leftbar_menu: # 侧栏顶部菜单，支持无限层级菜单嵌套
     Cloudflare Pages节点: "https://blockhaity.pages.dev/"
     Netlify节点: "https://blockhaity.netlify.app/"
     Github Pages节点: "https://blockhaity.github.io/"
-    Vercel节点: "https://blog-vercal.blockhaity.dpdns.org/"
+    Vercel节点: "https://blog-vercel.blockhaity.dpdns.org/"
     Vercel节点 (Vercel域): "https://blockhaity.vercel.app/"
     EdgeOne节点: "https://blog-edgeone.blockhaity.qzz.io/"
 

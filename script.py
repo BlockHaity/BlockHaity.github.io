@@ -9,7 +9,7 @@ def process_html_files(root_dir):
         "https://blockhaity.pages.dev/": "https://blockhaity.pages.dev{path}",
         "https://blockhaity.netlify.app/": "https://blockhaity.netlify.app{path}",
         "https://blockhaity.github.io/": "https://blockhaity.github.io{path}",
-        "https://blog-vercal.blockhaity.dpdns.org/":"https://blog-vercal.blockhaity.dpdns.org{path}",
+        "https://blog-vercel.blockhaity.dpdns.org/":"https://blog-vercel.blockhaity.dpdns.org{path}",
         "https://blockhaity.vercel.app/": "https://blockhaity.vercel.app{path}",
         "https://blog-edgeone.blockhaity.qzz.io/":"https://blog-edgeone.blockhaity.qzz.io{path}",
     }

@@ -4,7 +4,7 @@ Person Webside
 
 ## 博客更新日志
 
-2025/7/11 更新Vercal节点链接并添加域名节点
+2025/7/11 更新vercel节点链接并添加域名节点
 
 2025/2/10 新增文章 **BAAH在逆天环境下的运行**
 
@@ -12,7 +12,7 @@ Person Webside
 
 2024/8/1 **BlockHaity's Host节点** 暴毙，从网页中移除
 
-2024/7/3 添加节点 **Vercal节点** **BlockHaity`s Host节点**
+2024/7/3 添加节点 **vercel节点** **BlockHaity`s Host节点**
 
 2024/4/4 发布文章**使用手机搭建家庭服务器实战**，更新依赖。
 
