@@ -10,9 +10,8 @@ def process_html_files(root_dir):
         "https://blockhaity.netlify.app/": "https://blockhaity.netlify.app{path}",
         "https://blockhaity.github.io/": "https://blockhaity.github.io{path}",
         "https://blog-vercal.blockhaity.dpdns.org/":"https://blog-vercal.blockhaity.dpdns.org{path}",
-        "https://blockhaity.vercal.app/": "https://blockhaity.vercal.app{path}",
-        "https://blog-edgeone.blockhaity.qzz.io":"https://blog-edgeone.blockhaity.qzz.io{path}",
-        "https://blog.blockhaity.qzz.io": "https://blog.blockhaity.qzz.io{path}",
+        "https://blockhaity.vercel.app/": "https://blockhaity.vercel.app{path}",
+        "https://blog-edgeone.blockhaity.qzz.io/":"https://blog-edgeone.blockhaity.qzz.io{path}",
     }
     
     # 遍历public目录及其子目录

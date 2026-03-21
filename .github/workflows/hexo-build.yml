@@ -21,6 +21,10 @@ jobs:
     - name: Install Dependencies
       run: npm install  # 安装 Hexo 依赖
 
+    - name: Install argon theme
+      run: |
+        git clone https://github.com/blockhaity/hexo-theme-argon.git themes/argon
+
     - name: Hexo Generate
       run: npm run build  # 构建 Hexo 静态文件
 

@@ -3,3 +3,6 @@
 /info.sh
 /.obsidian
 /.vscode
+/package-lock.json
+/pnpm-lock.yaml
+/pnpm-workspace.yaml
