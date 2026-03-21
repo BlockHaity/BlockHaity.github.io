@@ -41,7 +41,9 @@ jobs:
         git checkout -b gh-pages
 
     - name: Clear barauch files # 清除当前分支内容
-      run: git rm -rf .
+      run: | 
+        rm -rf themes/argon
+        git rm -rf .
 
     - name: Copy files # 复制生成的静态文件到gh-Pages分支
       run: cp -r ./public/* .
