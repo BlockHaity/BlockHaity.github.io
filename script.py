@@ -5,13 +5,13 @@ from pathlib import Path
 def process_html_files(root_dir):
     # 替换规则字典
     replacements = {
-        "https://bas.blockhaity.qzz.io/": "https://bas.blockhaity.qzz.io?target={path}",
+        "https://bas.blockhaity.eu.org/": "https://bas.blockhaity.eu.org?target={path}",
         "https://blockhaity.pages.dev/": "https://blockhaity.pages.dev{path}",
         "https://blockhaity.netlify.app/": "https://blockhaity.netlify.app{path}",
         "https://blockhaity.github.io/": "https://blockhaity.github.io{path}",
-        "https://blog-vercel.blockhaity.dpdns.org/":"https://blog-vercel.blockhaity.dpdns.org{path}",
+        "https://blog-vercel.blockhaity.eu.org/":"https://blog-vercel.blockhaity.eu.org{path}",
         "https://blockhaity.vercel.app/": "https://blockhaity.vercel.app{path}",
-        "https://blog-edgeone.blockhaity.qzz.io/":"https://blog-edgeone.blockhaity.qzz.io{path}",
+        "https://blog-edgeone.blockhaity.eu.org/":"https://blog-edgeone.blockhaity.eu.org{path}",
     }
     
     # 遍历public目录及其子目录

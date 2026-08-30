@@ -33,13 +33,13 @@ leftbar_menu: # 侧栏顶部菜单，支持无限层级菜单嵌套
   首页: /
   归档: /archives
   节点切换:
-    自动选择: "https://bas.blockhaity.qzz.io/"
+    自动选择: "https://bas.blockhaity.eu.org/"
     Cloudflare Pages节点: "https://blockhaity.pages.dev/"
     Netlify节点: "https://blockhaity.netlify.app/"
     Github Pages节点: "https://blockhaity.github.io/"
-    Vercel节点: "https://blog-vercel.blockhaity.dpdns.org/"
+    Vercel节点: "https://blog-vercel.blockhaity.eu.org/"
     Vercel节点 (Vercel域): "https://blockhaity.vercel.app/"
-    EdgeOne节点: "https://blog-edgeone.blockhaity.qzz.io/"
+    EdgeOne节点: "https://blog-edgeone.blockhaity.eu.org/"
 
 sidebar_auther_image: '/assets/img/webside/logo.jpg' # 侧栏作者头像
 sidebar_auther_name: 'BlockHaity' # 侧栏作者名，留空则跟随博客名
@@ -60,8 +60,8 @@ additional_content_after_post: '' # 文末追加信息，支持 HTML，留空则
 article_header_style: 2 # 文章内小标题样式，可选值: default, 1, 2
 
 # 背景
-page_background_url: 'https://api.blockhaity.dpdns.org/images?color=light' # 页面背景地址，留空则不设页面背景
-page_background_dark_url: 'https://api.blockhaity.dpdns.org/images?color=dark' # 夜间模式页面背景地址，留空则跟随日间模式
+page_background_url: 'https://api.blockhaity.eu.org/images?color=light' # 页面背景地址，留空则不设页面背景
+page_background_dark_url: 'https://api.blockhaity.eu.org/images?color=dark' # 夜间模式页面背景地址，留空则跟随日间模式
 page_background_opacity: 1 # 页面背景不透明度，0 ~ 1的小数
 transparent_banner: true # Banner 透明化，如果设置了背景以后推荐开启该选项
 show_toolbar_mask: false # 顶栏遮罩，如背景图片影响了顶栏文字显示对比度建议开启
