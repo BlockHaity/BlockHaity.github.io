@@ -38,17 +38,24 @@ jobs:
           git config --global user.name "github-actions[bot]"
       - name: Commit and Push
         run: |
-          git switch -f -c gh-pages origin/gh-pages
+          # 先把构建产物移出工作区。若留在 public/ 里，下面的 git switch -f 会用
+          # gh-pages 分支上已跟踪的旧 public/ 副本覆盖掉刚生成的新产物，导致首页
+          # 等所有已存在的路径永远停留在旧版本（曾经因此只新增了 /tags/、/categories/
+          # 这些新路径，旧页面一个都没更新）。
+          mv public "$RUNNER_TEMP/hexo-public"
 
-          # 清空已跟踪文件，但排除 themes，避免 gitlink 报错
-          git rm -rf --cached . 2>/dev/null || true
-          git rm -rf . ':!themes' 2>/dev/null || true
+          git switch -f -C gh-pages origin/gh-pages
 
-          # 物理删除 themes，防止被 git add . 再次收录
-          rm -rf themes
+          # 清空工作区（保留 .git）。这里不用 git rm：索引在上一步切换后已与工作区
+          # 同步，直接 `git rm -rf --cached .` 会清空索引，使随后的 `git rm -rf .`
+          # 报「路径规格 '.' 未匹配任何文件」并被 || true 吞掉，旧文件留在工作区，
+          # 随后又被 git add -A 重新提交，垃圾（public/、db.json、node_modules/）
+          # 只增不减。
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
 
-          # 复制构建产物
-          cp -r public/* .
+          # 复制构建产物。用 /. 结尾以包含 .nojekyll 等隐藏文件，
+          # `public/*` 这种 glob 会漏掉它们。
+          cp -r "$RUNNER_TEMP/hexo-public/." .
 
           # 添加并提交
           git add -A
