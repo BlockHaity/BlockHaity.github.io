@@ -42,7 +42,7 @@ jobs:
           git fetch origin gh-pages:refs/remotes/origin/gh-pages
           
           # 创建并切换分支
-          git switch -c gh-pages origin/gh-pages
+          git switch -f -c gh-pages origin/gh-pages
           
           # 清空分支内容
           git rm -rf .
