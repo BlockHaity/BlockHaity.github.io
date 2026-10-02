@@ -1,0 +1,85 @@
+/*
+ * Argon 主题的 Giscus 评论配色（amoled）
+ * 由 hexo generate 自动生成，请勿手工修改
+ * 生成器：themes/argon/scripts/giscus-theme.js
+ */
+:root{
+	/* Argon 站点变量 */
+	--argon-card-radius:30px;
+	--argon-control-radius:8px;
+	/* 画布与文字 */
+	--color-canvas-default:#000000;
+	--color-canvas-overlay:#0d0d0d;
+	--color-canvas-inset:#0a0a0a;
+	--color-canvas-subtle:#111111;
+	--color-fg-default:#eeeeee;
+	--color-fg-muted:#b0b0b0;
+	--color-fg-subtle:#888888;
+	--color-border-default:#333333;
+	--color-border-muted:#242424;
+	--color-neutral-muted:#141414;
+	--color-primer-shadow-inset:rgba(31,35,40,0.12);
+	/* 强调色 */
+	--color-accent-fg:#7ac0f8;
+	--color-accent-emphasis:#9bd0fa;
+	--color-accent-muted:rgba(122,192,248,0.4);
+	--color-accent-subtle:rgba(122,192,248,0.12);
+	--color-social-reaction-bg-hover:rgba(122,192,248,0.12);
+	--color-social-reaction-bg-reacted-hover:rgba(122,192,248,0.2);
+	/* 按钮 */
+	--color-btn-text:#eeeeee;
+	--color-btn-bg:#141414;
+	--color-btn-border:#333333;
+	--color-btn-shadow:rgba(31,35,40,0.12);
+	--color-btn-inset-shadow:rgba(255,255,255,0.15);
+	--color-btn-hover-bg:#1f1f1f;
+	--color-btn-hover-border:#3d3d3d;
+	--color-btn-active-bg:#262626;
+	--color-btn-active-border:#3d3d3d;
+	--color-btn-primary-text:#ffffff;
+	--color-btn-primary-bg:#2196F3;
+	--color-btn-primary-border:rgba(31,35,40,0.15);
+	--color-btn-primary-shadow:rgba(31,35,40,0.3);
+	--color-btn-primary-inset-shadow:rgba(255,255,255,0.15);
+	--color-btn-primary-hover-bg:#1c80cf;
+	--color-btn-primary-hover-border:rgba(31,35,40,0.2);
+	--color-btn-primary-selected-bg:#1c80cf;
+	--color-btn-primary-selected-shadow:rgba(31,35,40,0.35);
+	--color-btn-primary-disabled-text:#eeeeee;
+	--color-btn-primary-disabled-bg:#141414;
+	--color-btn-primary-disabled-border:rgba(31,35,40,0.1);
+	/* 分段控件与操作列表 */
+	--color-segmented-control-bg:#141414;
+	--color-segmented-control-button-bg:#000000;
+	--color-segmented-control-button-selected-border:#2196F3;
+	--color-action-list-item-default-hover-bg:#141414;
+	/* 语义色 */
+	--color-success-fg:#1f9d55;
+	--color-attention-fg:#b58105;
+	--color-attention-muted:#9a6700;
+	--color-attention-subtle:#fff8c5;
+	--color-danger-fg:#cf222e;
+	--color-danger-muted:#a40e26;
+	--color-danger-subtle:#ffebe9;
+	--color-scale-gray-7:#adbac7;
+	--color-scale-blue-8:#316dca;
+}
+
+main{
+	/* Giscus 自定义主题的默认样式是 margin-top:4rem，这里紧贴卡片 */
+	margin-top:0;
+	border-radius:var(--argon-card-radius);
+	font-family:'Open Sans', -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
+	line-height:1.6;
+}
+
+/* Giscus 的变量体系不涉及圆角，这几个是必要的结构覆盖。
+ * 类名取自 Giscus 的 styles/base.css，改动前请先核对，
+ * 因为 Giscus 官方说明类名与结构可能随版本变动。 */
+.gsc-comment-box{
+	border-radius:var(--argon-card-radius);
+}
+.gsc-comment-box-textarea , .gsc-comment-box-write , .gsc-comment-box-preview ,
+.gsc-direct-reaction-button , .gsc-upvote-button , .gsc-reactions-count , .btn{
+	border-radius:var(--argon-control-radius);
+}

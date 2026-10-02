@@ -2235,8 +2235,13 @@ html.darkmode #post_comment.post-comment-force-privatemode-off .comment-post-pri
 	padding-top: 0;
 }
 /* giscus */
-.giscus {
+/* 模板渲染出的是 <div id="giscus">，不带 class，
+   这里必须按 id 匹配，否则内边距不会生效 */
+#giscus {
 	padding: 1.5rem;
+}
+#giscus iframe {
+	border-radius: var(--card-radius);
 }
 /* 评论表情 */
 #comment_emotion_btn {
