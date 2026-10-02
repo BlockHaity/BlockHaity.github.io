@@ -38,25 +38,25 @@ jobs:
 
       - name: Commit and Push
         run: |
-          # 手动获取 gh-pages 分支引用
-          git fetch origin gh-pages:refs/remotes/origin/gh-pages
-          
           # 清理主题
           git rm -rf themes/argon
 
+          # 手动获取 gh-pages 分支引用
+          git fetch origin gh-pages:refs/remotes/origin/gh-pages
+
           # 创建并切换分支
           git switch -f -c gh-pages origin/gh-pages
-          
+
           # 清空分支内容
           git rm -rf .
-          
+
           # 复制构建产物
           cp -r public/* .
-          
+
           # 添加、提交
           git add .
           git commit -m "Deploy to GitHub Pages"
-          
+
           # 强制推送
           git push --force origin gh-pages
 
