@@ -38,14 +38,11 @@ jobs:
 
       - name: Commit and Push # 提交并推送
         run: |
-          rm -rf .git
-          git clone https://github.com/blockhaity/blockhaity.github.io.git -b gh-pages gh-pages
-          cd gh-pages
-          rm -rf ./*
-          cp -r ../public/* ./
+          git switch -f gh-pages
+          git rm -rf .
+          cp -r public/* .
           git add .
-          git commit -m "Update"
-          git push origin gh-pages
+          git commit -m "Deploy to GitHub Pages"
 
     # - name: Deploy to FTP Server
     #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
