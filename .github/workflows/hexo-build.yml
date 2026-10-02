@@ -46,23 +46,17 @@ jobs:
         git rm -rf .
 
     - name: Copy files # 复制生成的静态文件到gh-Pages分支
-      run: cp -r ./public/* .
-
-    - name: Clear unuseful files # 清除无用文件
-      run: |
-        rm -rf ./public
-        rm -rf ./node_modules
-    
-    - name: Deploy to gh-pages Branch
-      run: |
-        # 添加所有文件到 git
-        git add .
-
-        # 提交更改
-        git commit -m "Update gh-pages branch with latest build"
-
-        # 推送到远程 HTML 分支
-        git push origin gh-pages --force
+      run: | 
+       git clone https://github.com/blockhaity/blockhaity.github.io.git -b gh-pages gh-pages
+       cd gh-pages
+       git rm .
+       cp -r ../public/* ./
+      
+    - name: Commit and Push  # 提交并推送
+      run: |  
+       git add .
+       git commit -m "Update"
+       git push origin gh-pages
 
     # - name: Deploy to FTP Server
     #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
