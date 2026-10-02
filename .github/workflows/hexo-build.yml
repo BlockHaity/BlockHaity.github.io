@@ -16,7 +16,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '20'  # 选择 Node.js 版本
+        node-version: '24'  # 选择 Node.js 版本
 
     - name: Install Dependencies
       run: npm install  # 安装 Hexo 依赖
@@ -36,20 +36,11 @@ jobs:
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git config --global user.name "github-actions[bot]" 
 
-    - name: Switch baranch  # 切换分支
-      run: |
-        git checkout -b gh-pages
-
-    - name: Clear barauch files # 清除当前分支内容
-      run: | 
-        rm -rf themes/argon
-        git rm -rf .
-
     - name: Copy files # 复制生成的静态文件到gh-Pages分支
       run: | 
        git clone https://github.com/blockhaity/blockhaity.github.io.git -b gh-pages gh-pages
        cd gh-pages
-       git rm -rf .
+       rm -rf ./*
        cp -r ../public/* ./
       
     - name: Commit and Push  # 提交并推送
