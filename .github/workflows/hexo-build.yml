@@ -24,8 +24,7 @@ jobs:
       - name: Install argon theme
         run: |
           git clone https://github.com/blockhaity/hexo-theme-argon.git themes/argon
-          rm -rf themes/argon/.git
-          
+
       - name: Hexo Generate
         run: npm run build # 构建 Hexo 静态文件
 
@@ -42,6 +41,9 @@ jobs:
           # 手动获取 gh-pages 分支引用
           git fetch origin gh-pages:refs/remotes/origin/gh-pages
           
+          # 清理主题
+          git rm -rf themes/argon
+
           # 创建并切换分支
           git switch -f -c gh-pages origin/gh-pages
           
