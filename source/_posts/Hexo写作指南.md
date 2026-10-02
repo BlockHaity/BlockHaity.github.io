@@ -1,8 +1,11 @@
 ---
 title: Hexo写作指南
 tags:
-  - 瞎说
-categories: []
+  - Hexo
+  - Markdown
+  - 博客
+  - 写作指南
+categories: 博客
 date: 2023-06-05 11:27:58
 ---
 

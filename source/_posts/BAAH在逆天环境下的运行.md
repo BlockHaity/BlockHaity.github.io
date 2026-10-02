@@ -1,10 +1,13 @@
 ---
 title: BAAH在逆天环境下的运行
 date: 2025-02-10 11:10:22
-tags: 
+tags:
  - BAAH
+ - 碧蓝档案
  - Termux
-categories: 旧手机利用
+ - proot
+ - 脚本自动化
+categories: 游戏
 ---
 
 # 前言

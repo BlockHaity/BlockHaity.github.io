@@ -1,14 +1,13 @@
 ---
 title: cloudflare单域名优选
 date: 2026-10-02 14:54:09
-tags: 
+tags:
   - Cloudflare
-  - 域名优化
-  - 网络加速
   - Workers
-categories: 
-  - 网络技术
-  - 优化教程
+  - IP优选
+  - 域名
+  - 反向代理
+categories: 网络
 ---
 
 # 为什么要这么做

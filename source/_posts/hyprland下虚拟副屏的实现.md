@@ -1,8 +1,8 @@
 ---
 title: hyprland下VNC副屏的实现
 date: 2025-10-02 11:33:11
-tags: [ Linux, Hyprland, Wayland, 虚拟副屏 ]
-categories: 折腾
+tags: [Linux, Hyprland, Wayland, VNC, wayvnc, 虚拟副屏]
+categories: Linux
 ---
 
 ## 起因
