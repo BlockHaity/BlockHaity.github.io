@@ -3,52 +3,49 @@ name: Hexo Deploy
 on:
   push:
     branches:
-      - main  # 触发条件，当 main 分支有 push 事件时触发
+      - main # 触发条件，当 main 分支有 push 事件时触发
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest  # 运行环境
+    runs-on: ubuntu-latest # 运行环境
 
     steps:
-    - name: Checkout Source
-      uses: actions/checkout@v2  # 检出代码
+      - name: Checkout Source
+        uses: actions/checkout@v2 # 检出代码
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '24'  # 选择 Node.js 版本
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "24" # 选择 Node.js 版本
 
-    - name: Install Dependencies
-      run: npm install  # 安装 Hexo 依赖
+      - name: Install Dependencies
+        run: npm install # 安装 Hexo 依赖
 
-    - name: Install argon theme
-      run: |
-        git clone https://github.com/blockhaity/hexo-theme-argon.git themes/argon
+      - name: Install argon theme
+        run: |
+          git clone https://github.com/blockhaity/hexo-theme-argon.git themes/argon
 
-    - name: Hexo Generate
-      run: npm run build  # 构建 Hexo 静态文件
+      - name: Hexo Generate
+        run: npm run build # 构建 Hexo 静态文件
 
-    - name: Run Script
-      run: python3 script.py  # 运行 Python 脚本
+      - name: Run Script
+        run: python3 script.py # 运行 Python 脚本
 
-    - name: Set Git information  # 设置git信息
-      run: |
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git config --global user.name "github-actions[bot]" 
+      - name: Set Git information # 设置git信息
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
 
-    - name: Copy files # 复制生成的静态文件到gh-Pages分支
-      run: | 
-       rm -rf .git
-       git clone https://github.com/blockhaity/blockhaity.github.io.git -b gh-pages gh-pages
-       cd gh-pages
-       rm -rf ./*
-       cp -r ../public/* ./
-      
-    - name: Commit and Push  # 提交并推送
-      run: |  
-       git add .
-       git commit -m "Update"
-       git push origin gh-pages
+      - name: Commit and Push # 提交并推送
+        run: |
+          rm -rf .git
+          git clone https://github.com/blockhaity/blockhaity.github.io.git -b gh-pages gh-pages
+          cd gh-pages
+          rm -rf ./*
+          cp -r ../public/* ./
+          git add .
+          git commit -m "Update"
+          git push origin gh-pages
 
     # - name: Deploy to FTP Server
     #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
