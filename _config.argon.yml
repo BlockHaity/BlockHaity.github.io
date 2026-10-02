@@ -14,12 +14,14 @@ toolbar_icon_link: '/assets/img/webside/logo.jpg' # 顶栏图标链接，点击�
 toolbar_title: '' # 顶栏标题，留空则跟随博客标题
 toolbar_menu: # 顶栏菜单，支持二级菜单
   归档: "/archives/"
+  标签: "/tags/"
+  分类: "/categories/"
 
 
 # Banner
 banner_title: '' # Banner 标题，留空则跟随博客标题
 enable_banner_title_typing_effect: true # 是否启用 Banner 打字效果
-theme.banner_typing_effect_interval: 100 # Banner 打字间隔时长，单位 ms/字
+banner_typing_effect_interval: 100 # Banner 打字间隔时长，单位 ms/字
 banner_subtitle: '一个坐牢高中牲的博客' # Banner 子标题，留空则不显示
 banner_background_url: '' # Banner 背景图，留空则不显示
 banner_background_hide_shapes: false # 是否隐藏 Banner 背景圆形
@@ -32,6 +34,8 @@ sidebar_announcement: '' # 侧栏公告，留空则不显示
 leftbar_menu: # 侧栏顶部菜单，支持无限层级菜单嵌套
   首页: /
   归档: /archives
+  标签: /tags
+  分类: /categories
   节点切换:
     自动选择: "https://bas.blockhaity.eu.org/"
     Cloudflare Pages节点: "https://blockhaity.pages.dev/"
@@ -58,6 +62,24 @@ reading_speed_en: 160 # 每分钟英文阅读单词数，用于计算预计阅�
 donate_qrcode_url: '' # 赞赏二维码地址，留空则不显示
 additional_content_after_post: '' # 文末追加信息，支持 HTML，留空则不显示
 article_header_style: 2 # 文章内小标题样式，可选值: default, 1, 2
+
+# 标签页 / 分类页
+# 入口位置由顶栏 toolbar_menu 与侧栏 leftbar_menu 中的条目决定（已在上方加入 标签 / 分类）。
+# 若关闭下面任一项，请同步移除菜单中的对应条目，否则点击会 404。
+enable_tag_page: true # 是否生成标签索引页 /tags
+tag_page_style: cloud # 展示样式，可选值: cloud 标签云, list 列表, grid 栅格卡片
+tag_page_sort: length # 排序字段，可选值: length 文章数, name 名称, none 不排序
+tag_page_order: -1 # 排序方向，-1 降序，1 升序
+tag_page_show_count: true # 是否显示文章数
+tag_page_show_card: true # 是否显示页面顶部的渐变信息卡
+tag_page_modal_all_link: true # 侧栏「标签」弹窗内是否显示「查看全部」入口
+enable_category_page: true # 是否生成分类索引页 /categories
+category_page_style: cloud # 展示样式，可选值: cloud 标签云, list 列表, grid 栅格卡片
+category_page_sort: length # 排序字段，可选值: length 文章数, name 名称, none 不排序
+category_page_order: -1 # 排序方向，-1 降序，1 升序
+category_page_show_count: true # 是否显示文章数
+category_page_show_card: true # 是否显示页面顶部的渐变信息卡
+category_page_modal_all_link: true # 侧栏「分类」弹窗内是否显示「查看全部」入口
 
 # 背景
 page_background_url: 'https://api-cloudflare.blockhaity.eu.org/images?color=light' # 页面背景地址，留空则不设页面背景
