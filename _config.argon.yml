@@ -149,10 +149,10 @@ giscus: # https://giscus.app/zh-CN
   category_id: 'DIC_kwDOJoGsSM4CW-qv'
   mapping: 'title'
   input_position: 'top'
-  use_custom_theme: true # 是否使用自定义 CSS 主题，true 使用自定义 CSS，false 使用 Giscus 原生主题
-  theme: 'light' # 默认主题（已废弃，请使用 light_theme 和 dark_theme）
-  light_theme: 'light' # 亮色模式主题（仅在 use_custom_theme: true 时生效），可选: light, light_tritanopia, light_high_contrast, preferred_color_scheme, transparent
-  dark_theme: 'dark' # 暗色模式主题（仅在 use_custom_theme: true 时生效），可选: dark, dark_dimmed, dark_high_contrast, dark_tritanopia, transparent, preferred_color_scheme
+  loading: 'lazy' # 评论加载时机，lazy 滚动到附近才加载
+  use_custom_theme: true # 使用主题按 theme_color(#2196F3)/card_radius(30) 烘焙的 Argon 配色
+  light_theme: 'light' # 仅在 use_custom_theme 为 false 时生效，可选: light, light_tritanopia, light_high_contrast, preferred_color_scheme, transparent
+  dark_theme: 'dark' # 仅在 use_custom_theme 为 false 时生效，可选: dark, dark_dimmed, dark_high_contrast, dark_tritanopia, transparent, preferred_color_scheme
   lang: 'zh-CN'
 waline: # https://waline.js.org/guide/get-started.html
   enable: false # 是否启用 Waline 评论系统
