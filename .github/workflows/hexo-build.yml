@@ -36,13 +36,23 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
 
-      - name: Commit and Push # 提交并推送
+      - name: Commit and Push
         run: |
-          git switch -f gh-pages
+          # 创建并切换到本地 gh-pages 分支，跟踪远程分支
+          git switch -c gh-pages origin/gh-pages
+
+          # 清空分支内容（-rf 强制递归删除）
           git rm -rf .
+
+          # 复制构建产物到当前目录
           cp -r public/* .
+
+          # 添加、提交
           git add .
           git commit -m "Deploy to GitHub Pages"
+
+          # 强制推送到远程 gh-pages 分支
+          git push --force origin gh-pages
 
     # - name: Deploy to FTP Server
     #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
