@@ -1319,58 +1319,6 @@ html.filter-grayscale{
 	transform: translateX(-50%);
 	opacity: .7;
 }
-#blog_setting_card_blur_to_default {
-	position: relative;
-}
-#blog_setting_card_blur_to_default:before {
-	content: attr(tooltip);
-	position: absolute;
-	top: -30px;
-	left: 50%;
-	line-height: 22px;
-	font-weight: normal;
-	color: #fff;
-	background: #32325d;
-	padding: 3px 10px;
-	font-size: 12px;
-	border-radius: 3px;
-	transition: all .3s ease;
-	transform: translateX(-50%) translateY(5px);
-	opacity: 0;
-	width: max-content;
-	width: -moz-max-content;
-	pointer-events: none;
-}
-#blog_setting_card_blur_to_default:hover:before {
-	transform: translateX(-50%);
-	opacity: .7;
-}
-#blog_setting_card_opacity_to_default {
-	position: relative;
-}
-#blog_setting_card_opacity_to_default:before {
-	content: attr(tooltip);
-	position: absolute;
-	top: -30px;
-	left: 50%;
-	line-height: 22px;
-	font-weight: normal;
-	color: #fff;
-	background: #32325d;
-	padding: 3px 10px;
-	font-size: 12px;
-	border-radius: 3px;
-	transition: all .3s ease;
-	transform: translateX(-50%) translateY(5px);
-	opacity: 0;
-	width: max-content;
-	width: -moz-max-content;
-	pointer-events: none;
-}
-#blog_setting_card_opacity_to_default:hover:before {
-	transform: translateX(-50%);
-	opacity: .7;
-}
 /* 页码 */
 .pagination{
 	width: max-content;
@@ -3386,6 +3334,178 @@ html[class] , html[lang]{
 .argon-timeline-node:first-child > .archive-timeline-year + .archive-timeline-title {
 	margin-top: 0;
 }
+
+/* 标签/分类索引页 */
+
+/* 条目通用样式与悬浮动效 */
+.taxonomy-item {
+	color: #525F82;
+	text-decoration: none;
+	transition: all .25s ease;
+}
+.taxonomy-item:hover {
+	background: var(--themecolor);
+	color: #fff;
+	transform: translateY(-2px);
+	box-shadow: 0 4px 10px rgba(var(--themecolor-rgbstr), .3);
+}
+.taxonomy-item-name {
+	overflow-wrap: break-word;
+	word-break: break-word;
+}
+.taxonomy-item-num {
+	font-size: 12px;
+	opacity: .7;
+}
+
+/* 标签云样式 */
+.taxonomy-cloud {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	padding: 10px 0;
+	margin: 0 -8px;
+}
+.taxonomy-cloud-item {
+	display: inline-flex;
+	align-items: center;
+	padding: 6px 14px;
+	margin: 0 8px 10px;
+	border-radius: var(--card-radius);
+	background: #eee;
+	font-size: 14px;
+	line-height: 1.6;
+}
+
+/* 标签列表样式 */
+.taxonomy-list {
+	display: flex;
+	flex-direction: column;
+}
+.taxonomy-list-item {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	padding: 10px 15px;
+	margin-bottom: 10px;
+	border-radius: var(--card-radius);
+	background: #eee;
+}
+.taxonomy-list-item .taxonomy-item-name {
+	flex: 0 0 auto;
+	max-width: 40%;
+	margin-right: 15px;
+}
+.taxonomy-list-bar {
+	flex: 1;
+	height: 6px;
+	margin-right: 15px;
+	border-radius: 3px;
+	background: #eee;
+	overflow: hidden;
+}
+.taxonomy-list-bar-inner {
+	display: block;
+	height: 100%;
+	border-radius: 3px;
+	background: var(--themecolor);
+}
+.taxonomy-item:hover .taxonomy-list-bar-inner {
+	background: #fff;
+}
+.taxonomy-list-item .taxonomy-item-num {
+	flex: 0 0 auto;
+	padding-left: 15px;
+	border-left: 1px solid rgba(var(--themecolor-rgbstr), .2);
+}
+
+/* 标签网格样式 */
+.taxonomy-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+	gap: 15px;
+}
+.taxonomy-grid-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 20px 15px;
+	border-radius: var(--card-radius);
+	background: #eee;
+	text-align: center;
+}
+.taxonomy-grid-icon {
+	font-size: 24px;
+	margin-bottom: 8px;
+	color: var(--themecolor);
+}
+.taxonomy-item:hover .taxonomy-grid-icon {
+	color: #fff;
+}
+
+/* 标签/分类为空时的提示 */
+.taxonomy-empty {
+	padding: 40px 15px;
+	text-align: center;
+	opacity: .6;
+}
+.taxonomy-empty > i {
+	margin-right: 5px;
+}
+
+/* 侧栏弹窗-查看全部链接 */
+.modal-header-all-link {
+	margin-left: auto;
+	font-size: 14px;
+	color: var(--themecolor);
+	opacity: .9;
+	white-space: nowrap;
+}
+.modal-header-all-link:hover {
+	opacity: 1;
+}
+
+html.darkmode .taxonomy-item{
+	background: #555;
+	color: #eee;
+}
+html.darkmode .taxonomy-grid-icon{
+	color: var(--themecolor-light);
+}
+html.darkmode .taxonomy-item:hover{
+	background: var(--themecolor);
+	color: #fff;
+}
+html.darkmode .taxonomy-list-bar{
+	background: #555;
+}
+html.darkmode.amoled-dark .taxonomy-item{
+	background: #222;
+}
+html.darkmode.amoled-dark .taxonomy-list-bar{
+	background: #222;
+}
+
+/* 标签/分类索引页-窄屏适配 */
+@media screen and (max-width:900px){
+	.taxonomy-cloud-item {
+		padding: 5px 12px;
+		margin-bottom: 8px;
+	}
+	.taxonomy-grid {
+		grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+		gap: 10px;
+	}
+	.taxonomy-grid-item {
+		padding: 15px 10px;
+	}
+	.taxonomy-list-item {
+		padding: 8px 12px;
+	}
+}
+
 /* Loading Dot */
 .loading-css-animation {
 	text-align: center;

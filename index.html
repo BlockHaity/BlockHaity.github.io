@@ -21,8 +21,6 @@
 	<meta name="theme-color-origin" content="#2196F3">
 	<meta name="argon-enable-custom-theme-color" content="true">
 	<meta name="theme-card-radius" content="30">
-	<meta name="theme-card-blur" content="">
-	<meta name="theme-card-opacity" content="">
 	<meta name="theme-version" content="1.0.2">
 	<link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
 	<link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
@@ -249,6 +247,22 @@
 											
 										</li>
 									
+										<li class='nav-item'>
+											<a href='/tags/' class='nav-link' >
+												<i class='ni ni-book-bookmark d-lg-none'></i>
+												<span class='nav-link-inner--text'>标签</span>
+											</a>
+											
+										</li>
+									
+										<li class='nav-item'>
+											<a href='/categories/' class='nav-link' >
+												<i class='ni ni-book-bookmark d-lg-none'></i>
+												<span class='nav-link-inner--text'>分类</span>
+											</a>
+											
+										</li>
+									
 							</ul>
 						
 					
@@ -313,7 +327,8 @@
 	
 	<div id="banner_container" class="banner-container container text-center">
 		
-			<div class="banner-title text-white" data-text="BlockHaity&#39;s Blog" data-interval=""><span class="banner-title-inner">&nbsp;</span>
+			
+			<div class="banner-title text-white" data-text="BlockHaity&#39;s Blog" data-interval="100"><span class="banner-title-inner">&nbsp;</span>
 		
 		<span class="banner-subtitle d-block">一个坐牢高中牲的博客</span></div>
 	</div>
@@ -472,7 +487,7 @@
 			
 			
 				<ul id='leftbar_part1_menu' class='leftbar-menu'>
-					<li class='leftbar-menu-item current'><a href='/'>首页</a></li><li class='leftbar-menu-item'><a href='/archives'>归档</a></li><li class='leftbar-menu-item leftbar-menu-item-haschildren'><a no-pjax onclick='return false;'>节点切换</a><ul class='leftbar-menu-item leftbar-menu-subitem shadow-sm'><li class='leftbar-menu-item'><a target="_blank" rel="noopener" href='https://bas.blockhaity.eu.org?target=/index.html'>自动选择</a></li><li class='leftbar-menu-item'><a target="_blank" rel="noopener" href='https://blockhaity.pages.dev/index.html'>Cloudflare Pages节点</a></li><li class='leftbar-menu-item'><a target="_blank" rel="noopener" href='https://blockhaity.netlify.app/index.html'>Netlify节点</a></li><li class='leftbar-menu-item'><a href='https://blockhaity.github.io/index.html'>Github Pages节点</a></li><li class='leftbar-menu-item'><a target="_blank" rel="noopener" href='https://blog-vercel.blockhaity.eu.org/index.html'>Vercel节点</a></li><li class='leftbar-menu-item'><a target="_blank" rel="noopener" href='https://blockhaity.vercel.app/index.html'>Vercel节点 (Vercel域)</a></li><li class='leftbar-menu-item'><a target="_blank" rel="noopener" href='https://blog-edgeone.blockhaity.eu.org/index.html'>EdgeOne节点</a></li></ul></li>
+					<li class='leftbar-menu-item current'><a href='/'>首页</a></li><li class='leftbar-menu-item'><a href='/archives'>归档</a></li><li class='leftbar-menu-item'><a href='/tags'>标签</a></li><li class='leftbar-menu-item'><a href='/categories'>分类</a></li><li class='leftbar-menu-item leftbar-menu-item-haschildren'><a no-pjax onclick='return false;'>节点切换</a><ul class='leftbar-menu-item leftbar-menu-subitem shadow-sm'><li class='leftbar-menu-item'><a target="_blank" rel="noopener" href='https://bas.blockhaity.eu.org?target=/index.html'>自动选择</a></li><li class='leftbar-menu-item'><a target="_blank" rel="noopener" href='https://blockhaity.pages.dev/index.html'>Cloudflare Pages节点</a></li><li class='leftbar-menu-item'><a target="_blank" rel="noopener" href='https://blockhaity.netlify.app/index.html'>Netlify节点</a></li><li class='leftbar-menu-item'><a href='https://blockhaity.github.io/index.html'>Github Pages节点</a></li><li class='leftbar-menu-item'><a target="_blank" rel="noopener" href='https://blog-vercel.blockhaity.eu.org/index.html'>Vercel节点</a></li><li class='leftbar-menu-item'><a target="_blank" rel="noopener" href='https://blockhaity.vercel.app/index.html'>Vercel节点 (Vercel域)</a></li><li class='leftbar-menu-item'><a target="_blank" rel="noopener" href='https://blog-edgeone.blockhaity.eu.org/index.html'>EdgeOne节点</a></li></ul></li>
 				</ul>
 			
 			<div class="card-body text-center leftbar-search-button">
@@ -513,7 +528,7 @@
 								</div>      
 								<div class="site-state-item site-state-tags">
 									<a data-toggle="modal" data-target="#blog_tags">
-										<span class="site-state-item-count">13</span>
+										<span class="site-state-item-count">26</span>
 										<span class="site-state-item-name">标签</span>
 									</a>
 								</div>
@@ -550,12 +565,15 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title">分类</h5>
+				
+					<a class="modal-header-all-link" href="/categories" no-pjax><i class="fa fa-folder-open mr-1"></i>查看全部</a>
+				
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<a class="badge badge-secondary tag" href="/categories/%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF/%E4%BC%98%E5%8C%96%E6%95%99%E7%A8%8B/" rel="tag">优化教程 <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/categories/%E6%8A%98%E8%85%BE/" rel="tag">折腾 <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/categories/%E6%97%A7%E6%89%8B%E6%9C%BA%E5%88%A9%E7%94%A8/" rel="tag">旧手机利用 <span class="tag-num">3</span></a><a class="badge badge-secondary tag" href="/categories/%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF/" rel="tag">网络技术 <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/categories/%E8%87%AA%E5%88%B6%E9%A1%B9%E7%9B%AE/" rel="tag">自制项目 <span class="tag-num">0</span></a>
+				<a class="badge badge-secondary tag" href="/categories/Linux/" rel="tag">Linux <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/categories/%E5%8D%9A%E5%AE%A2/" rel="tag">博客 <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/categories/%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">家庭服务器 <span class="tag-num">2</span></a><a class="badge badge-secondary tag" href="/categories/%E6%B8%B8%E6%88%8F/" rel="tag">游戏 <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/categories/%E7%BD%91%E7%BB%9C/" rel="tag">网络 <span class="tag-num">1</span></a>
 			</div>
 		</div>
 	</div>
@@ -565,12 +583,15 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title">标签</h5>
+				
+					<a class="modal-header-all-link" href="/tags" no-pjax><i class="fa fa-list-ul mr-1"></i>查看全部</a>
+				
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<a class="badge badge-secondary tag" href="/tags/BAAH/" rel="tag">BAAH <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/Cloudflare/" rel="tag">Cloudflare <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/Hyprland/" rel="tag">Hyprland <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/Linux/" rel="tag">Linux <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/Minecraft/" rel="tag">Minecraft <span class="tag-num">0</span></a><a class="badge badge-secondary tag" href="/tags/Termux/" rel="tag">Termux <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/Wayland/" rel="tag">Wayland <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/Workers/" rel="tag">Workers <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/%E5%9F%9F%E5%90%8D%E4%BC%98%E5%8C%96/" rel="tag">域名优化 <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/%E6%97%A7%E6%89%8B%E6%9C%BA%E5%88%A9%E7%94%A8/" rel="tag">旧手机利用 <span class="tag-num">2</span></a><a class="badge badge-secondary tag" href="/tags/%E7%9E%8E%E8%AF%B4/" rel="tag">瞎说 <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/%E7%BD%91%E7%BB%9C%E5%8A%A0%E9%80%9F/" rel="tag">网络加速 <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/%E8%99%9A%E6%8B%9F%E5%89%AF%E5%B1%8F/" rel="tag">虚拟副屏 <span class="tag-num">1</span></a>
+				<a class="badge badge-secondary tag" href="/tags/Arch-Linux/" rel="tag">Arch Linux <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/BAAH/" rel="tag">BAAH <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/Cloudflare/" rel="tag">Cloudflare <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/Hexo/" rel="tag">Hexo <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/Hyprland/" rel="tag">Hyprland <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/IP%E4%BC%98%E9%80%89/" rel="tag">IP优选 <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/Linux/" rel="tag">Linux <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/Markdown/" rel="tag">Markdown <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/Termux/" rel="tag">Termux <span class="tag-num">3</span></a><a class="badge badge-secondary tag" href="/tags/VNC/" rel="tag">VNC <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/Wayland/" rel="tag">Wayland <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/Workers/" rel="tag">Workers <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/ZeroTermux/" rel="tag">ZeroTermux <span class="tag-num">2</span></a><a class="badge badge-secondary tag" href="/tags/ZeroTier/" rel="tag">ZeroTier <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/mcsmanager/" rel="tag">mcsmanager <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/proot/" rel="tag">proot <span class="tag-num">2</span></a><a class="badge badge-secondary tag" href="/tags/wayvnc/" rel="tag">wayvnc <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/%E5%86%99%E4%BD%9C%E6%8C%87%E5%8D%97/" rel="tag">写作指南 <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客 <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" rel="tag">反向代理 <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/%E5%9F%9F%E5%90%8D/" rel="tag">域名 <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">家庭服务器 <span class="tag-num">2</span></a><a class="badge badge-secondary tag" href="/tags/%E6%97%A7%E6%89%8B%E6%9C%BA/" rel="tag">旧手机 <span class="tag-num">2</span></a><a class="badge badge-secondary tag" href="/tags/%E7%A2%A7%E8%93%9D%E6%A1%A3%E6%A1%88/" rel="tag">碧蓝档案 <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/%E8%84%9A%E6%9C%AC%E8%87%AA%E5%8A%A8%E5%8C%96/" rel="tag">脚本自动化 <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/%E8%99%9A%E6%8B%9F%E5%89%AF%E5%B1%8F/" rel="tag">虚拟副屏 <span class="tag-num">1</span></a>
 			</div>
 		</div>
 	</div>
@@ -590,7 +611,7 @@
 						
 						<div class="post-meta-detail post-meta-detail-time">
 							<i class="fa fa-clock-o" aria-hidden="true"></i>
-							<time title="发布于 2026-10-2 14:54:09 | 编辑于 2026-10-2 15:52:59">2026-10-2 14:54
+							<time title="发布于 2026-10-2 14:54:09 | 编辑于 2026-10-2 22:45:55">2026-10-2 14:54
 							</time>
 						</div>
 					
@@ -599,7 +620,7 @@
 						
 						<div class="post-meta-detail post-meta-detail-categories">
 							<i class="fa fa-bookmark-o" aria-hidden="true"></i>
-							<a class="post-meta-detail-catagory-link" href="/categories/%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF/">网络技术</a> , <a class="post-meta-detail-catagory-link" href="/categories/%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF/%E4%BC%98%E5%8C%96%E6%95%99%E7%A8%8B/">优化教程</a>
+							<a class="post-meta-detail-catagory-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a>
 						</div>
 					
 						
@@ -648,7 +669,7 @@
 	
 		<div class="post-tags">
 			<i class="fa fa-tags" aria-hidden="true"></i>
-			<a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/Cloudflare/" rel="tag">Cloudflare</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/Workers/" rel="tag">Workers</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/%E5%9F%9F%E5%90%8D%E4%BC%98%E5%8C%96/" rel="tag">域名优化</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8A%A0%E9%80%9F/" rel="tag">网络加速</a>
+			<a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/Cloudflare/" rel="tag">Cloudflare</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/IP%E4%BC%98%E9%80%89/" rel="tag">IP优选</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/Workers/" rel="tag">Workers</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" rel="tag">反向代理</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/%E5%9F%9F%E5%90%8D/" rel="tag">域名</a>
 		</div>
 	
 </article>
@@ -663,7 +684,7 @@
 						
 						<div class="post-meta-detail post-meta-detail-time">
 							<i class="fa fa-clock-o" aria-hidden="true"></i>
-							<time title="发布于 2025-10-2 11:33:11 | 编辑于 2026-3-7 20:19:54">2025-10-2 11:33
+							<time title="发布于 2025-10-2 11:33:11 | 编辑于 2026-10-2 22:45:55">2025-10-2 11:33
 							</time>
 						</div>
 					
@@ -672,7 +693,7 @@
 						
 						<div class="post-meta-detail post-meta-detail-categories">
 							<i class="fa fa-bookmark-o" aria-hidden="true"></i>
-							<a class="post-meta-detail-catagory-link" href="/categories/%E6%8A%98%E8%85%BE/">折腾</a>
+							<a class="post-meta-detail-catagory-link" href="/categories/Linux/">Linux</a>
 						</div>
 					
 						
@@ -720,7 +741,7 @@ btrfs神力让我无忧回滚
 	
 		<div class="post-tags">
 			<i class="fa fa-tags" aria-hidden="true"></i>
-			<a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/Hyprland/" rel="tag">Hyprland</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/Linux/" rel="tag">Linux</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/Wayland/" rel="tag">Wayland</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/%E8%99%9A%E6%8B%9F%E5%89%AF%E5%B1%8F/" rel="tag">虚拟副屏</a>
+			<a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/Hyprland/" rel="tag">Hyprland</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/Linux/" rel="tag">Linux</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/VNC/" rel="tag">VNC</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/Wayland/" rel="tag">Wayland</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/wayvnc/" rel="tag">wayvnc</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/%E8%99%9A%E6%8B%9F%E5%89%AF%E5%B1%8F/" rel="tag">虚拟副屏</a>
 		</div>
 	
 </article>
@@ -735,7 +756,7 @@ btrfs神力让我无忧回滚
 						
 						<div class="post-meta-detail post-meta-detail-time">
 							<i class="fa fa-clock-o" aria-hidden="true"></i>
-							<time title="发布于 2025-2-10 11:10:22 | 编辑于 2026-3-7 20:19:54">2025-2-10 11:10
+							<time title="发布于 2025-2-10 11:10:22 | 编辑于 2026-10-2 22:45:55">2025-2-10 11:10
 							</time>
 						</div>
 					
@@ -744,7 +765,7 @@ btrfs神力让我无忧回滚
 						
 						<div class="post-meta-detail post-meta-detail-categories">
 							<i class="fa fa-bookmark-o" aria-hidden="true"></i>
-							<a class="post-meta-detail-catagory-link" href="/categories/%E6%97%A7%E6%89%8B%E6%9C%BA%E5%88%A9%E7%94%A8/">旧手机利用</a>
+							<a class="post-meta-detail-catagory-link" href="/categories/%E6%B8%B8%E6%88%8F/">游戏</a>
 						</div>
 					
 						
@@ -794,7 +815,7 @@ btrfs神力让我无忧回滚
 	
 		<div class="post-tags">
 			<i class="fa fa-tags" aria-hidden="true"></i>
-			<a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/BAAH/" rel="tag">BAAH</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/Termux/" rel="tag">Termux</a>
+			<a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/BAAH/" rel="tag">BAAH</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/Termux/" rel="tag">Termux</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/proot/" rel="tag">proot</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/%E7%A2%A7%E8%93%9D%E6%A1%A3%E6%A1%88/" rel="tag">碧蓝档案</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/%E8%84%9A%E6%9C%AC%E8%87%AA%E5%8A%A8%E5%8C%96/" rel="tag">脚本自动化</a>
 		</div>
 	
 </article>
@@ -809,7 +830,7 @@ btrfs神力让我无忧回滚
 						
 						<div class="post-meta-detail post-meta-detail-time">
 							<i class="fa fa-clock-o" aria-hidden="true"></i>
-							<time title="发布于 2024-4-4 22:24:05 | 编辑于 2026-3-21 12:29:54">2024-4-4 22:24
+							<time title="发布于 2024-4-4 22:24:05 | 编辑于 2026-10-2 22:45:55">2024-4-4 22:24
 							</time>
 						</div>
 					
@@ -818,7 +839,7 @@ btrfs神力让我无忧回滚
 						
 						<div class="post-meta-detail post-meta-detail-categories">
 							<i class="fa fa-bookmark-o" aria-hidden="true"></i>
-							<a class="post-meta-detail-catagory-link" href="/categories/%E6%97%A7%E6%89%8B%E6%9C%BA%E5%88%A9%E7%94%A8/">旧手机利用</a>
+							<a class="post-meta-detail-catagory-link" href="/categories/%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/">家庭服务器</a>
 						</div>
 					
 						
@@ -865,7 +886,7 @@ ZeroTermux软件
 	
 		<div class="post-tags">
 			<i class="fa fa-tags" aria-hidden="true"></i>
-			<a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/%E6%97%A7%E6%89%8B%E6%9C%BA%E5%88%A9%E7%94%A8/" rel="tag">旧手机利用</a>
+			<a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/Arch-Linux/" rel="tag">Arch Linux</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/Termux/" rel="tag">Termux</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/ZeroTermux/" rel="tag">ZeroTermux</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/ZeroTier/" rel="tag">ZeroTier</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/proot/" rel="tag">proot</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">家庭服务器</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/%E6%97%A7%E6%89%8B%E6%9C%BA/" rel="tag">旧手机</a>
 		</div>
 	
 </article>
@@ -880,7 +901,7 @@ ZeroTermux软件
 						
 						<div class="post-meta-detail post-meta-detail-time">
 							<i class="fa fa-clock-o" aria-hidden="true"></i>
-							<time title="发布于 2024-2-9 20:08:39 | 编辑于 2026-3-7 20:19:54">2024-2-9 20:08
+							<time title="发布于 2024-2-9 20:08:39 | 编辑于 2026-10-2 22:45:55">2024-2-9 20:08
 							</time>
 						</div>
 					
@@ -889,7 +910,7 @@ ZeroTermux软件
 						
 						<div class="post-meta-detail post-meta-detail-categories">
 							<i class="fa fa-bookmark-o" aria-hidden="true"></i>
-							<a class="post-meta-detail-catagory-link" href="/categories/%E6%97%A7%E6%89%8B%E6%9C%BA%E5%88%A9%E7%94%A8/">旧手机利用</a>
+							<a class="post-meta-detail-catagory-link" href="/categories/%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/">家庭服务器</a>
 						</div>
 					
 						
@@ -933,7 +954,7 @@ ZeroTermux软件
 	
 		<div class="post-tags">
 			<i class="fa fa-tags" aria-hidden="true"></i>
-			<a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/%E6%97%A7%E6%89%8B%E6%9C%BA%E5%88%A9%E7%94%A8/" rel="tag">旧手机利用</a>
+			<a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/Termux/" rel="tag">Termux</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/ZeroTermux/" rel="tag">ZeroTermux</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/mcsmanager/" rel="tag">mcsmanager</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">家庭服务器</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/%E6%97%A7%E6%89%8B%E6%9C%BA/" rel="tag">旧手机</a>
 		</div>
 	
 </article>
@@ -948,8 +969,16 @@ ZeroTermux软件
 						
 						<div class="post-meta-detail post-meta-detail-time">
 							<i class="fa fa-clock-o" aria-hidden="true"></i>
-							<time title="发布于 2023-6-5 11:27:58 | 编辑于 2026-3-21 12:30:00">2023-6-5 11:27
+							<time title="发布于 2023-6-5 11:27:58 | 编辑于 2026-10-2 22:45:55">2023-6-5 11:27
 							</time>
+						</div>
+					
+						
+							<div class="post-meta-devide">|</div>
+						
+						<div class="post-meta-detail post-meta-detail-categories">
+							<i class="fa fa-bookmark-o" aria-hidden="true"></i>
+							<a class="post-meta-detail-catagory-link" href="/categories/%E5%8D%9A%E5%AE%A2/">博客</a>
 						</div>
 					
 						
@@ -1002,7 +1031,7 @@ ZeroTermux软件
 	
 		<div class="post-tags">
 			<i class="fa fa-tags" aria-hidden="true"></i>
-			<a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/%E7%9E%8E%E8%AF%B4/" rel="tag">瞎说</a>
+			<a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/Hexo/" rel="tag">Hexo</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/Markdown/" rel="tag">Markdown</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/%E5%86%99%E4%BD%9C%E6%8C%87%E5%8D%97/" rel="tag">写作指南</a><a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a>
 		</div>
 	
 </article>
@@ -1012,6 +1041,8 @@ ZeroTermux软件
 
 
 
+		
+		
 		
 		
 		

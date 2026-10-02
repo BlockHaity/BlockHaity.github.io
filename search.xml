@@ -13,9 +13,7 @@
       
       <categories>
           
-          <category> 网络技术 </category>
-          
-          <category> 优化教程 </category>
+          <category> 网络 </category>
           
       </categories>
       
@@ -24,11 +22,13 @@
             
             <tag> Cloudflare </tag>
             
-            <tag> 域名优化 </tag>
-            
-            <tag> 网络加速 </tag>
-            
             <tag> Workers </tag>
+            
+            <tag> IP优选 </tag>
+            
+            <tag> 域名 </tag>
+            
+            <tag> 反向代理 </tag>
             
         </tags>
       
@@ -46,7 +46,7 @@
       
       <categories>
           
-          <category> 折腾 </category>
+          <category> Linux </category>
           
       </categories>
       
@@ -58,6 +58,10 @@
             <tag> Hyprland </tag>
             
             <tag> Wayland </tag>
+            
+            <tag> VNC </tag>
+            
+            <tag> wayvnc </tag>
             
             <tag> 虚拟副屏 </tag>
             
@@ -77,7 +81,7 @@
       
       <categories>
           
-          <category> 旧手机利用 </category>
+          <category> 游戏 </category>
           
       </categories>
       
@@ -86,7 +90,13 @@
             
             <tag> BAAH </tag>
             
+            <tag> 碧蓝档案 </tag>
+            
             <tag> Termux </tag>
+            
+            <tag> proot </tag>
+            
+            <tag> 脚本自动化 </tag>
             
         </tags>
       
@@ -104,14 +114,26 @@
       
       <categories>
           
-          <category> 旧手机利用 </category>
+          <category> 家庭服务器 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 旧手机利用 </tag>
+            <tag> Termux </tag>
+            
+            <tag> proot </tag>
+            
+            <tag> ZeroTermux </tag>
+            
+            <tag> Arch Linux </tag>
+            
+            <tag> 旧手机 </tag>
+            
+            <tag> ZeroTier </tag>
+            
+            <tag> 家庭服务器 </tag>
             
         </tags>
       
@@ -129,14 +151,22 @@
       
       <categories>
           
-          <category> 旧手机利用 </category>
+          <category> 家庭服务器 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 旧手机利用 </tag>
+            <tag> Termux </tag>
+            
+            <tag> ZeroTermux </tag>
+            
+            <tag> 旧手机 </tag>
+            
+            <tag> 家庭服务器 </tag>
+            
+            <tag> mcsmanager </tag>
             
         </tags>
       
@@ -152,10 +182,22 @@
         <content type="html"><![CDATA[<div class="admonition info"><p class="admonition-title">提示</p><p>这篇文章是方便作者使用部分语法的，~~不会考虑他人感受~~</p></div><h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>先将图片上传到图床，然后采用Markdown图片插入即可。</p><p>插入图片语法</p><pre><code class="highlight Markdown">![<span class="string">这是图片</span>](<span class="link">/assets/img/philly-magic-garden.jpg &quot;Magic Gardens&quot;</span>)</code></pre><h2 id="锚点"><a href="#锚点" class="headerlink" title="锚点"></a>锚点</h2><p>链接语法右侧括号内填写 <code>#+二级标题</code> 即可</p><p>链接语法</p><pre><code class="highlight Markdown">[<span class="string">Markdown语法</span>](<span class="link">https://markdown.com.cn</span>)</code></pre><h2 id="插入B站视频"><a href="#插入B站视频" class="headerlink" title="插入B站视频"></a>插入B站视频</h2><p>只需要把 <code>//player.bilibili.com/player.html?aid=90978812&amp;cid=155358422&amp;page=1</code> 替换成自己的就行。</p><p>以 <strong>【8K超高清完整版】瑞克·埃斯利（你被骗了）《Never Gonna Give You Up》</strong> 作为演示</p><p>从B战复制过来的</p><pre><code class="highlight HTML"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">&quot;//player.bilibili.com/player.html?aid=651820362&amp;bvid=BV1he4y1w7wB&amp;cid=1006811391&amp;page=1&quot;</span> <span class="attr">scrolling</span>=<span class="string">&quot;no&quot;</span> <span class="attr">border</span>=<span class="string">&quot;0&quot;</span> <span class="attr">frameborder</span>=<span class="string">&quot;no&quot;</span> <span class="attr">framespacing</span>=<span class="string">&quot;0&quot;</span> <span class="attr">allowfullscreen</span>=<span class="string">&quot;true&quot;</span>&gt;</span> <span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></code></pre><p>实际使用的</p><pre><code class="highlight HTML">&#123;% raw %&#125;<span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;position: relative; width: 100%; height: 0; padding-bottom: 75%;&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">&quot;//player.bilibili.com/player.html?aid=651820362&amp;bvid=BV1he4y1w7wB&amp;cid=1006811391&amp;page=1&quot;</span> <span class="attr">scrolling</span>=<span class="string">&quot;no&quot;</span> <span class="attr">border</span>=<span class="string">&quot;0&quot;</span> <span class="attr">frameborder</span>=<span class="string">&quot;no&quot;</span> <span class="attr">framespacing</span>=<span class="string">&quot;0&quot;</span> <span class="attr">allowfullscreen</span>=<span class="string">&quot;true&quot;</span> <span class="attr">style</span>=<span class="string">&quot;position: absolute; width: 100%; height: 100%; Left: 0; top: 0;&quot;</span> &gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>&#123;% endraw %&#125;</code></pre><div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;"><iframe src="//player.bilibili.com/player.html?aid=651820362&bvid=BV1he4y1w7wB&cid=1006811391&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; Left: 0; top: 0;" ></iframe></div>]]></content>
       
       
+      <categories>
+          
+          <category> 博客 </category>
+          
+      </categories>
+      
       
         <tags>
             
-            <tag> 瞎说 </tag>
+            <tag> Hexo </tag>
+            
+            <tag> Markdown </tag>
+            
+            <tag> 博客 </tag>
+            
+            <tag> 写作指南 </tag>
             
         </tags>
       
