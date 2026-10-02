@@ -38,6 +38,7 @@ jobs:
 
     - name: Copy files # 复制生成的静态文件到gh-Pages分支
       run: | 
+       rm -rf .git
        git clone https://github.com/blockhaity/blockhaity.github.io.git -b gh-pages gh-pages
        cd gh-pages
        rm -rf ./*
@@ -47,7 +48,6 @@ jobs:
       run: |  
        git add .
        git commit -m "Update"
-       git pull origin gh-pages
        git push origin gh-pages
 
     # - name: Deploy to FTP Server
