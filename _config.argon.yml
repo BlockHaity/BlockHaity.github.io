@@ -129,6 +129,11 @@ katex_cdn_url: //cdn.jsdelivr.net/npm/katex@0.11.1/dist/ # Katex CDN 地址
 enable_code_highlight: true # 是否启用 Highlight.js 代码高亮
 code_theme: vscode-light # 亮色模式代码主题，对应 assets/vendor/highlight/styles/ 下的文件名（不含 .css）
 code_dark_theme: vscode-dark # 暗色 + 暗黑模式的代码主题，留空则回落 code_theme
+enable_codeblock_editor: true # 代码框第 4 个按钮：在全屏 Monaco 编辑器里打开，可修改、另存为
+# Monaco 只走本站自带的副本（/assets/vendor/monaco/），不请求任何第三方。
+# 副本已在主题仓库里、随构建产出，不占首屏流量（点击时才加载）。
+# 想改成 CDN 优先 + 本地兜底，填 https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/vs/ 即可。
+monaco_cdn_url: ''
 
 # 脚本
 custom_html_head: '' # 页头脚本，HTML
