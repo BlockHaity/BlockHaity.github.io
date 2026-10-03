@@ -3818,29 +3818,13 @@ html.darkmode.amoled-dark .taxonomy-list-bar{
 .hljs-control-copy:before{
 	content: attr(tooltip);
 }
-.hljs-control-fullscreen:before{
-	content: attr(tooltip-fullscreen);
+.hljs-control-editor:before{
+	content: attr(tooltip-editor);
 }
-.hljs-codeblock.hljs-codeblock-fullscreen .hljs-control-fullscreen:before{
-	content: attr(tooltip-exit-fullscreen);
-}
-.hljs-codeblock.hljs-codeblock-fullscreen .hljs-control-fullscreen > i:before{
-	content: "\f065";
-}
-/* 全屏 */
-.hljs-fullscreen-backdrop{
-	position: fixed;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	z-index: 9998;
-	background: rgba(0, 0, 0, .55);
-}
-body.hljs-fullscreen-open{
-	overflow: hidden;
-}
-.hljs-codeblock.hljs-codeblock-fullscreen{
+/* 在编辑器中打开：编辑层挂在 body 上，与代码框共用同一套视觉变量 */
+.hljs-editor-overlay{
+	--argon-font-mono: Consolas, Menlo, Monaco, 'Andale Mono WT', 'Andale Mono', 'Lucida Console', 'DejaVu Sans Mono', 'Liberation Mono', 'Nimbus Mono L', 'Courier New', Courier, monospace;
+	--argon-code-radius: min(var(--card-radius, 4px), 8px);
 	position: fixed;
 	left: 16px;
 	right: 16px;
@@ -3850,21 +3834,114 @@ body.hljs-fullscreen-open{
 	display: flex;
 	flex-direction: column;
 	margin: 0;
+	border: 1px solid rgba(0, 0, 0, .12);
+	border-radius: var(--argon-code-radius);
+	background: #fff;
 	box-shadow: 0 10px 40px rgba(0, 0, 0, .35);
-	animation: codeblock-fullscreen .25s cubic-bezier(0.18, 0.89, 0.37, 1.12);
+	font-family: sans-serif;
+	font-size: 13px;
+	line-height: 1.6;
+	color: #586069;
+	overflow: hidden;
+	animation: codeblock-editor .25s cubic-bezier(0.18, 0.89, 0.37, 1.12);
 }
-.hljs-codeblock.hljs-codeblock-fullscreen pre.hljs-codeblock-pre{
+body.hljs-editor-open{
+	overflow: hidden;
+}
+/* 工具条沿用代码框头栏的配色与内边距 */
+.hljs-editor-toolbar{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	flex: none;
+	padding: 4px 6px 4px 16px;
+	border-bottom: 1px solid rgba(0, 0, 0, .10);
+	background: rgba(127, 127, 127, .10);
+	color: #6a737d;
+}
+.hljs-editor-filename{
+	font-family: var(--argon-font-mono);
+	font-weight: 600;
+	letter-spacing: .02em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.hljs-editor-actions{
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex: none;
+}
+.hljs-editor-btn{
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: 28px;
+	margin: 0;
+	padding: 0 10px;
+	border: 0;
+	border-radius: var(--argon-code-radius);
+	background: transparent;
+	color: inherit;
+	font-family: inherit;
+	font-size: 12px;
+	line-height: 1;
+	cursor: pointer;
+	opacity: .75;
+	transition: opacity .2s ease, background-color .2s ease;
+}
+.hljs-editor-btn:hover{
+	opacity: 1;
+	background: rgba(127, 127, 127, .20);
+}
+.hljs-editor-btn:focus{
+	opacity: 1;
+	outline: 2px solid var(--themecolor);
+	outline-offset: -2px;
+}
+.hljs-editor-close{
+	width: 28px;
+	padding: 0;
+}
+.hljs-editor-btn i.fa{
+	font: normal normal normal 13px/1 FontAwesome !important;
+}
+/* 加载文案浮在编辑区正中，Monaco 就绪后由 JS 移除或加 hidden */
+.hljs-editor-status{
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 16px;
+	color: rgba(0, 0, 0, .45);
+	font-size: 12px;
+	pointer-events: none;
+}
+.hljs-editor-status[hidden]{
+	display: none;
+}
+.hljs-editor-container{
+	position: relative;
+	flex: 1;
 	min-height: 0;
-	overflow: auto;
 }
 @media screen and (max-width: 576px){
-	.hljs-codeblock.hljs-codeblock-fullscreen{
+	.hljs-editor-overlay{
 		left: 0;
 		right: 0;
 		top: 0;
 		bottom: 0;
-		border-radius: 0;
 		border: 0;
+		border-radius: 0;
+	}
+	.hljs-editor-toolbar{
+		padding-left: 12px;
 	}
 	.hljs-codeblock .hljs-header{
 		padding-left: 12px;
@@ -3880,9 +3957,9 @@ body.hljs-fullscreen-open{
 		padding-right: 12px;
 	}
 }
-@keyframes codeblock-fullscreen{
+@keyframes codeblock-editor{
 	0%{
-		transform: scale(.96);
+		transform: scale(.98);
 		opacity: .6;
 	}
 	100%{
@@ -4044,6 +4121,20 @@ html.darkmode .hljs-codeblock .hljs-header{
 	border-bottom-color: rgba(255, 255, 255, .12);
 	color: #cfcfcf;
 }
+/* 编辑层底色对齐 Monaco 的 vs-dark，避免加载完成瞬间闪白 */
+html.darkmode .hljs-editor-overlay{
+	border-color: rgba(255, 255, 255, .12);
+	background: #1e1e1e;
+	box-shadow: none;
+}
+html.darkmode .hljs-editor-toolbar{
+	background: rgba(255, 255, 255, .07);
+	border-bottom-color: rgba(255, 255, 255, .12);
+	color: #cfcfcf;
+}
+html.darkmode .hljs-editor-status{
+	color: rgba(255, 255, 255, .50);
+}
 
 html.darkmode .form-control{
 	background: #555;
@@ -4194,6 +4285,19 @@ html.darkmode.amoled-dark article .post-content code:not([hljs-codeblock-inner])
 }
 html.darkmode.amoled-dark .hljs-codeblock{
 	border-color: #333;
+}
+/* AMOLED 档沿用 amoled 的 #000 卡片底与 #222 分隔线 */
+html.darkmode.amoled-dark .hljs-editor-overlay{
+	border-color: #333;
+	background: #000;
+}
+html.darkmode.amoled-dark .hljs-editor-toolbar{
+	background: rgba(255, 255, 255, .04);
+	border-bottom-color: #222;
+	color: #cfcfcf;
+}
+html.darkmode.amoled-dark .hljs-editor-status{
+	color: rgba(255, 255, 255, .45);
 }
 
 html.darkmode.amoled-dark .form-control{

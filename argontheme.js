@@ -83,8 +83,11 @@ translation['en_US'] = {
 	"开启折行": "Enable Break Line",
 	"关闭折行": "Disable Break Line",
 	"复制": "Copy",
-	"全屏": "Fullscreen",
-	"退出全屏": "Exit Fullscreen",
+	"在编辑器中打开": "Open in Editor",
+	"另存为": "Save As",
+	"关闭": "Close",
+	"加载编辑器中": "Loading editor",
+	"编辑器加载失败": "Failed to load editor",
 };
 translation['ru_RU'] = {
 	"确定": "ОК",
@@ -140,8 +143,11 @@ translation['ru_RU'] = {
 	"开启折行": "Включить перенос строк",
 	"关闭折行": "Выключить перенос строк",
 	"复制": "Скопировать",
-	"全屏": "Полноэкранный режим",
-	"退出全屏": "Выход из полноэкранного режима",
+	"在编辑器中打开": "Открыть в редакторе",
+	"另存为": "Сохранить как",
+	"关闭": "Закрыть",
+	"加载编辑器中": "Загрузка редактора",
+	"编辑器加载失败": "Не удалось загрузить редактор",
 };
 translation['zh_TW'] = {
 	"确定": "確定",
@@ -197,8 +203,11 @@ translation['zh_TW'] = {
 	"开启折行": "開啟折行",
 	"关闭折行": "關閉折行",
 	"复制": "復制",
-	"全屏": "全屏",
-	"退出全屏": "退出全屏"
+	"在编辑器中打开": "在編輯器中開啟",
+	"另存为": "另存新檔",
+	"关闭": "關閉",
+	"加载编辑器中": "正在載入編輯器",
+	"编辑器加载失败": "編輯器載入失敗"
 };
 function __(text){
 	let lang = argonConfig.language;
@@ -1146,7 +1155,16 @@ function getCodeFromBlock(block){
 	}
 	let arr = [];
 	lines.each(function(){
-		arr.push($(this).text());
+		let line = $(this).text();
+		// 抵消 line-numbers 插件的空行占位符：它把空行填成单个空格
+		// （行模板与 v() 里都是 `0<t[o].length?t[o]:" "`），直接拼接会让空行
+		// 变成"带一个空格的行"，bash 里无害，Makefile / heredoc / diff 输出里会出错。
+		// 只认恰好一个空格这个占位符：源码里本来就有的纯空白行（4 空格、8 空格等）
+		// 是真实内容，trim() 后判空会把它们一起吃掉，反而破坏"逐字一致"。
+		if (line == " "){
+			line = "";
+		}
+		arr.push(line);
 	});
 	return arr.join("\n");
 }
@@ -1206,12 +1224,28 @@ function highlightJsRender(){
 				'<button type="button" class="hljs-control-btn hljs-control-toggle-linenumber" aria-pressed="true" aria-label="' + __("隐藏行号") + '" tooltip-hide-linenumber="' + __("隐藏行号") + '" tooltip-show-linenumber="' + __("显示行号") + '"><i class="fa fa-list"></i></button>' +
 				'<button type="button" class="hljs-control-btn hljs-control-toggle-break-line" aria-pressed="false" aria-label="' + __("折行") + '" tooltip-enable-breakline="' + __("开启折行") + '" tooltip-disable-breakline="' + __("关闭折行") + '"><i class="fa fa-align-left"></i></button>' +
 				'<button type="button" class="hljs-control-btn hljs-control-copy" aria-label="' + __("复制") + '" tooltip="' + __("复制") + '"><i class="fa fa-clipboard"></i></button>' +
-				'<button type="button" class="hljs-control-btn hljs-control-fullscreen" aria-label="' + __("全屏") + '" tooltip-fullscreen="' + __("全屏") + '" tooltip-exit-fullscreen="' + __("退出全屏") + '"><i class="fa fa-arrows-alt"></i></button>' +
+				'<button type="button" class="hljs-control-btn hljs-control-editor" aria-label="' + __("在编辑器中打开") + '" tooltip-editor="' + __("在编辑器中打开") + '"><i class="fa fa-pencil"></i></button>' +
 			'</div>'
 		);
 		wrapper.append(header);
 		pre.before(wrapper);
 		wrapper.append(pre);
+	});
+}
+// 复制结果提示，代码框复制按钮与编辑层复制按钮共用
+function showCodeCopyToast(success){
+	iziToast.show({
+		title: success ? __("复制成功") : __("复制失败"),
+		message: success ? __("代码已复制到剪贴板") : __("请手动复制代码"),
+		class: 'shadow',
+		position: 'topRight',
+		backgroundColor: success ? '#2dce89' : '#f5365c',
+		titleColor: '#ffffff',
+		messageColor: '#ffffff',
+		iconColor: '#ffffff',
+		progressBarColor: '#ffffff',
+		icon: success ? 'fa fa-check' : 'fa fa-close',
+		timeout: 5000
 	});
 }
 // 复制按钮只注册一次，事件靠 ClipboardJS 自身的委托，pjax 换页后依然有效
@@ -1221,74 +1255,664 @@ if (typeof(ClipboardJS) != "undefined"){
 			return getCodeFromBlock(trigger.closest(".hljs-codeblock"));
 		}
 	}).on("success", function(){
-		iziToast.show({
-			title: __("复制成功"),
-			message: __("代码已复制到剪贴板"),
-			class: 'shadow',
-			position: 'topRight',
-			backgroundColor: '#2dce89',
-			titleColor: '#ffffff',
-			messageColor: '#ffffff',
-			iconColor: '#ffffff',
-			progressBarColor: '#ffffff',
-			icon: 'fa fa-check',
-			timeout: 5000
-		});
+		showCodeCopyToast(true);
 	}).on("error", function(){
-		iziToast.show({
-			title: __("复制失败"),
-			message: __("请手动复制代码"),
-			class: 'shadow',
-			position: 'topRight',
-			backgroundColor: '#f5365c',
-			titleColor: '#ffffff',
-			messageColor: '#ffffff',
-			iconColor: '#ffffff',
-			progressBarColor: '#ffffff',
-			icon: 'fa fa-close',
-			timeout: 5000
+		showCodeCopyToast(false);
+	});
+	// 编辑层里的复制按钮是后插入的，ClipboardJS 是 document 级委托，照样生效
+	new ClipboardJS(".hljs-editor-copy", {
+		text: function(){
+			return getCodeblockEditorCode();
+		}
+	}).on("success", function(){
+		showCodeCopyToast(true);
+	}).on("error", function(){
+		showCodeCopyToast(false);
+	});
+}else{
+	// 没有 ClipboardJS 时退回到 navigator.clipboard
+	$(document).on("click" , ".hljs-editor-copy" , function(){
+		if (typeof(navigator.clipboard) == "undefined"){
+			showCodeCopyToast(false);
+			return;
+		}
+		navigator.clipboard.writeText(getCodeblockEditorCode()).then(function(){
+			showCodeCopyToast(true);
+		} , function(){
+			showCodeCopyToast(false);
 		});
 	});
 }
 function codeblockOf(el){
 	return $(el).closest(".hljs-codeblock");
 }
-function setCodeblockFullscreen(enable){
-	let fullscreen = $(".hljs-codeblock-fullscreen");
-	if (enable){
-		if (fullscreen.length == 0){
-			return;
-		}
-		$("body").addClass("hljs-fullscreen-open");
-		$("body").append('<div class="hljs-fullscreen-backdrop"></div>');
-		let btn = fullscreen.find(".hljs-control-fullscreen")[0];
-		if (btn){
-			$(btn).attr("data-hljs-restore-focus", "1");
-			btn.focus();
-		}
-	}else{
-		fullscreen.removeClass("hljs-codeblock-fullscreen");
-		$("body").removeClass("hljs-fullscreen-open");
-		$(".hljs-fullscreen-backdrop").remove();
-		let restore = $("[data-hljs-restore-focus]")[0];
-		if (restore){
-			restore.focus();
-			$(restore).removeAttr("data-hljs-restore-focus");
+
+/* 代码框「在编辑器中打开」：挂全屏 Monaco 编辑层 */
+// 配置读取：优先 argonConfig（header.ejs 注入），其次 <meta>，最后回落到主题默认
+function isCodeblockEditorEnabled(){
+	let value = argonConfig.enable_codeblock_editor;
+	// 判空必须用严格比较：`false == ""` 在 JS 里是 true，
+	// 用 `value == ""` 会把注入的布尔 false 误当成"没配置"，然后回落到默认启用
+	if (value === undefined || value === null || value === ""){
+		value = $("meta[name='argon-enable-codeblock-editor']").attr("content");
+	}
+	if (value === undefined || value === null || value === ""){
+		return true;
+	}
+	if (value === false){
+		return false;
+	}
+	return !(value == "false" || value == "0" || value == "off" || value == "no");
+}
+function getMonacoCdnUrl(){
+	let url = argonConfig.monaco_cdn_url;
+	if (url == undefined || url == null){
+		url = $("meta[name='argon-monaco-cdn-url']").attr("content");
+	}
+	if (url == undefined || url == null){
+		url = "https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/vs/";
+	}
+	url = String(url);
+	// 末尾没有 / 的话后面拼 "loader.js" 会拼错。
+	// 注意：这个值要保留尾斜杠（拼 loader.js 用），只在传给 AMD 的 paths.vs 时才剥离 ——
+	// loader 的 _applyPaths 是纯字符串拼接，paths.vs 带尾斜杠会得到 .../min/vs//editor/... 的双斜杠。
+	if (url != "" && url.slice(-1) != "/"){
+		url += "/";
+	}
+	return url;
+}
+// 站点根路径：配置 -> 搜索框上的 data-config.root -> 加载本文件的 <script src> 反推
+function getSiteRoot(){
+	let root = "";
+	if (typeof(window.config) == "object" && window.config != null && typeof(window.config.root) == "string"){
+		root = window.config.root;
+	}
+	if (root == ""){
+		root = $("meta[name='argon-config-root']").attr("content") || "";
+	}
+	if (root == ""){
+		root = $("#local-search-input").data("config.root") || "";
+	}
+	if (root == ""){
+		// footer.ejs 里是 js('/argontheme.js')，截掉文件名就是 config.root
+		let self = $("script[src*='argontheme']").attr("src") || "";
+		root = self.replace(/^(?:[a-z]+:)?\/\/[^\/]*/i, "").replace(/\/argontheme\.js(\?.*)?$/, "");
+	}
+	return String(root).replace(/\/+$/, "");
+}
+function getMonacoLocalBase(){
+	return getSiteRoot() + "/assets/vendor/monaco/min/vs/";
+}
+// hljs 语言名 -> Monaco 语言 id / 文件扩展名（契约第 5 节）。
+// key 必须全小写：getCodeLanguage() 返回 raw.toLowerCase()，```C# 围栏到这里是 "c#"。
+// id 一律是 Monaco 0.52.2 真实注册过的语言；注册表里没有的显式给 null ——
+// createModel(code, "不存在的id") 不抛异常，会静默降级 plaintext，那是事实错误。
+// ext 与 id 分开：即使没有对应语言，扩展名仍要给对，「另存为」出来的文件名才是对的。
+var codeLanguageMetaMap = {
+	"bash": {id: "shell", ext: "sh"},
+	"sh": {id: "shell", ext: "sh"},
+	"shell": {id: "shell", ext: "sh"},
+	"zsh": {id: "shell", ext: "sh"},
+	"console": {id: "shell", ext: "sh"},
+	"shellsession": {id: "shell", ext: "sh"},
+	"cmd": {id: "bat", ext: "cmd"},
+	"bat": {id: "bat", ext: "cmd"},
+	"batch": {id: "bat", ext: "cmd"},
+	"js": {id: "javascript", ext: "js"},
+	"javascript": {id: "javascript", ext: "js"},
+	"jsx": {id: "javascript", ext: "jsx"},
+	"ts": {id: "typescript", ext: "ts"},
+	"typescript": {id: "typescript", ext: "ts"},
+	"tsx": {id: "typescript", ext: "tsx"},
+	"html": {id: "html", ext: "html"},
+	"htm": {id: "html", ext: "html"},
+	"xhtml": {id: "html", ext: "html"},
+	"xml": {id: "xml", ext: "xml"},
+	"svg": {id: "xml", ext: "xml"},
+	"css": {id: "css", ext: "css"},
+	"scss": {id: "scss", ext: "scss"},
+	"less": {id: "less", ext: "less"},
+	"json": {id: "json", ext: "json"},
+	"jsonc": {id: "json", ext: "json"},
+	"yml": {id: "yaml", ext: "yml"},
+	"yaml": {id: "yaml", ext: "yml"},
+	"md": {id: "markdown", ext: "md"},
+	"markdown": {id: "markdown", ext: "md"},
+	"py": {id: "python", ext: "py"},
+	"python": {id: "python", ext: "py"},
+	"rb": {id: "ruby", ext: "rb"},
+	"ruby": {id: "ruby", ext: "rb"},
+	"php": {id: "php", ext: "php"},
+	"go": {id: "go", ext: "go"},
+	"golang": {id: "go", ext: "go"},
+	"rs": {id: "rust", ext: "rs"},
+	"rust": {id: "rust", ext: "rs"},
+	"java": {id: "java", ext: "java"},
+	"kotlin": {id: "kotlin", ext: "kt"},
+	"kt": {id: "kotlin", ext: "kt"},
+	"cs": {id: "csharp", ext: "cs"},
+	"csharp": {id: "csharp", ext: "cs"},
+	"c#": {id: "csharp", ext: "cs"},
+	// c 与 cpp 必须是两个独立 id：Monaco 里 c 的 extensions 是 .c,.h，
+	// 混在一起会让纯 C 文件另存成 snippet.cpp
+	"c": {id: "c", ext: "c"},
+	"h": {id: "c", ext: "c"},
+	"cpp": {id: "cpp", ext: "cpp"},
+	"c++": {id: "cpp", ext: "cpp"},
+	"cxx": {id: "cpp", ext: "cpp"},
+	"hpp": {id: "cpp", ext: "cpp"},
+	"cc": {id: "cpp", ext: "cpp"},
+	"sql": {id: "sql", ext: "sql"},
+	"mysql": {id: "mysql", ext: "sql"},
+	"pgsql": {id: "pgsql", ext: "sql"},
+	"postgres": {id: "pgsql", ext: "sql"},
+	"redis": {id: "redis", ext: "redis"},
+	"graphql": {id: "graphql", ext: "graphql"},
+	"gql": {id: "graphql", ext: "graphql"},
+	"lua": {id: "lua", ext: "lua"},
+	"r": {id: "r", ext: "r"},
+	"perl": {id: "perl", ext: "pl"},
+	"pl": {id: "perl", ext: "pl"},
+	"clojure": {id: "clojure", ext: "clj"},
+	"clj": {id: "clojure", ext: "clj"},
+	"elixir": {id: "elixir", ext: "ex"},
+	"ex": {id: "elixir", ext: "ex"},
+	"julia": {id: "julia", ext: "jl"},
+	"coffeescript": {id: "coffeescript", ext: "coffee"},
+	"coffee": {id: "coffeescript", ext: "coffee"},
+	"dockerfile": {id: "dockerfile", ext: "dockerfile"},
+	"docker": {id: "dockerfile", ext: "dockerfile"},
+	"ini": {id: "ini", ext: "ini"},
+	"toml": {id: "ini", ext: "toml"},
+	"hcl": {id: "hcl", ext: "tf"},
+	"terraform": {id: "hcl", ext: "tf"},
+	"tf": {id: "hcl", ext: "tf"},
+	"proto": {id: "proto", ext: "proto"},
+	"protobuf": {id: "proto", ext: "proto"},
+	"sol": {id: "sol", ext: "sol"},
+	"solidity": {id: "sol", ext: "sol"},
+	"restructuredtext": {id: "restructuredtext", ext: "rst"},
+	"rst": {id: "restructuredtext", ext: "rst"},
+	"pascal": {id: "pascal", ext: "pas"},
+	"delphi": {id: "pascal", ext: "pas"},
+	"handlebars": {id: "handlebars", ext: "hbs"},
+	"hbs": {id: "handlebars", ext: "hbs"},
+	"twig": {id: "twig", ext: "twig"},
+	// powershell 是 Monaco 真实注册的语言，契约表里漏了这两行，补上
+	"powershell": {id: "powershell", ext: "ps1"},
+	"ps": {id: "powershell", ext: "ps1"},
+	// ↓ 以下语言 Monaco 0.52.2 没有注册（已逐一核对 editor.main.js 的语言表），id 一律 null
+	"diff": {id: null, ext: "diff"},
+	"patch": {id: null, ext: "diff"},
+	"haskell": {id: null, ext: "hs"},
+	"hs": {id: null, ext: "hs"},
+	"erlang": {id: null, ext: "erl"},
+	"erl": {id: null, ext: "erl"},
+	"latex": {id: null, ext: "tex"},
+	"tex": {id: null, ext: "tex"},
+	"stylus": {id: null, ext: "styl"},
+	"styl": {id: null, ext: "styl"},
+	"ejs": {id: null, ext: "ejs"},
+	"matlab": {id: null, ext: "m"},
+	"makefile": {id: null, ext: "mk"},
+	"make": {id: null, ext: "mk"},
+	"mk": {id: null, ext: "mk"},
+	"cmake": {id: null, ext: "cmake"},
+	"nginx": {id: null, ext: "conf"},
+	"apache": {id: null, ext: "conf"},
+	"plaintext": {id: null, ext: "txt"},
+	"text": {id: null, ext: "txt"},
+	"txt": {id: null, ext: "txt"},
+	"nohighlight": {id: null, ext: "txt"},
+	"no-highlight": {id: null, ext: "txt"}
+};
+// 识别不出的语言：id 为 null（Monaco 按纯文本处理），扩展名回落到 txt
+function getCodeLanguageMeta(lang){
+	let key = (lang == undefined || lang == null) ? "" : String(lang).trim().toLowerCase();
+	let meta = codeLanguageMetaMap[key];
+	if (!meta){
+		return {id: null, ext: "txt"};
+	}
+	return {id: meta.id, ext: meta.ext};
+}
+// 懒加载 Monaco：window.monaco 常驻，连点多次只加载一次
+var monacoLoadState = "idle";
+var monacoPendingCallbacks = [];
+// P0-5 的兜底：整轮加载（所有候选 base 加起来）的硬上限。
+// 必要性：Module.complete() 在工厂抛异常时只设 this.error 并走 config.onError，
+// 不调本模块的 errback —— 存在「ok 不调、err 也不调」的情况，
+// 没有这个定时器，.hljs-editor-status 会永远转下去。
+var monacoLoadDeadline = null;
+var monacoLoadTimeout = 20000;
+// 一次加载结束后，把排队等着的调用一起回调（并发去重）
+function monacoFlushPending(ok){
+	let pending = monacoPendingCallbacks;
+	monacoPendingCallbacks = [];
+	for (let i = 0; i < pending.length; i++){
+		if (ok){
+			pending[i].onReady(window.monaco);
+		}else{
+			pending[i].onFail();
 		}
 	}
+}
+/* ★ 绝对红线：loader.js 绝不能早于 argon_js_merged.js 执行。
+   merged 里有 jQuery / Bootstrap / Popper / pangu / ClipboardJS / noUiSlider / Headroom
+   等 ≥9 个 UMD 包会探测 define.amd，loader.js 先跑会让 window.$ / window.jQuery
+   根本不被赋值，整个主题立刻崩。这里懒加载（点按钮才注入）天然满足这条，别改成同步引入。 */
+var monacoWorkerStubUrl = null;
+// 让 Monaco 永远不去请求 language service worker（合计 7.1 MB，兼底不现实）。
+// 代价：没有智能提示 / 校验 / 格式化，只有语法着色（着色在 basic-languages 里，不依赖 worker）。
+// 这是刻意的产品取舍，不是偷懒。
+function setupMonacoEnvironment(){
+	if (typeof(window.MonacoEnvironment) == "object" && window.MonacoEnvironment != null
+		&& typeof(window.MonacoEnvironment.getWorker) == "function"){
+		return;
+	}
+	window.MonacoEnvironment = {
+		getWorker: function(){
+			if (typeof(Worker) == "undefined" || typeof(Blob) == "undefined" || typeof(URL) == "undefined"
+				|| typeof(URL.createObjectURL) != "function"){
+				return null;
+			}
+			// 空转 worker：什么都不做，Monaco 拿不到结果也就不会报错
+			if (monacoWorkerStubUrl == null){
+				monacoWorkerStubUrl = URL.createObjectURL(new Blob(["self.onmessage=function(){}"], {type: "application/javascript"}));
+			}
+			return new Worker(monacoWorkerStubUrl);
+		}
+	};
+}
+// 清掉 loader.js 留在全局的三个符号。
+// loader 的初始化条件是 `typeof define !== "function" || !define.amd`，只换 base 不清全局的话，
+// 二次执行会整个跳过 init，拿到的还是被 _modules2 污染过的旧 loader。
+// 不要改成「保存旧 window.require 再恢复」：editor.main.js 有三处硬依赖 globalThis.require 是 Monaco 的。
+function resetMonacoAmd(){
+	try{
+		delete window.define;
+	}catch (err){}
+	try{
+		delete window.require;
+	}catch (err){}
+	try{
+		delete window.AMDLoader;
+	}catch (err){}
+}
+// 探测式加载：先只注入 {base}loader.js 判可达性，第一个成功的 base 即胜者，AMD 只对它接线。
+// loader.js 只有 30 KB，跨域经典脚本不需要 CORS。这样「CDN 被墙」这个最常见的失败场景
+// 根本不进入 AMD 层，也就不会污染模块注册表（下面换 base 的恢复退化成第二道防线）。
+function monacoTryBase(base, next){
+	let script = document.createElement("script");
+	script.type = "text/javascript";
+	script.async = true;
+	script.src = base + "loader.js";
+	let settled = false;
+	let done = function(ok){
+		if (settled){
+			return;
+		}
+		settled = true;
+		// loader.js 404 时 AMD 层根本不存在，errback 永远不会触发，只能靠这个 onerror
+		script.onload = null;
+		script.onerror = null;
+		if (!ok){
+			next(false);
+			return;
+		}
+		// loader 没把 AMD 装上（或被别的库占了同名 require）就当这一处失败
+		if (typeof(window.require) != "function" || typeof(window.require.config) != "function"){
+			next(false);
+			return;
+		}
+		monacoRequireEditor(base, next);
+	};
+	script.onload = function(){
+		done(true);
+	};
+	script.onerror = function(){
+		done(false);
+	};
+	document.head.appendChild(script);
+}
+// 已确定胜者 base 之后才接 AMD
+function monacoRequireEditor(base, next){
+	setupMonacoEnvironment();
+	try{
+		// paths.vs 必须去掉尾斜杠：loader 的 _applyPaths 是纯字符串拼接 base + moduleId.substr(2)，
+		// 带尾斜杠会得到 .../min/vs//editor/editor.main.js 的双斜杠。
+		// 注意 base 本身（用于拼 loader.js）要保留尾斜杠，两者用途不同。
+		window.require.config({paths: {vs: base.replace(/\/+$/, "")}});
+	}catch (err){
+		next(false);
+		return;
+	}
+	// 这里不设自己的超时：P0-5 的兜底在最外层 loadMonaco（monacoLoadDeadline），
+	// 覆盖「所有候选 base 加起来」的整体时长，而不是每个 base 各等 20s。
+	window.require(["vs/editor/editor.main"], function(){
+		// 统一用 window.monaco：require 回调的参数与它是不同的对象
+		if (typeof(window.monaco) == "undefined" || !window.monaco || typeof(window.monaco.editor) == "undefined"){
+			next(false);
+			return;
+		}
+		next(true);
+	} , function(err){
+		// err.message 恒为字面量 "[object Event]"（DOM Event 没有 .message），零诊断价值。
+		// 只有 err.phase（"loading" / "factory"）和 err.moduleId 有用。
+		console.warn("[Monaco] 加载失败: " + (err && err.phase ? err.phase : "unknown")
+			+ " / " + (err && err.moduleId ? err.moduleId : "?"), err);
+		next(false);
+	});
+}
+function loadMonaco(onReady, onFail){
+	if (typeof(onReady) != "function"){
+		onReady = function(){};
+	}
+	if (typeof(onFail) != "function"){
+		onFail = function(){};
+	}
+	// 已经加载过一次：直接回调，第二次打开是瞬开的
+	if (typeof(window.monaco) != "undefined" && window.monaco && typeof(window.monaco.editor) != "undefined"){
+		onReady(window.monaco);
+		return;
+	}
+	monacoPendingCallbacks.push({onReady: onReady, onFail: onFail});
+	// 正在加载：只挂回调，不重复发起请求
+	if (monacoLoadState == "loading"){
+		return;
+	}
+	monacoLoadState = "loading";
+	// 整轮硬超时：到点就判定失败并收尾，绝不让加载动画悬着
+	monacoLoadDeadline = setTimeout(function(){
+		monacoLoadDeadline = null;
+		monacoLoadState = "failed";
+		console.warn("[Monaco] 加载超时（" + (monacoLoadTimeout / 1000) + "s）");
+		monacoFlushPending(false);
+	}, monacoLoadTimeout);
+	let bases = [];
+	let cdn = getMonacoCdnUrl();
+	if (cdn != ""){
+		bases.push(cdn);
+	}
+	bases.push(getMonacoLocalBase());
+	let index = 0;
+	// amdTouched：这一轮是否已经进过 AMD 层。只有进过才需要在换 base 前清全局 ——
+	// 探测阶段就失败的话 AMD 从没初始化，清了反而多余。
+	let amdTouched = false;
+	let done = function(ok){
+		if (monacoLoadDeadline != null){
+			clearTimeout(monacoLoadDeadline);
+			monacoLoadDeadline = null;
+		}
+		monacoLoadState = ok ? "ready" : "failed";
+		monacoFlushPending(ok);
+	};
+	let tryNext = function(){
+		// 已经被超时兜底收尾了，别再往下钻
+		if (monacoLoadState != "loading"){
+			return;
+		}
+		if (index >= bases.length){
+			done(false);
+			return;
+		}
+		let base = bases[index];
+		index++;
+		monacoTryBase(base, function(ok){
+			if (monacoLoadState != "loading"){
+				return;
+			}
+			if (ok){
+				done(true);
+				return;
+			}
+			if (amdTouched){
+				// loader 的 _onLoadError 会把失败的模块永久登记进 _modules2 并标记 error，
+				// 不清理直接换 base 会同步短路到 errback —— 本地兼底就成了死代码
+				resetMonacoAmd();
+			}
+			amdTouched = true;
+			tryNext();
+		});
+	};
+	tryNext();
+}
+/* 编辑层状态 */
+var codeblockEditor = null;
+var codeblockEditorSeq = 0;
+var monacoThemeWatched = false;
+// 用内置的 vs / vs-dark，跟随 html.darkmode（amoled-dark 也是暗色，一并归到 vs-dark）
+function getMonacoThemeName(){
+	return $("html").hasClass("darkmode") ? "vs-dark" : "vs";
+}
+function watchMonacoTheme(){
+	if (monacoThemeWatched){
+		return;
+	}
+	if (typeof(MutationObserver) == "undefined"){
+		return;
+	}
+	monacoThemeWatched = true;
+	let observer = new MutationObserver(function(){
+		if (codeblockEditor == null || codeblockEditor.editor == null){
+			return;
+		}
+		if (typeof(window.monaco) == "undefined" || !window.monaco || typeof(window.monaco.editor.setTheme) != "function"){
+			return;
+		}
+		try{
+			window.monaco.editor.setTheme(getMonacoThemeName());
+		}catch (err){}
+	});
+	observer.observe(document.documentElement, {attributes: true, attributeFilter: ["class"]});
+}
+// 编辑器没起来时退回打开时的原文，供复制 / 另存为使用
+function getCodeblockEditorCode(){
+	if (codeblockEditor == null){
+		return "";
+	}
+	if (codeblockEditor.model != null && typeof(codeblockEditor.model.getValue) == "function"){
+		return codeblockEditor.model.getValue();
+	}
+	return codeblockEditor.code;
+}
+// 字号跟代码块一致，跟不上就退回 style.css 里写死的 14px
+function getCodeblockEditorFontSize($block){
+	let code = $block.find("code[hljs-codeblock-inner]")[0];
+	if (code != null && typeof(window.getComputedStyle) == "function"){
+		let size = parseFloat(window.getComputedStyle(code).fontSize);
+		if (size > 0){
+			return size;
+		}
+	}
+	return 14;
+}
+function buildCodeblockEditorOverlay(ext){
+	let overlay = $('<div class="hljs-editor-overlay" role="dialog" aria-modal="true" aria-label="代码编辑器"></div>');
+	let toolbar = $('<div class="hljs-editor-toolbar"></div>');
+	toolbar.append($('<span class="hljs-editor-filename"></span>').text("snippet." + ext));
+	let actions = $('<div class="hljs-editor-actions"></div>');
+	actions.append($('<button type="button" class="hljs-editor-btn hljs-editor-save"></button>').text(__("另存为")));
+	actions.append($('<button type="button" class="hljs-editor-btn hljs-editor-copy"></button>').text(__("复制")));
+	let close = $('<button type="button" class="hljs-editor-btn hljs-editor-close"></button>').attr("aria-label", __("关闭"));
+	close.append($('<i class="fa fa-times"></i>'));
+	actions.append(close);
+	toolbar.append(actions);
+	overlay.append(toolbar);
+	// 加载中占位，Monaco 就位后移除
+	overlay.append($('<div class="hljs-editor-status"></div>').text(__("加载编辑器中")));
+	overlay.append($('<div class="hljs-editor-container"></div>'));
+	return overlay;
+}
+// 加载失败：清掉半开的遮罩并弹提示
+function showCodeblockEditorFail(){
+	closeCodeblockEditor();
+	iziToast.show({
+		title: __("加载失败"),
+		message: __("编辑器加载失败"),
+		class: 'shadow',
+		position: 'topRight',
+		backgroundColor: '#f5365c',
+		titleColor: '#ffffff',
+		messageColor: '#ffffff',
+		iconColor: '#ffffff',
+		progressBarColor: '#ffffff',
+		icon: 'fa fa-close',
+		timeout: 5000
+	});
+}
+function openCodeblockEditor(block){
+	if (!isCodeblockEditorEnabled()){
+		return;
+	}
+	// 已经开着一个就不重复开
+	if (codeblockEditor != null){
+		return;
+	}
+	let $block = codeblockOf(block);
+	if ($block.length == 0){
+		return;
+	}
+	// 内容与复制按钮同源，保证不含行号
+	let code = getCodeFromBlock($block);
+	let inner = $block.find("code[hljs-codeblock-inner]")[0];
+	let meta = getCodeLanguageMeta(inner == null ? "" : getCodeLanguage($(inner)));
+	// 加载期间可能已经被 Esc 关掉，用 token 认回来
+	let token = ++codeblockEditorSeq;
+	// 焦点归还：沿用 data-hljs-restore-focus 那套写法
+	let trigger = $block.find(".hljs-control-editor")[0];
+	if (trigger){
+		$(trigger).attr("data-hljs-restore-focus", "1");
+	}
+	let overlay = buildCodeblockEditorOverlay(meta.ext);
+	$("body").addClass("hljs-editor-open").append(overlay);
+	// 窄屏开着左边栏时 html.leftbar-opened 也锁滚动（锁的是 html 而不是 body），
+	// 关闭时我们只摘 hljs-editor-open，不摘它页面就会一直滚不动
+	$("html").removeClass("leftbar-opened");
+	codeblockEditor = {
+		token: token,
+		block: $block,
+		overlay: overlay,
+		editor: null,
+		model: null,
+		code: code,
+		ext: meta.ext
+	};
+	loadMonaco(function(monaco){
+		if (codeblockEditor == null || codeblockEditor.token != token){
+			return;
+		}
+		let container = codeblockEditor.overlay.find(".hljs-editor-container")[0];
+		if (container == null){
+			showCodeblockEditorFail();
+			return;
+		}
+		try{
+			codeblockEditor.model = monaco.editor.createModel(code, meta.id == null ? undefined : meta.id);
+			codeblockEditor.editor = monaco.editor.create(container, {
+				model: codeblockEditor.model,
+				automaticLayout: true,
+				minimap: {enabled: false},
+				fontSize: getCodeblockEditorFontSize(codeblockEditor.block),
+				wordWrap: "on",
+				scrollBeyondLastLine: false,
+				theme: getMonacoThemeName()
+			});
+		}catch (err){
+			console.error("Monaco 初始化失败: ", err);
+			showCodeblockEditorFail();
+			return;
+		}
+		codeblockEditor.overlay.find(".hljs-editor-status").remove();
+		watchMonacoTheme();
+		if (typeof(codeblockEditor.editor.focus) == "function"){
+			codeblockEditor.editor.focus();
+		}
+	} , function(){
+		if (codeblockEditor == null || codeblockEditor.token != token){
+			return;
+		}
+		showCodeblockEditorFail();
+	});
+}
+function closeCodeblockEditor(){
+	let state = codeblockEditor;
+	codeblockEditor = null;
+	// 先销毁编辑器再销毁 model，否则 Monaco 会把 model 一起带走
+	if (state != null){
+		// editor.dispose() 只解绑 model、不销毁它，monaco.d.ts 的推荐写法是先 setModel(null) 再 dispose
+		if (state.editor != null && typeof(state.editor.setModel) == "function"){
+			try{
+				state.editor.setModel(null);
+			}catch (err){}
+		}
+		if (state.editor != null && typeof(state.editor.dispose) == "function"){
+			try{
+				state.editor.dispose();
+			}catch (err){}
+		}
+		if (state.model != null && typeof(state.model.dispose) == "function"){
+			try{
+				state.model.dispose();
+			}catch (err){}
+		}
+	}
+	$(".hljs-editor-overlay").remove();
+	$("body").removeClass("hljs-editor-open");
+	let restore = $("[data-hljs-restore-focus]")[0];
+	if (restore){
+		restore.focus();
+		$(restore).removeAttr("data-hljs-restore-focus");
+	}
+}
+function saveCodeblockEditorAs(){
+	if (codeblockEditor == null){
+		return;
+	}
+	if (typeof(URL) == "undefined" || typeof(URL.createObjectURL) != "function"){
+		showCodeCopyToast(false);
+		return;
+	}
+	let blob = new Blob([getCodeblockEditorCode()], {type: "text/plain;charset=utf-8"});
+	let url = URL.createObjectURL(blob);
+	let link = document.createElement("a");
+	link.href = url;
+	link.download = "snippet." + codeblockEditor.ext;
+	// Firefox 需要链接在文档里才会触发下载
+	$("body").append(link);
+	link.click();
+	$(link).remove();
+	setTimeout(function(){
+		URL.revokeObjectURL(url);
+	} , 0);
 }
 $(document).ready(function(){
 	highlightJsRender();
 });
-$(document).on("click" , ".hljs-control-fullscreen" , function(){
-	setCodeblockFullscreen(!codeblockOf(this).hasClass("hljs-codeblock-fullscreen"));
+$(document).on("click" , ".hljs-control-editor" , function(){
+	openCodeblockEditor(codeblockOf(this));
 });
-$(document).on("click" , ".hljs-fullscreen-backdrop" , function(){
-	setCodeblockFullscreen(false);
+$(document).on("click" , ".hljs-editor-overlay" , function(e){
+	// 容器与工具条内部的点击留给 Monaco 与自己的按钮，只有点在遮罩空白处才关闭
+	if (e.target !== this){
+		return;
+	}
+	closeCodeblockEditor();
+});
+$(document).on("click" , ".hljs-editor-save" , function(){
+	saveCodeblockEditorAs();
+});
+$(document).on("click" , ".hljs-editor-close" , function(){
+	closeCodeblockEditor();
 });
 $(document).on("keydown" , function(e){
-	if ((e.key === "Escape" || e.keyCode === 27) && $(".hljs-codeblock-fullscreen").length > 0){
-		setCodeblockFullscreen(false);
+	if ((e.key === "Escape" || e.keyCode === 27) && $(".hljs-editor-overlay").length > 0){
+		closeCodeblockEditor();
+	}
+});
+// pjax 换页后触发按钮所在的代码块已经被替换，编辑层留着只会挡住页面
+$(document).on('pjax:end', function(){
+	if ($(".hljs-editor-overlay").length > 0){
+		closeCodeblockEditor();
 	}
 });
 $(document).on("click" , ".hljs-control-toggle-break-line" , function(){

@@ -16,7 +16,7 @@
 <meta property="og:description" content="起因USB HUB提供的供电实属不够，根本无法驱动我的副屏，但是华为的手机带有有线投屏，且可以启动一个独立的“电脑模式桌面”，也许可以做远程副屏使用。 踩过的坑在网上搜寻的绝大部分教程都是在Kernel 模拟 EDID + DRM 接口实现的，这显然有误操作风险，万一一个rm -rf不就炸了吗？ btrfs神力让我无忧回滚 然后，我看到了这篇教程 这个是为服务器准备的，创建一个虚拟wayland显">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-10-02T03:33:11.000Z">
-<meta property="article:modified_time" content="2026-10-03T02:26:51.587Z">
+<meta property="article:modified_time" content="2026-10-03T04:48:46.066Z">
 <meta property="article:author" content="blockhaity">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Hyprland">
@@ -78,7 +78,11 @@
 				},
 			
 			disable_pjax: false,
-			headroom: false
+			headroom: false,
+			// 未配置时模板侧给 true，与 argontheme.js 的宽松判断保持一致
+			enable_codeblock_editor: true,
+			// 留空则只用主题自带的本地副本，不请求任何第三方
+			monaco_cdn_url: ""
 		}
 	</script>
 	<script>
@@ -676,7 +680,7 @@
 						
 						<div class="post-meta-detail post-meta-detail-time">
 							<i class="fa fa-clock-o" aria-hidden="true"></i>
-							<time title="发布于 2025-10-2 11:33:11 | 编辑于 2026-10-3 10:26:51">2025-10-2 11:33
+							<time title="发布于 2025-10-2 11:33:11 | 编辑于 2026-10-3 12:48:46">2025-10-2 11:33
 							</time>
 						</div>
 					
