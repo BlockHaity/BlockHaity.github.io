@@ -5,45 +5,133 @@
 <li><strong>许可</strong>：MIT，见 <a href="./LICENSE"><code>LICENSE</code></a>（Copyright (c) 2016 - present Microsoft Corporation）</li>
 <li><strong>站点根路径</strong>：<code>/assets/vendor/monaco/min/vs/</code>（由 <code>config.root</code> 拼出）</li>
 </ul>
-<h2 id="文件与来源"><a href="#文件与来源" class="headerlink" title="文件与来源"></a>文件与来源</h2><table>
+<h2 id="目录结构与体积"><a href="#目录结构与体积" class="headerlink" title="目录结构与体积"></a>目录结构与体积</h2><table>
 <thead>
 <tr>
-<th>本地路径</th>
-<th>来源 URL</th>
-<th align="right">字节数</th>
+<th>分组</th>
+<th align="right">文件数</th>
+<th align="right">原始体积</th>
+<th align="right">gzip 后</th>
 <th>作用</th>
 </tr>
 </thead>
 <tbody><tr>
+<td><code>min/vs/editor/</code></td>
+<td align="right">2</td>
+<td align="right">3 807.1 KiB</td>
+<td align="right">950.4 KiB</td>
+<td>编辑器内核 + 样式表</td>
+</tr>
+<tr>
 <td><code>min/vs/loader.js</code></td>
-<td><code>https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/vs/loader.js</code></td>
-<td align="right">30 051</td>
-<td><strong>AMD 加载器</strong>。必须先加载它，之后才有全局 <code>window.require</code></td>
+<td align="right">1</td>
+<td align="right">29.3 KiB</td>
+<td align="right">9.0 KiB</td>
+<td>AMD 加载器</td>
 </tr>
 <tr>
-<td><code>min/vs/editor/editor.main.js</code></td>
-<td><code>https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/vs/editor/editor.main.js</code></td>
-<td align="right">3 766 654</td>
-<td><strong>编辑器内核 + basic languages</strong>。约 3.59 MB，通过 AMD 模块 <code>vs/editor/editor.main</code> 载入</td>
+<td><code>min/vs/basic-languages/**</code></td>
+<td align="right">81</td>
+<td align="right">486.2 KiB</td>
+<td align="right">181.7 KiB</td>
+<td><strong>语法高亮词法（懒加载）</strong></td>
 </tr>
 <tr>
-<td><code>min/vs/editor/editor.main.css</code></td>
-<td><code>https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/vs/editor/editor.main.css</code></td>
-<td align="right">131 858</td>
-<td><strong>编辑器样式表</strong>，必须单独引入</td>
+<td><code>min/vs/language/**</code></td>
+<td align="right">8</td>
+<td align="right">7 071.3 KiB</td>
+<td align="right">1 581.1 KiB</td>
+<td><strong>语言服务</strong>：json &#x2F; css &#x2F; html &#x2F; typescript 的 <code>*Mode.js</code> + <code>*Worker.js</code></td>
 </tr>
 <tr>
-<td><code>LICENSE</code></td>
-<td><code>https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/LICENSE</code></td>
-<td align="right">1 098</td>
-<td>MIT 许可文本</td>
+<td><code>min/vs/base/worker/workerMain.js</code></td>
+<td align="right">1</td>
+<td align="right">367.7 KiB</td>
+<td align="right">112.0 KiB</td>
+<td>通用 worker 入口（所有语言服务共用）</td>
+</tr>
+<tr>
+<td><code>min/vs/base/browser/ui/codicons/codicon/codicon.ttf</code></td>
+<td align="right">1</td>
+<td align="right">78.5 KiB</td>
+<td align="right">43.4 KiB</td>
+<td>Monaco UI 图标字体（查找框、折叠箭头等）</td>
+</tr>
+<tr>
+<td><code>LICENSE</code>、<code>README.md</code></td>
+<td align="right">2</td>
+<td align="right">—</td>
+<td align="right">—</td>
+<td>许可与说明</td>
+</tr>
+<tr>
+<td><strong>合计（<code>min/vs</code> 内 94 个文件）</strong></td>
+<td align="right"><strong>94</strong></td>
+<td align="right"><strong>11.56 MiB</strong></td>
+<td align="right"><strong>2.81 MiB</strong></td>
+<td></td>
 </tr>
 </tbody></table>
-<blockquote>
-<p>注：<code>monaco-editor@0.52.2/LICENSE.md</code> 不存在（404），许可文件在包内名为 <code>LICENSE</code>。</p>
-</blockquote>
-<h2 id="载入顺序（不可颠倒）"><a href="#载入顺序（不可颠倒）" class="headerlink" title="载入顺序（不可颠倒）"></a>载入顺序（不可颠倒）</h2><p>契约见 <code>/tmp/opencode/codeblock-contract.md</code> 第 5 节 <code>loadMonaco()</code>。每一处候选源（CDN → 本地）都要按这个顺序：</p>
-<pre><code class="js">// 1) 先引 CSS，并等 onload
+<p>体积都是<strong>仓库与产物体积</strong>：<code>hexo generate</code> 会原样拷进 <code>public/assets/vendor/monaco/</code>。<br>访客平时碰不到它——CDN 正常时传输全部发生在 CDN 上，而且只在点开编辑器之后才发起；<br>本地兼底只在 CDN 拿不到时才启用，且各文件按需加载（打开一个代码块只拉它用到的那一个词法文件，<br>3–20 KiB 量级；只有用到 JS &#x2F; TS &#x2F; JSON &#x2F; CSS &#x2F; HTML 的智能提示时才会拉对应的 language service）。</p>
+<h2 id="关键认知：语言资源是「懒加载」的"><a href="#关键认知：语言资源是「懒加载」的" class="headerlink" title="关键认知：语言资源是「懒加载」的"></a>关键认知：语言资源是「懒加载」的</h2><p><code>editor.main.js</code> 只内联了语言<strong>注册表</strong>，词法本体与语言服务都是运行时按需拉取的 AMD 模块：</p>
+<pre><code class="js">// editor.main.js 里每个语言的注册形如：
+i({id: &quot;javascript&quot;, extensions: [&quot;.js&quot;, ...],
+   loader: () =&gt; new Promise((e, r) =&gt; { a([&quot;vs/basic-languages/javascript/javascript&quot;], e, r) })});
+// 拿到之后才 registerTokensProviderFactory(id, { create: async () =&gt; (await s.load()).language })
+</code></pre>
+<p><strong>漏一个文件的后果是静默降级成纯文本</strong>：loader 的 promise 被 reject 后，Monaco 不会报错、<br>不会提示，只是这个语言没有 tokenizer。所以本目录必须成组 vendor，<br><code>vs/editor/editor.main.js</code> 单独一个文件是<strong>不够</strong>的——这正是曾经出现<br>「CDN 被墙时编辑器能打开、但所有语言都是纯文本」的原因。</p>
+<p>同一机制也适用于语言服务：<code>vs/language/&lt;x&gt;/&lt;x&gt;Mode.js</code>（主线程部分）与<br><code>vs/language/&lt;x&gt;/&lt;x&gt;Worker.js</code>（worker 部分）都是懒加载模块。</p>
+<h2 id="worker-是怎么接上的"><a href="#worker-是怎么接上的" class="headerlink" title="worker 是怎么接上的"></a>worker 是怎么接上的</h2><p>worker 脚本受同源策略约束，走 CDN 时 <code>new Worker(cdnUrl)</code> 会被浏览器直接拒绝。<br><code>source/argontheme.js</code> 的 <code>setupMonacoEnvironment(base)</code> 因此用 <strong>blob 造一个同源代理</strong>：</p>
+<pre><code class="js">self.MonacoEnvironment = { baseUrl: &quot;&lt;…/min/&gt;&quot; };          // 注意：指到 vs/ 的上一级
+importScripts(&quot;https://…/min/vs/base/worker/workerMain.js&quot;);
+</code></pre>
+<p>约定来自对 0.52.2 min 产物的实测：</p>
+<table>
+<thead>
+<tr>
+<th>约定</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>baseUrl</code> 必须是 <strong><code>vs/</code> 的上一级</strong></td>
+<td><code>workerMain.js</code> 用 <code>baseUrl + &quot;vs/loader.js&quot;</code> 自举 AMD；写成 <code>…/min/vs/</code> 会拼出 <code>vs/vs/loader.js</code></td>
+</tr>
+<tr>
+<td>必须是<strong>绝对 URL</strong></td>
+<td>blob worker 里 <code>importScripts</code> &#x2F; <code>fetch</code> 不接受站内相对路径，传 <code>/assets/...</code> 会抛 <code>The URL … is invalid</code>，Monaco 随即退回主线程执行（UI 卡顿 + 控制台告警）</td>
+</tr>
+<tr>
+<td>只需一个通用 worker</td>
+<td><code>workerMain.js</code> 按主线程给的 moduleId&#x2F;label 自己 AMD 加载 <code>json/css/html/tsWorker</code>，5 个 label 共用</td>
+</tr>
+<tr>
+<td>不需要手动 <code>require</code></td>
+<td><code>workerMain.js</code> 末尾自带 <code>globalThis.onmessage</code> 握手与 <code>vscode-worker-ready</code> 流程</td>
+</tr>
+</tbody></table>
+<p>blob 代理失败时 Monaco 会自动退回主线程执行语言服务（功能仍在，会卡），不会白屏。</p>
+<h2 id="未纳入本副本的资源"><a href="#未纳入本副本的资源" class="headerlink" title="未纳入本副本的资源"></a>未纳入本副本的资源</h2><table>
+<thead>
+<tr>
+<th>资源</th>
+<th>为什么不要</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>min/vs/nls.messages.&lt;lang&gt;.js</code></td>
+<td>Monaco 内部 UI 文案的本地化包。不带就是英文（查找框、右键菜单等），主题自己的按钮&#x2F;状态栏走 <code>__()</code> 不受影响。要中文界面可再补 <code>zh-cn</code>（157 KiB）</td>
+</tr>
+<tr>
+<td><code>min-maps/**</code></td>
+<td>source map，线上用不到</td>
+</tr>
+<tr>
+<td><code>esm/**</code></td>
+<td>ESM 发行版，本主题走 AMD</td>
+</tr>
+</tbody></table>
+<h2 id="载入顺序（不可颠倒）"><a href="#载入顺序（不可颠倒）" class="headerlink" title="载入顺序（不可颠倒）"></a>载入顺序（不可颠倒）</h2><pre><code class="js">// 1) 先引 CSS，并等 onload
 &lt;link rel=&quot;stylesheet&quot; href=&quot;{base}editor/editor.main.css&quot;&gt;
 
 // 2) 再引 loader，并等 onload
@@ -58,44 +146,12 @@ window.require([&#39;vs/editor/editor.main&#39;], ok, err);
 <p><strong><code>editor.main.css</code> 必须单独引入。</strong> 这个包里 CSS 不打包进 JS：漏引它会先闪一个无样式的编辑器（纯文本流、行号错位、没有选区&#x2F;光标&#x2F;滚动条外观），CSS 到位后才重排。</p>
 <p><code>editor.main.js</code> 里同样没有内联样式，<code>vs/editor/editor.main</code> 模块 resolve 时依赖 CSS 已经加载完成，所以要先 <code>onload</code> 再 <code>require</code>。</p>
 <h2 id="已知限制"><a href="#已知限制" class="headerlink" title="已知限制"></a>已知限制</h2><ul>
-<li><strong>不含 base16 主题</strong>。包内没有 <code>min/vs/editor/editor.main.css</code> 之外的任何主题资源（无 <code>min/vs/base16/</code>）。主题只用 Monaco 内置的 <code>vs</code> &#x2F; <code>vs-dark</code>，跟随页面 <code>html.darkmode</code> &#x2F; <code>html.darkmode.amoled-dark</code> 切换。</li>
-<li><strong>不含全部语言服务</strong>。本副本只有 <strong>basic languages</strong>（纯语法高亮，基于 Monarch tokenizer），没有 TypeScript &#x2F; JSON Schema &#x2F; CSS 智能提示等语言服务。因此没有补全、没有诊断下划线、没有跳转定义、没有 hover 文档。</li>
+<li><strong>不含 base16 主题</strong>。主题只用 Monaco 内置的 <code>vs</code> &#x2F; <code>vs-dark</code>，跟随页面<br><code>html.darkmode</code> &#x2F; <code>html.darkmode.amoled-dark</code> 切换。</li>
+<li><strong>diff &#x2F; makefile 不在本目录</strong>。Monaco 0.52.2 确实没有这两个语言（<br><code>min/vs/basic-languages/diff/diff.js</code> 与 <code>makefile/makefile.js</code> 均 404，<code>editor.main.js</code> 内无注册），<br>而主题自带的 highlight.js 定制构建里有。为了不出现「页面有高亮、编辑器纯文本」，<br>改由 <code>source/argontheme.js</code> 的 <code>registerMonacoCustomLanguages()</code> 在运行时注册精简 Monarch 规则<br>（语言 id 为 <code>argon-diff</code> &#x2F; <code>argon-makefile</code>）。与 VS Code 的 TextMate 规则不会逐字一致，<br>只保证关键字 &#x2F; 注释 &#x2F; 增删行可辨。</li>
+<li><strong>Monaco 内部 UI 是英文</strong>（未带 nls 语言包），见上一节。</li>
 </ul>
-<h3 id="已实测的语言覆盖（0-52-2-内置-83-种-basic-language）"><a href="#已实测的语言覆盖（0-52-2-内置-83-种-basic-language）" class="headerlink" title="已实测的语言覆盖（0.52.2 内置 83 种 basic language）"></a>已实测的语言覆盖（0.52.2 内置 83 种 basic language）</h3><p>契约第 5 节 <code>getCodeLanguageMeta()</code> 映射到的语言<strong>全部实测存在</strong>：</p>
-<pre><code>shell python go rust csharp cpp sql yaml markdown html xml javascript
-php ruby lua dart scala kotlin swift powershell dockerfile ini julia
-graphql elixir fsharp vb objective-c perl r clojure
-</code></pre>
-<p>另有 <code>abap aes apex azcli bat bicep c cameligo clojure coffeescript csp css cypher freemarker2 handlebars hcl java less lexon liquid m3 mdx mips msdax mysql pascal pascaligo pgsql pla postiats powerquery proto pug qsharp razor redis redshift restructuredtext sb scheme scss sol sparql st systemverilog tcl twig typescript typespec verilog wgsl</code> 等。</p>
-<p><strong>确认不存在</strong>（契约已写明的限制，已逐项 grep + 对 npm 包目录做 HTTP 校验，全部 404）：</p>
-<table>
-<thead>
-<tr>
-<th>语言</th>
-<th>状态</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>haskell</code></td>
-<td>缺</td>
-</tr>
-<tr>
-<td><code>erlang</code></td>
-<td>缺</td>
-</tr>
-<tr>
-<td><code>latex</code></td>
-<td>缺</td>
-</tr>
-<tr>
-<td><code>diff</code></td>
-<td><strong>缺（契约未列出，但同样不存在）</strong></td>
-</tr>
-</tbody></table>
-<blockquote>
-<p><strong>⚠️ 与契约的偏差</strong>：契约第 2 节把 <code>diff</code> 算进了 0.52.2 自带的 basic languages 列表，<br>实测 <strong>0.52.2 整个包里都没有 diff 语言</strong>（<code>min/vs/basic-languages/diff/diff.js</code> 与<br><code>esm/vs/basic-languages/diff/diff.js</code> 均 404，<code>editor.main.js</code> 内无注册）。<br>契约第 5 节映射里的 <code>diff|patch -&gt; diff / diff</code> 会让 <code>monaco.editor.createModel(code, &#39;diff&#39;)</code><br>拿一个不存在的语言 id，Monaco 会在控制台告警并按 <code>plaintext</code> 处理。<br><strong>无功能损坏</strong>（纯文本编辑正常），但会刷 warning。若要消掉，需要在<br><code>getCodeLanguageMeta()</code> 里把 <code>diff|patch</code> 改映射到 <code>null</code>——<strong>该文件不属于本 vendor 目录</strong>，<br>请由 js-owner 决定，本目录不做修改。</p>
-</blockquote>
-<h2 id="校验记录"><a href="#校验记录" class="headerlink" title="校验记录"></a>校验记录</h2><p>三个文件均已用 <code>curl -sI</code> 拿到的 <code>etag</code>（格式 <code>W/&quot;&lt;size-hex&gt;-&lt;sha1-base64&gt;&quot;</code>）与本地文件<br><code>sha1sum</code> 逐一比对，字节数与哈希<strong>完全一致</strong>，且 <code>file(1)</code> 确认均为 <code>JavaScript source, ASCII text</code><br>或 <code>ASCII text</code>（不是 HTML 错误页）。</p>
+<h2 id="校验记录"><a href="#校验记录" class="headerlink" title="校验记录"></a>校验记录</h2><ul>
+<li><p>原有 3 个文件用 <code>curl -sI</code> 的 <code>etag</code>（<code>W/&quot;&lt;size-hex&gt;-&lt;sha1-base64&gt;&quot;</code>）与本地 <code>sha1sum</code> 逐一对齐：</p>
 <table>
 <thead>
 <tr>
@@ -128,21 +184,76 @@ graphql elixir fsharp vb objective-c perl r clojure
 <td align="center">✅</td>
 </tr>
 </tbody></table>
-<p>内容自检：</p>
-<ul>
-<li><code>editor.main.js</code> 首行 banner 含 <code>Version: 0.52.2(404545b...)</code> 与 <code>Released under the MIT license</code></li>
-<li><code>editor.main.css</code> 含 <code>.monaco-editor</code> 选择器 644 处</li>
-<li><code>loader.js</code> 含 <code>AMDLoader</code> 21 处、<code>define.amd</code> 2 处</li>
+</li>
+<li><p>本次新增的 91 个文件（81 个词法 + 8 个语言服务 + <code>workerMain.js</code> + <code>codicon.ttf</code>）<br>的下载来源是 jsDelivr 官方文件清单（<code>https://data.jsdelivr.com/v1/packages/npm/monaco-editor@0.52.2?structure=flat</code>），<br>每个文件下载后都与清单里的 <code>size</code> 逐一比对字节数，全部一致。</p>
+</li>
 </ul>
-<blockquote>
-<p>任务单里给的 <code>editor.main.css</code> 参考值 <strong>21 762 B</strong> 是 <strong>gzip 压缩后</strong>的<br><code>content-length</code>（<code>curl --compressed</code> 下报的值），不是文件本身大小。<br>未压缩的真实大小是 <strong>131 858 B</strong>（&#x3D; etag 的 <code>0x20312</code>）。三个文件里只有 CSS 会被压缩到这个量级。</p>
-</blockquote>
-<h2 id="更新方式"><a href="#更新方式" class="headerlink" title="更新方式"></a>更新方式</h2><pre><code class="sh">V=0.52.2
-B=https://cdn.jsdelivr.net/npm/monaco-editor@$V
+<h2 id="更新方式"><a href="#更新方式" class="headerlink" title="更新方式"></a>更新方式</h2><p>语言资源<strong>不要靠人肉列目录，也不要用「扫 editor.main.js 里的 vs&#x2F;… 字符串」这种写法</strong>——<br>依赖数组里的 <code>vs/base/common/xxx</code> 是打包进内核的模块 id，磁盘上没有对应文件，照抄会 404。<br>用 jsDelivr 的官方文件清单最稳（就是本副本当初的下载方式）：</p>
+<pre><code class="sh">V=0.52.2
 cd source/assets/vendor/monaco
-curl -sSf --compressed -o min/vs/loader.js               &quot;$B/min/vs/loader.js&quot;
-curl -sSf --compressed -o min/vs/editor/editor.main.js  &quot;$B/min/vs/editor/editor.main.js&quot;
-curl -sSf --compressed -o min/vs/editor/editor.main.css &quot;$B/min/vs/editor/editor.main.css&quot;
-curl -sSf -o LICENSE                                     &quot;$B/LICENSE&quot;
+
+curl -s &quot;https://data.jsdelivr.com/v1/packages/npm/monaco-editor@$V?structure=flat&quot; -o mc.json
+
+node -e &#39;
+const fs=require(&quot;fs&quot;), https=require(&quot;https&quot;), path=require(&quot;path&quot;);
+const V=&quot;0.52.2&quot;;
+const keep = f =&gt;
+     f.name.startsWith(&quot;/min/vs/basic-languages/&quot;)          // 81 个词法模块
+  || f.name.startsWith(&quot;/min/vs/language/&quot;)                 // 语言服务：*Mode.js + *Worker.js
+  || f.name === &quot;/min/vs/base/worker/workerMain.js&quot;         // 通用 worker 入口
+  || f.name === &quot;/min/vs/base/browser/ui/codicons/codicon/codicon.ttf&quot;; // UI 图标字体
+const files = JSON.parse(fs.readFileSync(&quot;mc.json&quot;,&quot;utf8&quot;)).files.filter(keep);
+const get = url =&gt; new Promise((res, rej) =&gt; https.get(url, r =&gt; {
+  if (r.statusCode !== 200) { r.resume(); return rej(new Error(&quot;HTTP &quot; + r.statusCode)); }
+  const c = []; r.on(&quot;data&quot;, x =&gt; c.push(x)); r.on(&quot;end&quot;, () =&gt; res(Buffer.concat(c)));
+}).on(&quot;error&quot;, rej));
+(async () =&gt; {
+  let ok = 0, bad = [];
+  await Promise.all(files.map(async f =&gt; {
+    try {
+      const buf = await get(&quot;https://cdn.jsdelivr.net/npm/monaco-editor@&quot; + V + f.name);
+      if (buf.length !== f.size) throw new Error(&quot;size &quot; + buf.length + &quot; != &quot; + f.size);
+      const rel = &quot;min/vs&quot; + f.name.replace(&quot;/min/vs&quot;, &quot;&quot;);
+      fs.mkdirSync(path.dirname(rel), { recursive: true });
+      fs.writeFileSync(rel, buf); ok++;
+    } catch (e) { bad.push(f.name + &quot; (&quot; + e.message + &quot;)&quot;); }
+  }));
+  console.log(&quot;downloaded&quot;, ok, &quot;/&quot;, files.length);
+  if (bad.length) { console.log(bad.join(&quot;\n&quot;)); process.exit(1); }
+})();
+&#39;
+
+rm -f mc.json
+# 内核 / 加载器 / 样式 / 许可（同样按上面清单里的字节数核对）
+B=https://cdn.jsdelivr.net/npm/monaco-editor@$V
+curl -sSf -o min/vs/loader.js               &quot;$B/min/vs/loader.js&quot;
+curl -sSf -o min/vs/editor/editor.main.js   &quot;$B/min/vs/editor/editor.main.js&quot;
+curl -sSf -o min/vs/editor/editor.main.css  &quot;$B/min/vs/editor/editor.main.css&quot;
+curl -sSf -o LICENSE                        &quot;$B/LICENSE&quot;
 </code></pre>
-<p>升版本后请同步更新本 README 的版本号 &#x2F; 字节数 &#x2F; 语言覆盖清单，并检查<br><code>source/argontheme.js</code> 与 <code>_config.yml</code> 里写死的 <code>0.52.2</code> CDN 路径。</p>
+<h2 id="升版本后的自检（必做）"><a href="#升版本后的自检（必做）" class="headerlink" title="升版本后的自检（必做）"></a>升版本后的自检（必做）</h2><p>懒加载资源漏一个只会静默降级，不会有任何报错，所以升版本后跑一遍这个断言：</p>
+<pre><code class="sh">cd source/assets/vendor/monaco
+node -e &#39;
+const fs=require(&quot;fs&quot;);
+const vs=&quot;min/vs&quot;;
+const src=fs.readFileSync(vs+&quot;/editor/editor.main.js&quot;,&quot;utf8&quot;);
+// 只认「懒加载模块」的两种形状：basic-languages/&lt;x&gt;/&lt;x&gt; 与 language/&lt;x&gt;/&lt;x&gt;Mode。
+// 两个坑：1) 字符类必须含大写，否则 cssMode 会被截成 css；
+//        2) 结尾要加 (?![\w.])，否则 monaco.contribution 会被截成 monaco。
+// 依赖数组里的 vs/base/common/xxx 是打包进内核的 id，磁盘上没有文件，不能一起匹配。
+const re=/vs\/(?:basic-languages|language)\/[a-z0-9-]+\/[A-Za-z0-9-]+(?![\w.])/g;
+const ids=[...new Set([...src.matchAll(re)].map(m=&gt;m[0]))];
+const missing=ids.filter(id=&gt;!fs.existsSync(vs+&quot;/&quot;+id.replace(/^vs\//,&quot;&quot;)+&quot;.js&quot;));
+for(const extra of [&quot;base/worker/workerMain.js&quot;,&quot;language/json/jsonWorker.js&quot;,&quot;language/css/cssWorker.js&quot;,
+  &quot;language/html/htmlWorker.js&quot;,&quot;language/typescript/tsWorker.js&quot;,
+  &quot;base/browser/ui/codicons/codicon/codicon.ttf&quot;]){
+  if(!fs.existsSync(vs+&quot;/&quot;+extra)) missing.push(extra);
+}
+console.log(&quot;懒加载模块:&quot;,ids.length,&quot;(basic-languages&quot;,ids.filter(i=&gt;i.startsWith(&quot;vs/basic&quot;) ).length,
+  &quot;+ language&quot;,ids.filter(i=&gt;i.startsWith(&quot;vs/language&quot;)).length,&quot;) | 缺失:&quot;,missing.length);
+if(missing.length){console.log(missing.join(&quot;\n&quot;));process.exit(1);}
+console.log(&quot;OK&quot;);
+&#39;
+</code></pre>
+<p>0.52.2 的正常输出是 <code>懒加载模块: 85 (basic-languages 81 + language 4) | 缺失: 0</code>。</p>
+<p>同时更新本 README 的版本号 &#x2F; 字节数 &#x2F; 分组表，并检查<br><code>source/argontheme.js</code> 与 <code>_config.yml</code> 里写死的 <code>0.52.2</code> CDN 路径。</p>

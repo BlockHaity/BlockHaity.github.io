@@ -88,6 +88,19 @@ translation['en_US'] = {
 	"关闭": "Close",
 	"加载编辑器中": "Loading editor",
 	"编辑器加载失败": "Failed to load editor",
+	"查找": "Find",
+	"替换": "Replace",
+	"折行": "Word Wrap",
+	"减小字号": "Decrease Font Size",
+	"增大字号": "Increase Font Size",
+	"选择语言": "Select Language",
+	"行": "Ln",
+	"列": "Col",
+	"已选择": "Selected",
+	"个字符": "characters",
+	"空格": "Spaces",
+	"制表符": "Tab Size",
+	"换行符": "End of Line",
 };
 translation['ru_RU'] = {
 	"确定": "ОК",
@@ -148,6 +161,19 @@ translation['ru_RU'] = {
 	"关闭": "Закрыть",
 	"加载编辑器中": "Загрузка редактора",
 	"编辑器加载失败": "Не удалось загрузить редактор",
+	"查找": "Найти",
+	"替换": "Заменить",
+	"折行": "Перенос строк",
+	"减小字号": "Уменьшить шрифт",
+	"增大字号": "Увеличить шрифт",
+	"选择语言": "Выбрать язык",
+	"行": "Стр",
+	"列": "Стлб",
+	"已选择": "Выбрано",
+	"个字符": "символов",
+	"空格": "Пробелы",
+	"制表符": "Табуляция",
+	"换行符": "Конец строки",
 };
 translation['zh_TW'] = {
 	"确定": "確定",
@@ -207,7 +233,20 @@ translation['zh_TW'] = {
 	"另存为": "另存新檔",
 	"关闭": "關閉",
 	"加载编辑器中": "正在載入編輯器",
-	"编辑器加载失败": "編輯器載入失敗"
+	"编辑器加载失败": "編輯器載入失敗",
+	"查找": "尋找",
+	"替换": "取代",
+	"折行": "折行",
+	"减小字号": "縮小字號",
+	"增大字号": "放大字號",
+	"选择语言": "選擇語言",
+	"行": "行",
+	"列": "列",
+	"已选择": "已選擇",
+	"个字符": "個字元",
+	"空格": "空格",
+	"制表符": "定位點",
+	"换行符": "換行符號"
 };
 function __(text){
 	let lang = argonConfig.language;
@@ -1441,9 +1480,53 @@ var codeLanguageMetaMap = {
 	// powershell 是 Monaco 真实注册的语言，契约表里漏了这两行，补上
 	"powershell": {id: "powershell", ext: "ps1"},
 	"ps": {id: "powershell", ext: "ps1"},
-	// ↓ 以下语言 Monaco 0.52.2 没有注册（已逐一核对 editor.main.js 的语言表），id 一律 null
-	"diff": {id: null, ext: "diff"},
-	"patch": {id: null, ext: "diff"},
+	// ↓ 主题自带 highlight.js 定制构建里有、但这里最初漏掉的语言（页面有高亮、编辑器纯文本）
+	"objectivec": {id: "objective-c", ext: "m"},
+	"objective-c": {id: "objective-c", ext: "m"},
+	"objc": {id: "objective-c", ext: "m"},
+	"swift": {id: "swift", ext: "swift"},
+	"vbnet": {id: "vb", ext: "vb"},
+	"vb.net": {id: "vb", ext: "vb"},
+	"visual basic": {id: "vb", ext: "vb"},
+	"visual basic .net": {id: "vb", ext: "vb"},
+	// php-template 是「HTML 里嵌 PHP」；Monaco 的 php 词法本身就带 html 状态，映射到 php 比纯文本好
+	"php-template": {id: "php", ext: "php"},
+	"php template": {id: "php", ext: "php"},
+	// hljs 的 Shell Session 用的是带连字符的 id，原来只登记了 shellsession
+	"shell-session": {id: "shell", ext: "sh"},
+	"mdx": {id: "mdx", ext: "mdx"},
+	"pug": {id: "pug", ext: "pug"},
+	"jade": {id: "pug", ext: "pug"},
+	// Monaco 有、顺手补上的常见语言（此前不在表里，会退化成 .txt + 纯文本）
+	"fs": {id: "fsharp", ext: "fs"},
+	"fsharp": {id: "fsharp", ext: "fs"},
+	"scala": {id: "scala", ext: "scala"},
+	"dart": {id: "dart", ext: "dart"},
+	"scheme": {id: "scheme", ext: "scm"},
+	"tcl": {id: "tcl", ext: "tcl"},
+	"verilog": {id: "systemverilog", ext: "v"},
+	"systemverilog": {id: "systemverilog", ext: "sv"},
+	"cypher": {id: "cypher", ext: "cql"},
+	"bicep": {id: "bicep", ext: "bicep"},
+	"azcli": {id: "azcli", ext: "azcli"},
+	"sparql": {id: "sparql", ext: "rq"},
+	"liquid": {id: "liquid", ext: "liquid"},
+	"apex": {id: "apex", ext: "cls"},
+	"wgsl": {id: "wgsl", ext: "wgsl"},
+	"xsl": {id: "xml", ext: "xsl"},
+	"xslt": {id: "xml", ext: "xsl"},
+	"plist": {id: "xml", ext: "plist"},
+	// ↓ diff / makefile：Monaco 0.52.2 没有内置，但主题的 highlight.js 构建里有。
+	// 这两个在技术博客里非常常见，不补就是「页面有高亮、编辑器纯文本」，
+	// 所以用下面 registerMonacoCustomLanguages() 里的精简 Monarch 规则在运行时补上。
+	"diff": {id: "argon-diff", ext: "diff"},
+	"patch": {id: "argon-diff", ext: "diff"},
+	"makefile": {id: "argon-makefile", ext: "mk"},
+	"make": {id: "argon-makefile", ext: "mk"},
+	"mk": {id: "argon-makefile", ext: "mk"},
+	// ↓ 以下语言 Monaco 0.52.2 与主题的 highlight.js 构建都没有，id 一律 null。
+	// 显式登记成 null（而不是留给扩展名兜底）是刻意的：否则 matlab(.m) 会被兜成
+	// Objective-C、nginx(conf) 会被兜成 ini，属于张冠李戴的假高亮。
 	"haskell": {id: null, ext: "hs"},
 	"hs": {id: null, ext: "hs"},
 	"erlang": {id: null, ext: "erl"},
@@ -1454,9 +1537,6 @@ var codeLanguageMetaMap = {
 	"styl": {id: null, ext: "styl"},
 	"ejs": {id: null, ext: "ejs"},
 	"matlab": {id: null, ext: "m"},
-	"makefile": {id: null, ext: "mk"},
-	"make": {id: null, ext: "mk"},
-	"mk": {id: null, ext: "mk"},
 	"cmake": {id: null, ext: "cmake"},
 	"nginx": {id: null, ext: "conf"},
 	"apache": {id: null, ext: "conf"},
@@ -1466,14 +1546,126 @@ var codeLanguageMetaMap = {
 	"nohighlight": {id: null, ext: "txt"},
 	"no-highlight": {id: null, ext: "txt"}
 };
-// 识别不出的语言：id 为 null（Monaco 按纯文本处理），扩展名回落到 txt
+// 识别不出的语言：id 为 null（Monaco 按纯文本处理），扩展名回落到 txt。
+// known=false 表示「表里根本没有这个语言」，此时允许用扩展名/别名去 Monaco 注册表里猜一次；
+// known=true 表示表里登记过，null 就是 null，不许猜。
 function getCodeLanguageMeta(lang){
 	let key = (lang == undefined || lang == null) ? "" : String(lang).trim().toLowerCase();
 	let meta = codeLanguageMetaMap[key];
 	if (!meta){
-		return {id: null, ext: "txt"};
+		return {id: null, ext: "txt", known: false};
 	}
-	return {id: meta.id, ext: meta.ext};
+	return {id: meta.id, ext: meta.ext, known: true};
+}
+/* diff / makefile 的精简 Monarch 词法。
+   为什么手写：Monaco 0.52.2 的 81 个 basic languages 里没有这两个，而主题自带的
+   highlight.js 构建里有，不补就会出现「页面有高亮、点开编辑器变纯文本」。
+   配色说明：Monaco 的基础 token 类型里没有专门的 diff 增删色，
+   这里借用 comment（亮色 #008000 / 暗色 #6A9955，都是绿色）表示新增行，
+   invalid（#cd3131 / #F44747，红色）表示删除行，视觉上与 VS Code 的 diff 语义一致。
+   这是 best-effort：与 VS Code 的 TextMate 规则不会逐字一致，只保证关键字/注释/增删行可辨。 */
+var monacoCustomLanguagesReady = false;
+function registerMonacoCustomLanguages(monaco){
+	if (monacoCustomLanguagesReady){
+		return;
+	}
+	monacoCustomLanguagesReady = true;
+	try{
+		monaco.languages.register({
+			id: "argon-diff",
+			aliases: ["Diff", "diff", "patch"],
+			extensions: [".diff", ".patch"]
+		});
+		monaco.languages.setMonarchTokensProvider("argon-diff", {
+			defaultToken: "",
+			tokenPostfix: ".diff",
+			tokenizer: {
+				root: [
+					[/^(?:diff|index|new file mode|deleted file mode|old mode|new mode|similarity index|rename from|rename to|Binary files)\b.*$/, "keyword"],
+					[/^---\s.*$/, "type"],
+					[/^\+\+\+\s.*$/, "type"],
+					[/^@@.*@@.*$/, "metatag"],
+					[/^\+.*$/, "comment"],
+					[/^-.*$/, "invalid"],
+					[/^!.*$/, "keyword"]
+				]
+			}
+		});
+		// diff 没有注释语法：这里刻意不注册 language configuration，
+		// 传空字符串反而会造出一份语义可疑的配置
+		monaco.languages.register({
+			id: "argon-makefile",
+			aliases: ["Makefile", "makefile", "make"],
+			extensions: [".mk", ".mak"]
+		});
+		monaco.languages.setMonarchTokensProvider("argon-makefile", {
+			defaultToken: "",
+			tokenPostfix: ".makefile",
+			tokenizer: {
+				root: [
+					// 命令行必须以 tab 开头，整行当字符串处理（放在最前面，内部再有 # 也不当注释）
+					[/^\t.*$/, "string"],
+					[/^\.[A-Z][A-Z0-9_]*/, "keyword"],
+					[/#[^!].*$/, "comment"],
+					// 目标行：目标名 + 冒号（排除 := 这种赋值）
+					[/^[A-Za-z0-9_$(){}./%+-]+\s*:(?!=)/, "type"],
+					[/^[A-Za-z_][A-Za-z0-9_]*\s*[:+?]?=/, "variable"],
+					[/\$[({]?[A-Za-z0-9_][A-Za-z0-9_]*[)}]?/, "variable"]
+				]
+			}
+		});
+		monaco.languages.setLanguageConfiguration("argon-makefile", {
+			comments: {lineComment: "#"}
+		});
+	}catch (err){
+		// 注册失败不影响打开编辑器，最多是这两个语言没有高亮
+		console.warn("[Monaco] 自定义语言注册失败: ", err);
+	}
+}
+/* 兜底识别：显式表里没有这个语言时，用围栏名去 Monaco 注册表里按别名/扩展名猜一次。
+   只认「围栏名本身就是扩展名」的情况（```dart → .dart、```fs → .fs），
+   不会为了 .m 这种多义扩展名猜（那会认成错误语言）。 */
+var monacoLanguageIndex = null;
+function getMonacoLanguageIndex(monaco){
+	if (monacoLanguageIndex != null){
+		return monacoLanguageIndex;
+	}
+	monacoLanguageIndex = {alias: {}, ext: {}};
+	let langs = monaco.languages.getLanguages();
+	for (let i = 0; i < langs.length; i++){
+		let lang = langs[i];
+		let aliases = lang.aliases || [];
+		for (let j = 0; j < aliases.length; j++){
+			let key = String(aliases[j]).toLowerCase();
+			if (monacoLanguageIndex.alias[key] == undefined){
+				monacoLanguageIndex.alias[key] = lang.id;
+			}
+		}
+		let exts = lang.extensions || [];
+		for (let j = 0; j < exts.length; j++){
+			let key = String(exts[j]).toLowerCase();
+			if (monacoLanguageIndex.ext[key] == undefined){
+				monacoLanguageIndex.ext[key] = lang.id;
+			}
+		}
+	}
+	return monacoLanguageIndex;
+}
+function resolveMonacoLanguageId(monaco, lang, meta){
+	if (meta.id != null){
+		return meta.id;
+	}
+	// 表里登记过却给 null：Monaco 确实没有这个语言，保持纯文本，不要瞎猜
+	if (meta.known){
+		return undefined;
+	}
+	let key = (lang == undefined || lang == null) ? "" : String(lang).trim().toLowerCase();
+	if (key == ""){
+		return undefined;
+	}
+	let index = getMonacoLanguageIndex(monaco);
+	let hit = index.alias[key] || index.ext["." + key];
+	return hit == undefined ? undefined : hit;
 }
 // 懒加载 Monaco：window.monaco 常驻，连点多次只加载一次
 var monacoLoadState = "idle";
@@ -1500,26 +1692,54 @@ function monacoFlushPending(ok){
    merged 里有 jQuery / Bootstrap / Popper / pangu / ClipboardJS / noUiSlider / Headroom
    等 ≥9 个 UMD 包会探测 define.amd，loader.js 先跑会让 window.$ / window.jQuery
    根本不被赋值，整个主题立刻崩。这里懒加载（点按钮才注入）天然满足这条，别改成同步引入。 */
-var monacoWorkerStubUrl = null;
-// 让 Monaco 永远不去请求 language service worker（合计 7.1 MB，兼底不现实）。
-// 代价：没有智能提示 / 校验 / 格式化，只有语法着色（着色在 basic-languages 里，不依赖 worker）。
-// 这是刻意的产品取舍，不是偷懒。
-function setupMonacoEnvironment(){
-	if (typeof(window.MonacoEnvironment) == "object" && window.MonacoEnvironment != null
-		&& typeof(window.MonacoEnvironment.getWorker) == "function"){
-		return;
+var monacoWorkerProxyUrl = null;
+var monacoWorkerProxyBase = null;
+/* 真实 language service worker：智能提示 / 校验 / 格式化 / 跨文件重命名都靠它。
+   为什么不能直接把 worker 脚本 URL 交给 Monaco：
+   worker 脚本受同源策略约束，走 CDN 时 base/worker/workerMain.js 在另一个域上，
+   new Worker(cdnUrl) 会被浏览器直接拒绝。所以这里用 blob 造一个「同源代理」，
+   代理内部 importScripts 真正的 workerMain.js。
+
+   workerMain.js 的约定（已核对 0.52.2 的 min 产物）：
+   - 自读 self.MonacoEnvironment.baseUrl，拿它拼 baseUrl + "vs/loader.js" 自举 AMD 加载器，
+     所以 baseUrl 必须指向 vs/ 的上一级（.../min/），不是 paths.vs 那个值（.../min/vs/）。
+   - 它是通用 worker：按主线程给的 moduleId/label 用 AMD 拉 json/css/html/tsWorker，
+     因此 5 个 label 共用一个代理，不需要按 label 分发。
+   - 末尾自带 globalThis.onmessage 握手，不需要我们再 require 一次。 */
+function getMonacoWorkerProxyUrl(base){
+	if (monacoWorkerProxyUrl != null && monacoWorkerProxyBase == base){
+		return monacoWorkerProxyUrl;
 	}
+	/* 必须转成绝对 URL：blob worker 里 importScripts / fetch 都不接受站内相对路径，
+	   传 "/assets/..." 会直接抛 "The URL ... is invalid"，
+	   结果是 Monaco 退回主线程执行语言服务（UI 卡顿 + 控制台告警）。
+	   CDN 场景本来就是绝对 URL，这里对两种 base 都安全。 */
+	let absoluteBase = base;
+	try{
+		absoluteBase = new URL(base, window.location.href).href;
+	}catch (err){}
+	let trimmed = absoluteBase.replace(/\/+$/, "");
+	// vs/ 的上一级；配置成 .../min/vs 这种不以 /vs 结尾的路径时按原样补斜杠
+	let rootBase = (/\/vs$/.test(trimmed) ? trimmed.replace(/\/vs$/, "") : trimmed) + "/";
+	let code = "self.MonacoEnvironment = { baseUrl: " + JSON.stringify(rootBase) + " };\n"
+		+ "importScripts(" + JSON.stringify(absoluteBase + "base/worker/workerMain.js") + ");\n";
+	if (monacoWorkerProxyUrl != null){
+		// 换 base 时释放旧的：已经跑起来的 worker 不受影响，这里只防止 URL 泄漏
+		try{
+			URL.revokeObjectURL(monacoWorkerProxyUrl);
+		}catch (err){}
+	}
+	monacoWorkerProxyUrl = URL.createObjectURL(new Blob([code], {type: "application/javascript"}));
+	monacoWorkerProxyBase = base;
+	return monacoWorkerProxyUrl;
+}
+function setupMonacoEnvironment(base){
 	window.MonacoEnvironment = {
-		getWorker: function(){
-			if (typeof(Worker) == "undefined" || typeof(Blob) == "undefined" || typeof(URL) == "undefined"
-				|| typeof(URL.createObjectURL) != "function"){
-				return null;
+		getWorkerUrl: function(){
+			if (typeof(Blob) == "undefined" || typeof(URL) == "undefined" || typeof(URL.createObjectURL) != "function"){
+				return "";
 			}
-			// 空转 worker：什么都不做，Monaco 拿不到结果也就不会报错
-			if (monacoWorkerStubUrl == null){
-				monacoWorkerStubUrl = URL.createObjectURL(new Blob(["self.onmessage=function(){}"], {type: "application/javascript"}));
-			}
-			return new Worker(monacoWorkerStubUrl);
+			return getMonacoWorkerProxyUrl(base);
 		}
 	};
 }
@@ -1576,7 +1796,8 @@ function monacoTryBase(base, next){
 }
 // 已确定胜者 base 之后才接 AMD
 function monacoRequireEditor(base, next){
-	setupMonacoEnvironment();
+	// 必须用这一轮的胜者 base：worker 代理要 importScripts 同一个 base 下的 workerMain.js
+	setupMonacoEnvironment(base);
 	try{
 		// paths.vs 必须去掉尾斜杠：loader 的 _applyPaths 是纯字符串拼接 base + moduleId.substr(2)，
 		// 带尾斜杠会得到 .../min/vs//editor/editor.main.js 的双斜杠。
@@ -1726,11 +1947,29 @@ function getCodeblockEditorFontSize($block){
 	}
 	return 14;
 }
+// 图标按钮：文案统一走 data-tooltip（配合 style.css 的 .hljs-editor-btn[data-tooltip]:before），
+// 与代码框头栏的提示样式保持一致，另外补 aria-label 给读屏
+function buildEditorIconButton(className, icon, label){
+	let button = $('<button type="button" class="hljs-editor-btn hljs-editor-icon-btn"></button>');
+	button.addClass(className);
+	button.attr("aria-label", label);
+	button.attr("data-tooltip", label);
+	button.append($('<i></i>').addClass(icon));
+	return button;
+}
 function buildCodeblockEditorOverlay(ext){
 	let overlay = $('<div class="hljs-editor-overlay" role="dialog" aria-modal="true" aria-label="代码编辑器"></div>');
 	let toolbar = $('<div class="hljs-editor-toolbar"></div>');
 	toolbar.append($('<span class="hljs-editor-filename"></span>').text("snippet." + ext));
 	let actions = $('<div class="hljs-editor-actions"></div>');
+	actions.append(buildEditorIconButton("hljs-editor-find", "fa fa-search", __("查找")));
+	actions.append(buildEditorIconButton("hljs-editor-replace", "fa fa-exchange", __("替换")));
+	actions.append(buildEditorIconButton("hljs-editor-font-dec", "fa fa-minus", __("减小字号")));
+	actions.append(buildEditorIconButton("hljs-editor-font-inc", "fa fa-plus", __("增大字号")));
+	let wrap = buildEditorIconButton("hljs-editor-wrap", "fa fa-align-left", __("折行"));
+	// 与 createCodeblockEditor 里的 wordWrap: "on" 对齐
+	wrap.attr("aria-pressed", "true");
+	actions.append(wrap);
 	actions.append($('<button type="button" class="hljs-editor-btn hljs-editor-save"></button>').text(__("另存为")));
 	actions.append($('<button type="button" class="hljs-editor-btn hljs-editor-copy"></button>').text(__("复制")));
 	let close = $('<button type="button" class="hljs-editor-btn hljs-editor-close"></button>').attr("aria-label", __("关闭"));
@@ -1741,7 +1980,190 @@ function buildCodeblockEditorOverlay(ext){
 	// 加载中占位，Monaco 就位后移除
 	overlay.append($('<div class="hljs-editor-status"></div>').text(__("加载编辑器中")));
 	overlay.append($('<div class="hljs-editor-container"></div>'));
+	// 状态栏：布局对齐 VSCode —— 左侧是光标位置与选中数，右侧是缩进 / 换行符 / 语言
+	let statusbar = $('<div class="hljs-editor-statusbar"></div>');
+	statusbar.append($('<span class="hljs-editor-info hljs-editor-pos"></span>'));
+	statusbar.append($('<span class="hljs-editor-info hljs-editor-select"></span>'));
+	statusbar.append($('<span class="hljs-editor-info hljs-editor-indent"></span>'));
+	statusbar.append($('<span class="hljs-editor-info hljs-editor-eol"></span>').attr("title", __("换行符")));
+	let langSelect = $('<select class="hljs-editor-lang"></select>');
+	langSelect.attr("aria-label", __("选择语言"));
+	// select 不是 .hljs-editor-btn，用原生 title 提示
+	langSelect.attr("title", __("选择语言"));
+	statusbar.append(langSelect);
+	overlay.append(statusbar);
 	return overlay;
+}
+// 语言切换器的选项：直接用 Monaco 自己注册的语言表（含我们运行时补的 diff / makefile），
+// 所以「表里认不出语言」时用户能自己纠正，不用改围栏重发文章
+function fillCodeblockEditorLanguages(monaco, currentId){
+	let state = codeblockEditor;
+	if (state == null){
+		return;
+	}
+	let select = state.overlay.find(".hljs-editor-lang");
+	if (select.length == 0){
+		return;
+	}
+	let languages = monaco.languages.getLanguages().slice();
+	let nameOf = function(lang){
+		return (lang.aliases && lang.aliases.length > 0) ? String(lang.aliases[0]) : String(lang.id);
+	};
+	languages.sort(function(a, b){
+		let an = nameOf(a).toLowerCase();
+		let bn = nameOf(b).toLowerCase();
+		if (an == bn){
+			return 0;
+		}
+		return an < bn ? -1 : 1;
+	});
+	select.empty();
+	let hasPlainText = false;
+	for (let i = 0; i < languages.length; i++){
+		let id = String(languages[i].id);
+		if (id == "plaintext"){
+			hasPlainText = true;
+		}
+		// 用 jQuery 建节点而不是拼 HTML：语言名来自 Monaco 注册表，不给自己留注入面
+		select.append($('<option></option>').attr("value", id).text(nameOf(languages[i])));
+	}
+	if (!hasPlainText){
+		select.prepend($('<option></option>').attr("value", "plaintext").text("Plain Text"));
+	}
+	select.val(currentId);
+}
+// 换语言后「另存为」的扩展名要跟着换，否则 snippet.php 会被存成 snippet.txt
+function getMonacoLanguageExtension(monaco, id){
+	let languages = monaco.languages.getLanguages();
+	for (let i = 0; i < languages.length; i++){
+		if (languages[i].id != id){
+			continue;
+		}
+		let exts = languages[i].extensions || [];
+		if (exts.length > 0){
+			return String(exts[0]).replace(/^\./, "");
+		}
+		return null;
+	}
+	return null;
+}
+function updateCodeblockEditorStatusBar(){
+	let state = codeblockEditor;
+	if (state == null || state.editor == null || state.model == null){
+		return;
+	}
+	let position = state.editor.getPosition();
+	let posText = "";
+	if (position != null){
+		posText = __("行") + " " + position.lineNumber + ", " + __("列") + " " + position.column;
+	}
+	state.overlay.find(".hljs-editor-pos").text(posText);
+	let selection = state.editor.getSelection();
+	let selectText = "";
+	if (selection != null && typeof(selection.isEmpty) == "function" && !selection.isEmpty()){
+		let count = 0;
+		try{
+			count = state.model.getValueLengthInRange(selection);
+		}catch (err){
+			count = 0;
+		}
+		selectText = __("已选择") + " " + count + " " + __("个字符");
+	}
+	state.overlay.find(".hljs-editor-select").text(selectText);
+	let options = state.model.getOptions();
+	state.overlay.find(".hljs-editor-indent").text((options.insertSpaces === false ? __("制表符") : __("空格")) + ": " + options.tabSize);
+	state.overlay.find(".hljs-editor-eol").text(state.model.getEOL() === "\r\n" ? "CRLF" : "LF");
+	state.overlay.find(".hljs-editor-lang").val(state.model.getLanguageId());
+}
+function runCodeblockEditorAction(actionId){
+	let state = codeblockEditor;
+	if (state == null || state.editor == null){
+		return;
+	}
+	let action = state.editor.getAction(actionId);
+	if (action == null){
+		return;
+	}
+	try{
+		let result = action.run();
+		if (result != null && typeof(result.catch) == "function"){
+			result.catch(function(err){
+				console.warn("[Monaco] action 执行失败: " + actionId, err);
+			});
+		}
+	}catch (err){
+		console.warn("[Monaco] action 执行失败: " + actionId, err);
+	}
+}
+// 字号上下限：与 Monaco 自己的容错范围一致，避免用户点到 0 或 200 这种看不了的值
+var codeblockEditorFontSizeMin = 8;
+var codeblockEditorFontSizeMax = 32;
+function changeCodeblockEditorFontSize(delta){
+	let state = codeblockEditor;
+	if (state == null || state.editor == null){
+		return;
+	}
+	let next = state.fontSize + delta;
+	if (next < codeblockEditorFontSizeMin || next > codeblockEditorFontSizeMax){
+		return;
+	}
+	state.fontSize = next;
+	state.editor.updateOptions({fontSize: next});
+}
+function toggleCodeblockEditorWordWrap(){
+	let state = codeblockEditor;
+	if (state == null || state.editor == null){
+		return;
+	}
+	let button = state.overlay.find(".hljs-editor-wrap");
+	let enable = button.attr("aria-pressed") != "true";
+	button.attr("aria-pressed", enable ? "true" : "false");
+	state.editor.updateOptions({wordWrap: enable ? "on" : "off"});
+}
+/* 编辑层里是否有 Monaco 自己的浮层开着（查找框 / 建议 / 悬停 / 参数提示 / 命令面板）。
+   难点在于这些浮层的隐藏方式不统一，挨个核对过 editor.main.css：
+   - .find-widget：隐藏时只是去掉 .visible 并把 transform 往视野外推，
+     元素照样参加布局（实测 offsetWidth = 419），所以尺寸判断对它完全无效；
+   - .monaco-hover：加 .hidden 类做 display:none；
+   - .suggest-widget / .parameter-hints-widget / .rename-box：同样以 .visible 为准；
+   - 命令面板（F1）：style.display = "none"。
+   结论：这几个已知浮层一律只看 .visible / .hidden 类，不用尺寸猜；
+   将来遇到不认识的浮层就退回尺寸判断。 */
+function isMonacoWidgetOpen(el){
+	if (el == null){
+		return false;
+	}
+	if (el.classList.contains("hidden")){
+		return false;
+	}
+	let style = window.getComputedStyle(el);
+	if (style.display === "none" || style.visibility === "hidden"){
+		return false;
+	}
+	if (el.classList.contains("find-widget") || el.classList.contains("suggest-widget")
+		|| el.classList.contains("parameter-hints-widget") || el.classList.contains("rename-box")
+		|| el.classList.contains("monaco-hover")){
+		return el.classList.contains("visible");
+	}
+	return !!(el.offsetWidth || el.offsetHeight || (el.getClientRects && el.getClientRects().length > 0));
+}
+function codeblockEditorHasOpenWidget(){
+	let state = codeblockEditor;
+	if (state == null || state.overlay == null){
+		return false;
+	}
+	let root = state.overlay[0];
+	let selectors = [".find-widget", ".suggest-widget", ".monaco-hover", ".parameter-hints-widget", ".rename-box"];
+	for (let i = 0; i < selectors.length; i++){
+		if (isMonacoWidgetOpen(root.querySelector(selectors[i]))){
+			return true;
+		}
+	}
+	// 命令面板（F1）挂在 document 上，不在编辑层里
+	if (isMonacoWidgetOpen(document.querySelector(".quick-input-widget"))){
+		return true;
+	}
+	return false;
 }
 // 加载失败：清掉半开的遮罩并弹提示
 function showCodeblockEditorFail(){
@@ -1775,7 +2197,8 @@ function openCodeblockEditor(block){
 	// 内容与复制按钮同源，保证不含行号
 	let code = getCodeFromBlock($block);
 	let inner = $block.find("code[hljs-codeblock-inner]")[0];
-	let meta = getCodeLanguageMeta(inner == null ? "" : getCodeLanguage($(inner)));
+	let lang = inner == null ? "" : getCodeLanguage($(inner));
+	let meta = getCodeLanguageMeta(lang);
 	// 加载期间可能已经被 Esc 关掉，用 token 认回来
 	let token = ++codeblockEditorSeq;
 	// 焦点归还：沿用 data-hljs-restore-focus 那套写法
@@ -1795,7 +2218,10 @@ function openCodeblockEditor(block){
 		editor: null,
 		model: null,
 		code: code,
-		ext: meta.ext
+		lang: lang,
+		ext: meta.ext,
+		fontSize: getCodeblockEditorFontSize($block),
+		listeners: []
 	};
 	loadMonaco(function(monaco){
 		if (codeblockEditor == null || codeblockEditor.token != token){
@@ -1806,13 +2232,17 @@ function openCodeblockEditor(block){
 			showCodeblockEditorFail();
 			return;
 		}
+		// 自定义语言必须在 createModel 之前注册：createModel 拿到未注册的 id 不抛异常，
+		// 会静默按纯文本渲染，那样 diff / makefile 依然是「页面有高亮、编辑器没有」
+		registerMonacoCustomLanguages(monaco);
+		let languageId = resolveMonacoLanguageId(monaco, lang, meta);
 		try{
-			codeblockEditor.model = monaco.editor.createModel(code, meta.id == null ? undefined : meta.id);
+			codeblockEditor.model = monaco.editor.createModel(code, languageId);
 			codeblockEditor.editor = monaco.editor.create(container, {
 				model: codeblockEditor.model,
 				automaticLayout: true,
 				minimap: {enabled: false},
-				fontSize: getCodeblockEditorFontSize(codeblockEditor.block),
+				fontSize: codeblockEditor.fontSize,
 				wordWrap: "on",
 				scrollBeyondLastLine: false,
 				theme: getMonacoThemeName()
@@ -1822,8 +2252,10 @@ function openCodeblockEditor(block){
 			showCodeblockEditorFail();
 			return;
 		}
+		bindCodeblockEditorUi(monaco);
 		codeblockEditor.overlay.find(".hljs-editor-status").remove();
 		watchMonacoTheme();
+		updateCodeblockEditorStatusBar();
 		if (typeof(codeblockEditor.editor.focus) == "function"){
 			codeblockEditor.editor.focus();
 		}
@@ -1834,11 +2266,65 @@ function openCodeblockEditor(block){
 		showCodeblockEditorFail();
 	});
 }
+/* 编辑层 UI 事件的绑定。
+   直接绑在本次新建的节点上而不是 document 委托：节点随编辑层一起销毁，不存在重复绑定与泄漏。
+   光标/选区监听器是 Monaco 的对象，必须显式 dispose，放在 closeCodeblockEditor 里统一收尾。 */
+function bindCodeblockEditorUi(monaco){
+	let state = codeblockEditor;
+	if (state == null || state.editor == null){
+		return;
+	}
+	fillCodeblockEditorLanguages(monaco, state.model.getLanguageId());
+	state.listeners.push(state.editor.onDidChangeCursorPosition(function(){
+		updateCodeblockEditorStatusBar();
+	}));
+	state.listeners.push(state.editor.onDidChangeCursorSelection(function(){
+		updateCodeblockEditorStatusBar();
+	}));
+	state.overlay.find(".hljs-editor-lang").on("change", function(){
+		let id = String($(this).val() == null ? "" : $(this).val());
+		if (id == "" || state.model == null){
+			return;
+		}
+		// setModelLanguage 会触发新语言的懒加载；本地副本已带 81 个词法文件，离线也能切换
+		monaco.editor.setModelLanguage(state.model, id);
+		let ext = getMonacoLanguageExtension(monaco, id);
+		if (ext != null){
+			state.ext = ext;
+			state.overlay.find(".hljs-editor-filename").text("snippet." + ext);
+		}
+		updateCodeblockEditorStatusBar();
+	});
+	state.overlay.find(".hljs-editor-find").on("click", function(){
+		runCodeblockEditorAction("actions.find");
+	});
+	state.overlay.find(".hljs-editor-replace").on("click", function(){
+		runCodeblockEditorAction("editor.action.startFindReplaceAction");
+	});
+	state.overlay.find(".hljs-editor-font-dec").on("click", function(){
+		changeCodeblockEditorFontSize(-1);
+	});
+	state.overlay.find(".hljs-editor-font-inc").on("click", function(){
+		changeCodeblockEditorFontSize(1);
+	});
+	state.overlay.find(".hljs-editor-wrap").on("click", function(){
+		toggleCodeblockEditorWordWrap();
+	});
+}
 function closeCodeblockEditor(){
 	let state = codeblockEditor;
 	codeblockEditor = null;
 	// 先销毁编辑器再销毁 model，否则 Monaco 会把 model 一起带走
 	if (state != null){
+		// 状态栏监听的是 Monaco 的对象，不 dispose 会随着每次开合累积
+		if (state.listeners != null){
+			for (let i = 0; i < state.listeners.length; i++){
+				try{
+					state.listeners[i].dispose();
+				}catch (err){}
+			}
+			state.listeners = [];
+		}
 		// editor.dispose() 只解绑 model、不销毁它，monaco.d.ts 的推荐写法是先 setModel(null) 再 dispose
 		if (state.editor != null && typeof(state.editor.setModel) == "function"){
 			try{
@@ -1904,11 +2390,28 @@ $(document).on("click" , ".hljs-editor-save" , function(){
 $(document).on("click" , ".hljs-editor-close" , function(){
 	closeCodeblockEditor();
 });
-$(document).on("keydown" , function(e){
-	if ((e.key === "Escape" || e.keyCode === 27) && $(".hljs-editor-overlay").length > 0){
-		closeCodeblockEditor();
+/* Esc 分层关闭：VSCode 的语义是「先关最上层的东西，最后才关窗口」。
+   必须用捕获阶段（第三个参数 true）：Monaco 自己也监听 Esc 来关查找框，
+   冒泡阶段轮到我们时查找框已经被它关掉了，那时再判断就会把整个编辑层一起关掉。
+   捕获阶段先看一眼「浮层还开着吗」，开着就什么都不做，把 Esc 让给 Monaco。 */
+document.addEventListener("keydown", function(e){
+	if (e.key !== "Escape" && e.keyCode !== 27){
+		return;
 	}
-});
+	if ($(".hljs-editor-overlay").length == 0){
+		return;
+	}
+	if (codeblockEditorHasOpenWidget()){
+		return;
+	}
+	// 语言下拉展开时 Esc 由浏览器/原生 select 自己处理
+	let active = document.activeElement;
+	if (active != null && active.classList != null && active.classList.contains("hljs-editor-lang")){
+		return;
+	}
+	closeCodeblockEditor();
+	e.preventDefault();
+}, true);
 // pjax 换页后触发按钮所在的代码块已经被替换，编辑层留着只会挡住页面
 $(document).on('pjax:end', function(){
 	if ($(".hljs-editor-overlay").length > 0){
