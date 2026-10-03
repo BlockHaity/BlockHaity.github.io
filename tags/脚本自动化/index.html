@@ -32,6 +32,10 @@
 <link rel="stylesheet" href="/style.css">
 
 	
+	<link id="code-theme-light" rel="stylesheet" href="/assets/vendor/highlight/styles/vscode-light.css">
+	<link id="code-theme-dark" rel="stylesheet" href="/assets/vendor/highlight/styles/vscode-dark.css" disabled>
+	
+	
 <link rel="stylesheet" href="//fonts.loli.net/css?family=Open+Sans:300,400,600,700|Noto+Serif+SC:300,600&display=swap.css">
 
 	
@@ -69,12 +73,27 @@
 	</script>
 	<script>
 		var darkmodeAutoSwitch = "system";
+		
+		function syncCodeTheme(){
+			var dark = document.getElementById("code-theme-dark");
+			var light = document.getElementById("code-theme-light");
+			if (dark){
+				dark.disabled = !$("html").hasClass("darkmode");
+			}
+			if (light){
+				light.disabled = $("html").hasClass("darkmode");
+			}
+		}
+		
 		function setDarkmode(enable){
 			if (enable == true){
 				$("html").addClass("darkmode");
 			}else{
 				$("html").removeClass("darkmode");
 			}
+			
+			syncCodeTheme();
+			
 			$(window).trigger("scroll");
 		}
 		function toggleDarkmode(){
@@ -121,6 +140,10 @@
 		if (darkmodeAutoSwitch == 'alwayson'){
 			setDarkmode(true);
 		}
+		
+		/* 上面几个分支可能一次都没走到 setDarkmode，这里兜底同步一次 */
+		syncCodeTheme();
+		
 
 		function toggleAmoledDarkMode(){
 			$("html").toggleClass("amoled-dark");
@@ -628,7 +651,7 @@
 						
 						<div class="post-meta-detail post-meta-detail-time">
 							<i class="fa fa-clock-o" aria-hidden="true"></i>
-							<time title="发布于 2025-2-10 11:10:22 | 编辑于 2026-10-2 23:43:42">2025-2-10 11:10
+							<time title="发布于 2025-2-10 11:10:22 | 编辑于 2026-10-3 10:26:51">2025-2-10 11:10
 							</time>
 						</div>
 					
@@ -724,8 +747,6 @@
 				var argonEnableCodeHighlight = true;
 			</script>
 			
-<link rel="stylesheet" href="/assets/vendor/highlight/styles/vs2015.css">
-
 		
 
 	</div>

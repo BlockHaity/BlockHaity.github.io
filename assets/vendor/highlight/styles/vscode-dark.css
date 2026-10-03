@@ -1,0 +1,182 @@
+/* VSCode Dark Modern highlight.js 主题：色值取自 microsoft/vscode 的 dark_modern.json / dark_plus.json / dark_vs.json */
+/* 本文件只负责代码区背景 / 前景色与语法 token 颜色；边框、圆角、行号槽、按钮等代码框外观由 source/style.css 负责。 */
+
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+  background: #1F1F1F;
+  color: #CCCCCC;
+}
+
+/* comment.comment */
+.hljs-comment,
+.hljs-quote {
+  color: #6A9955;
+}
+
+/* VSCode 未单独定义 doctag，随注释一起走 */
+.hljs-doctag {
+  color: #6A9955;
+}
+
+/* keyword / constant.language / variable.language / entity.other.pseudo-class */
+.hljs-keyword,
+.hljs-literal,
+.hljs-variable.language_,
+.hljs-selector-pseudo {
+  color: #569CD6;
+}
+
+/* keyword.operator.word（and / or / not）→ keyword.control */
+.hljs-operator.word {
+  color: #C586C0;
+}
+
+/* keyword.operator */
+.hljs-operator,
+.hljs-punctuation {
+  color: #D4D4D4;
+}
+
+/* constant.other.symbol */
+.hljs-symbol {
+  color: #4FC1FF;
+}
+
+/* markdown 列表符号 → punctuation.definition */
+.hljs-bullet {
+  color: #569CD6;
+}
+
+/* string.string */
+.hljs-string,
+.hljs-code,
+.hljs-link {
+  color: #CE9178;
+}
+
+/* string.regexp */
+.hljs-regexp {
+  color: #D16969;
+}
+
+/* constant.numeric */
+.hljs-number {
+  color: #B5CEA8;
+}
+
+/* constant.character */
+.hljs-char {
+  color: #569CD6;
+}
+
+/* constant.character.escape */
+.hljs-char.escape_,
+.hljs-entity {
+  color: #D7BA7D;
+}
+
+/* entity.name.tag */
+.hljs-tag,
+.hljs-selector-tag {
+  color: #569CD6;
+}
+
+/* entity.name.function / support.function */
+.hljs-title,
+.hljs-section,
+.hljs-title.function_,
+.hljs-title.function_.inherited__,
+.hljs-built_in {
+  color: #DCDCAA;
+}
+
+/* support.class / support.type */
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-type,
+.hljs-class,
+.hljs-namespace {
+  color: #4EC9B0;
+}
+
+/* entity.name.label */
+.hljs-title.other_ {
+  color: #C8C8C8;
+}
+
+/* variable */
+.hljs-name,
+.hljs-params,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-variable.parameter_,
+.hljs-attr,
+.hljs-attribute,
+.hljs-subst,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-attr {
+  color: #9CDCFE;
+}
+
+/* variable.other.constant */
+.hljs-variable.constant_ {
+  color: #4FC1FF;
+}
+
+/* support.type.property-name（对象键名） */
+.hljs-property {
+  color: #9CDCFE;
+}
+
+/* meta.preprocessor */
+.hljs-meta,
+.hljs-meta.prompt {
+  color: #569CD6;
+}
+
+/* meta.preprocessor 内的子 token */
+.hljs-meta .hljs-keyword,
+.hljs-meta.hljs-keyword {
+  color: #569CD6;
+}
+
+.hljs-meta .hljs-string,
+.hljs-meta.hljs-string {
+  color: #CE9178;
+}
+
+.hljs-meta .hljs-number,
+.hljs-meta.hljs-number {
+  color: #B5CEA8;
+}
+
+/* diff：新增沿用注释绿，删除沿用 invalid 红 */
+.hljs-addition,
+.hljs-inserted {
+  color: #6A9955;
+}
+
+.hljs-deletion,
+.hljs-deleted {
+  color: #F44747;
+}
+
+/* keyword.other.important */
+.hljs-important {
+  color: #569CD6;
+  font-weight: bold;
+}
+
+/* fontStyle */
+.hljs-emphasis,
+.hljs-italic {
+  font-style: italic;
+}
+
+.hljs-strong,
+.hljs-bold {
+  font-weight: bold;
+}

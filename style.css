@@ -96,7 +96,7 @@ article .post-content a:before{
 article .post-content a:hover:before{
 	transform: scaleX(1);
 }
-article pre:not(.hljs-codeblock){
+article pre:not(.hljs-codeblock-pre){
 	font-family: Consolas,Menlo,Monaco,'Andale Mono WT','Andale Mono','Lucida Console','Lucida Sans Typewriter','DejaVu Sans Mono','Bitstream Vera Sans Mono','Liberation Mono','Nimbus Mono L','Courier New',Courier,monospace;
 	font-size: 14px;
 	line-height: 1.375;
@@ -132,7 +132,7 @@ article .post-content u , article .post-content ins{
 article code:not([hljs-codeblock-inner]){
 	font-family: Consolas,Menlo,Monaco,'Andale Mono WT','Andale Mono','Lucida Console','Lucida Sans Typewriter','DejaVu Sans Mono','Bitstream Vera Sans Mono','Liberation Mono','Nimbus Mono L','Courier New',Courier,monospace;
 	color: #f5365c;
-	background: ##eff1f5;
+	background: #eff1f5;
 	direction: ltr;
 	border-radius: 3px;
 }
@@ -3604,203 +3604,293 @@ html.darkmode.amoled-dark .taxonomy-list-bar{
 	height: 1rem;
 }
 /* Highlight.js */
-article table.hljs-ln > tbody > tr > td, article table.hljs-ln > tbody > tr > th, article table.hljs-ln > tfoot > tr > td, article table.hljs-ln > tfoot > tr > th, article table.hljs-ln > thead > tr > td, article table.hljs-ln > thead > tr > th {
-	padding: unset;
-	vertical-align: unset;
-	border: unset;
+/* line-numbers 插件在运行时注入 .hljs-ln td{padding:0}，排在样式表之后，
+   靠提高特异性覆盖，而不是 !important */
+.hljs-codeblock table.hljs-ln{
+	width: 100%;
+	margin: 0;
+	border: 0;
+	border-collapse: collapse;
+	border-spacing: 0;
+	background: transparent;
 }
-pre.hljs-codeblock{
-	overflow: visible;
+.hljs-codeblock table.hljs-ln > tbody > tr > td{
+	padding: 0;
+	border: 0;
+	vertical-align: top;
+}
+/* 代码框卡片 */
+.hljs-codeblock{
+	--argon-font-mono: Consolas, Menlo, Monaco, 'Andale Mono WT', 'Andale Mono', 'Lucida Console', 'DejaVu Sans Mono', 'Liberation Mono', 'Nimbus Mono L', 'Courier New', Courier, monospace;
+	--argon-code-radius: min(var(--card-radius, 4px), 8px);
 	position: relative;
+	display: block;
+	margin: 15px 0;
+	border: 1px solid rgba(0, 0, 0, .12);
+	border-radius: var(--argon-code-radius);
+	background: transparent;
+	box-shadow: rgba(0, 0, 0, .06) 0 1px 3px;
+	overflow: hidden;
+}
+/* 头栏：语言标签 + 控制按钮 */
+.hljs-codeblock .hljs-header{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 4px 6px 4px 16px;
+	border-bottom: 1px solid rgba(0, 0, 0, .10);
+	background: rgba(127, 127, 127, .10);
+	color: #6a737d;
+	font-family: sans-serif;
+	font-size: 12px;
+	line-height: 2;
+}
+.hljs-codeblock .hljs-lang{
+	font-family: var(--argon-font-mono);
+	font-weight: 600;
+	letter-spacing: .02em;
+	text-transform: uppercase;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.hljs-codeblock .hljs-control{
+	display: flex;
+	align-items: center;
+	flex: none;
+	user-select: none;
+	-webkit-user-select: none;
+}
+.hljs-codeblock .hljs-control-btn{
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: var(--argon-code-radius);
+	background: transparent;
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	line-height: 1;
+	cursor: pointer;
+	opacity: .55;
+	transition: opacity .2s ease, background-color .2s ease;
+}
+.hljs-codeblock .hljs-control-btn:hover{
+	opacity: 1;
+	background: rgba(127, 127, 127, .20);
+}
+.hljs-codeblock .hljs-control-btn:focus{
+	opacity: 1;
+	outline: 2px solid var(--themecolor);
+	outline-offset: -2px;
+}
+.hljs-codeblock .hljs-control-btn i.fa{
+	font: normal normal normal 13px/1 FontAwesome !important;
+}
+/* 指针精确的设备上淡出控制区，触屏与键盘用户必须一直看得见 */
+@media (hover: hover) and (pointer: fine){
+	.hljs-codeblock .hljs-control{
+		opacity: 0;
+		transition: opacity .2s ease;
+	}
+	.hljs-codeblock:hover .hljs-control,
+	.hljs-codeblock:focus-within .hljs-control{
+		opacity: 1;
+	}
+}
+/* 代码区 */
+.hljs-codeblock pre.hljs-codeblock-pre{
+	flex: 1 1 auto;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+	box-shadow: none;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
 	tab-size: 4;
 }
-pre.hljs-codeblock:before {
-	content: "";
-	position: absolute;
-	background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NCIgaGVpZ2h0PSIxNCIgdmlld0JveD0iMCAwIDU0IDE0Ij48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEgMSkiPjxjaXJjbGUgY3g9IjYiIGN5PSI2IiByPSI2IiBmaWxsPSIjRkY1RjU2IiBzdHJva2U9IiNFMDQ0M0UiIHN0cm9rZS13aWR0aD0iLjUiPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjI2IiBjeT0iNiIgcj0iNiIgZmlsbD0iI0ZGQkQyRSIgc3Ryb2tlPSIjREVBMTIzIiBzdHJva2Utd2lkdGg9Ii41Ij48L2NpcmNsZT48Y2lyY2xlIGN4PSI0NiIgY3k9IjYiIHI9IjYiIGZpbGw9IiMyN0M5M0YiIHN0cm9rZT0iIzFBQUIyOSIgc3Ryb2tlLXdpZHRoPSIuNSI+PC9jaXJjbGU+PC9nPjwvc3ZnPg==) no-repeat;
-	background-position-y: center;
-	top: 22px;
-	left: 20px;
-	height: 14px;
-	width: 54px;
-	margin-left: 5px;
+/* 背景与前景色由 code_theme / code_dark_theme 决定，这里不能覆盖，
+   否则把 VSCode 主题的 #FFFFFF / #1F1F1F 也一起盖掉了 */
+.hljs-codeblock pre.hljs-codeblock-pre > code[hljs-codeblock-inner]{
 	display: block;
+	padding: 14px 16px;
+	border-radius: 0;
+	font-family: var(--argon-font-mono);
+	font-size: 14px;
+	line-height: 1.6;
 }
-code[hljs-codeblock-inner] {
-	line-height: 1.5;
-	font-size: 16px;
-	border-radius: 100px;
-	padding: 22px 20px;
-	border-radius: 8px;
-	box-shadow: rgba(0,0,0,0.2) 0px 5px 20px;
-	margin-top: 15px !important;
-	margin-bottom: 15px !important;
-	padding-top: 55px;
-}
-.hljs-ln-numbers {
+/* 行号列 */
+.hljs-codeblock td.hljs-ln-numbers{
+	width: 1%;
+	white-space: nowrap;
+	text-align: right;
+	opacity: .5;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
-	-khtml-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-	text-align: center;
-	vertical-align: top;
-	padding-right: 12px !important;
-	position: absolute;
-	left: 20px;
-	width: 30px;
-	overflow-x: visible !important;
-	transition: all .3s ease;
 }
-.hljs-ln-numbers:before {
-	content: '';
-	position: absolute;
-	left: -20px;
-	width: 20px;
-	height: 100%;
-	background: inherit;
+.hljs-codeblock table.hljs-ln > tbody > tr > td.hljs-ln-numbers{
+	padding-left: 16px;
+	padding-right: 14px;
 }
-.hljs-ln-code {
-	padding-left: 30px !important;
-	transition: all .3s ease;
+.hljs-codeblock table.hljs-ln > tbody > tr > td.hljs-ln-code{
+	padding-right: 16px;
 }
-pre.hljs-codeblock.hljs-break-line .hljs-ln-code {
-	line-break: anywhere;
-	white-space: break-spaces;
+.hljs-codeblock.hljs-hide-linenumber td.hljs-ln-numbers{
+	display: none;
 }
-code[hljs-codeblock-inner]::-webkit-scrollbar-track{
-	border: none;
-	background: transparent !important;
+.hljs-codeblock.hljs-break-line td.hljs-ln-code{
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+	word-break: break-word;
 }
-code[hljs-codeblock-inner]::-webkit-scrollbar-thumb{
-	background: rgba(255, 255, 255, .3) !important;
-	box-shadow: none !important;
-	border: none !important;
-	border-radius: 10px;
-	transition: background .3s ease;
+.hljs-codeblock ::selection{
+	background-color: rgba(var(--themecolor-rgbstr, 94, 114, 228), .25);
 }
-code[hljs-codeblock-inner]::-webkit-scrollbar-thumb:hover{
-	background: rgba(255, 255, 255, .5) !important;
+/* 代码区滚动条 */
+.hljs-codeblock pre.hljs-codeblock-pre::-webkit-scrollbar{
+	width: 10px;
+	height: 10px;
 }
-code[hljs-codeblock-inner]::-webkit-scrollbar{
+.hljs-codeblock pre.hljs-codeblock-pre::-webkit-scrollbar-track{
 	background: transparent;
-	height: 6px;
 }
-code[hljs-codeblock-inner] *::selection {
-	background-color: rgba(204, 226, 255, 0.2) !important;
+.hljs-codeblock pre.hljs-codeblock-pre::-webkit-scrollbar-thumb{
+	border: 3px solid transparent;
+	border-radius: 8px;
+	background: rgba(127, 127, 127, .35);
+	background-clip: content-box;
 }
-pre.hljs-codeblock.hljs-codeblock-fullscreen {
+.hljs-codeblock pre.hljs-codeblock-pre::-webkit-scrollbar-thumb:hover{
+	background: rgba(127, 127, 127, .55);
+	background-clip: content-box;
+}
+.hljs-codeblock pre.hljs-codeblock-pre::-webkit-scrollbar-corner{
+	background: transparent;
+}
+/* 按钮提示 */
+.hljs-codeblock .hljs-control-btn:before{
+	position: absolute;
+	top: calc(100% + 8px);
+	left: 50%;
+	transform: translateX(-50%);
+	min-width: max-content;
+	max-width: 200px;
+	padding: 2px 8px;
+	border-radius: 4px;
+	background: rgba(0, 0, 0, .78);
+	color: #fff;
+	font-family: sans-serif;
+	font-size: 12px;
+	line-height: 1.6;
+	text-align: center;
+	white-space: nowrap;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity .2s ease;
+}
+.hljs-codeblock .hljs-control-btn:hover:before,
+.hljs-codeblock .hljs-control-btn:focus:before{
+	opacity: 1;
+}
+.hljs-control-toggle-linenumber:before{
+	content: attr(tooltip-hide-linenumber);
+}
+.hljs-codeblock.hljs-hide-linenumber .hljs-control-toggle-linenumber:before{
+	content: attr(tooltip-show-linenumber);
+}
+.hljs-control-toggle-break-line:before{
+	content: attr(tooltip-enable-breakline);
+}
+.hljs-codeblock.hljs-break-line .hljs-control-toggle-break-line:before{
+	content: attr(tooltip-disable-breakline);
+}
+.hljs-control-copy:before{
+	content: attr(tooltip);
+}
+.hljs-control-fullscreen:before{
+	content: attr(tooltip-fullscreen);
+}
+.hljs-codeblock.hljs-codeblock-fullscreen .hljs-control-fullscreen:before{
+	content: attr(tooltip-exit-fullscreen);
+}
+.hljs-codeblock.hljs-codeblock-fullscreen .hljs-control-fullscreen > i:before{
+	content: "\f065";
+}
+/* 全屏 */
+.hljs-fullscreen-backdrop{
 	position: fixed;
 	left: 0;
 	right: 0;
 	top: 0;
 	bottom: 0;
-	z-index: 10000;
-	margin: 0 !important;
-	animation: codeblock-fullscreen 0.5s cubic-bezier(0.18, 0.89, 0.37, 1.12);
+	z-index: 9998;
+	background: rgba(0, 0, 0, .55);
 }
-pre.hljs-codeblock.hljs-codeblock-fullscreen > code[hljs-codeblock-inner]{
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	border-radius: 0;
-	margin: 0 !important;
+body.hljs-fullscreen-open{
+	overflow: hidden;
 }
-pre.hljs-codeblock.hljs-codeblock-fullscreen:before{
-	z-index: 10001;
+.hljs-codeblock.hljs-codeblock-fullscreen{
+	position: fixed;
+	left: 16px;
+	right: 16px;
+	top: 16px;
+	bottom: 16px;
+	z-index: 9999;
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, .35);
+	animation: codeblock-fullscreen .25s cubic-bezier(0.18, 0.89, 0.37, 1.12);
+}
+.hljs-codeblock.hljs-codeblock-fullscreen pre.hljs-codeblock-pre{
+	min-height: 0;
+	overflow: auto;
+}
+@media screen and (max-width: 576px){
+	.hljs-codeblock.hljs-codeblock-fullscreen{
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		border-radius: 0;
+		border: 0;
+	}
+	.hljs-codeblock .hljs-header{
+		padding-left: 12px;
+	}
+	.hljs-codeblock pre.hljs-codeblock-pre > code[hljs-codeblock-inner]{
+		padding: 12px;
+	}
+	.hljs-codeblock table.hljs-ln > tbody > tr > td.hljs-ln-numbers{
+		padding-left: 12px;
+		padding-right: 10px;
+	}
+	.hljs-codeblock table.hljs-ln > tbody > tr > td.hljs-ln-code{
+		padding-right: 12px;
+	}
 }
 @keyframes codeblock-fullscreen{
 	0%{
-		transform: scale(.5);
-		opacity: 1;
+		transform: scale(.96);
+		opacity: .6;
 	}
 	100%{
 		transform: none;
 		opacity: 1;
 	}
 }
-pre.hljs-codeblock.hljs-hide-linenumber .hljs-ln-numbers.hljs{
-	width: 0px;
-	opacity: 0;
-}
-pre.hljs-codeblock.hljs-hide-linenumber .hljs-ln-code {
-	padding-left: 4px !important;
-}
-pre.hljs-codeblock .hljs-control{
-	position: absolute;
-	top: 16px;
-	right: 20px;
-	user-select: none;
-	opacity: 0;
-	transition: all .2s ease;
-	white-space: nowrap;
-}
-pre.hljs-codeblock:hover .hljs-control{
-	opacity: .4;
-}
-pre.hljs-codeblock:hover .hljs-control:hover{
-	opacity: 1;
-}
-pre.hljs-codeblock .hljs-control i.fa{
-	font: normal normal normal 14px/1 FontAwesome !important;
-}
-.hljs-control .hljs-control-btn {
-	display: inline-block;
-	opacity: .8;
-	transition: all .2s ease;
-	cursor: pointer;
-	margin-left: 15px;
-	width: 12px;
-	position: relative;
-}
-.hljs-control .hljs-control-btn:hover {
-	opacity: .5;
-}
-.hljs-control-btn:before {
-	position: absolute;
-	top: 22px;
-	left: -40px;
-	width: 92px;
-	text-align: center;
-	opacity: 0;
-	pointer-events: none;
-	transition: all .2s ease;
-	font-size: 12px;
-	font-family: sans-serif;
-}
-.hljs-control-btn:hover:before {
-	opacity: 1;
-	top: 25px;
-}
-.hljs-control-toggle-linenumber:before {
-	content: attr(tooltip-hide-linenumber);
-}
-pre.hljs-codeblock.hljs-hide-linenumber .hljs-control-toggle-linenumber:before {
-	content: attr(tooltip-show-linenumber);
-}
-.hljs-control-toggle-break-line:before {
-	content: attr(tooltip-enable-breakline);
-}
-pre.hljs-codeblock.hljs-break-line .hljs-control-toggle-break-line:before {
-	content: attr(tooltip-disable-breakline);
-}
-.hljs-control-copy:before {
-	content: attr(tooltip);
-}
-.hljs-control-fullscreen:before {
-	content: attr(tooltip-fullscreen);
-}
-pre.hljs-codeblock.hljs-codeblock-fullscreen .hljs-control-fullscreen:before {
-	content: attr(tooltip-exit-fullscreen);
-}
-pre.hljs-codeblock.hljs-codeblock-fullscreen .hljs-control-fullscreen > i:before {
-	content: "\f066";
-}
-
-
+/* ==========Style-Dark========== */
 /* ==========Style-Dark========== */
 
 html.darkmode body{
@@ -3935,7 +4025,7 @@ html.darkmode article .post-content blockquote{
 	border-left: 4px solid rgba(255, 255, 255, .12);
 }
 
-html.darkmode article .post-content pre:not(.hljs-codeblock){
+html.darkmode article .post-content pre:not(.hljs-codeblock-pre){
 	border: 1px solid rgba(255, 255, 255, .12);
 	background: #525252;
 	color: #eee;
@@ -3943,6 +4033,16 @@ html.darkmode article .post-content pre:not(.hljs-codeblock){
 html.darkmode article .post-content code:not([hljs-codeblock-inner]){
 	background: #525252;
 	color: #eee;
+}
+/* 代码框外壳跟随卡片配色，代码区背景仍由 code_dark_theme 决定 */
+html.darkmode .hljs-codeblock{
+	border-color: rgba(255, 255, 255, .12);
+	box-shadow: none;
+}
+html.darkmode .hljs-codeblock .hljs-header{
+	background: rgba(255, 255, 255, .07);
+	border-bottom-color: rgba(255, 255, 255, .12);
+	color: #cfcfcf;
 }
 
 html.darkmode .form-control{
@@ -4086,11 +4186,14 @@ html.darkmode.amoled-dark .dropdown-menu , html.darkmode.amoled-dark .dropdown-m
 	background: #111;
 	box-shadow: none;
 }
-html.darkmode.amoled-dark article .post-content pre:not(.hljs-codeblock){
+html.darkmode.amoled-dark article .post-content pre:not(.hljs-codeblock-pre){
 	background: #000;
 }
 html.darkmode.amoled-dark article .post-content code:not([hljs-codeblock-inner]){
 	background: #000;
+}
+html.darkmode.amoled-dark .hljs-codeblock{
+	border-color: #333;
 }
 
 html.darkmode.amoled-dark .form-control{

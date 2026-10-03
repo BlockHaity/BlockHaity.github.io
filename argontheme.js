@@ -1092,30 +1092,65 @@ if ($(".hitokoto").length > 0){
 }
 
 /* Highlight.js */
-function randomString(len) {
-	len = len || 32;
-	let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-	let res = "";
-	for (let i = 0; i < len; i++) {
-		res += chars.charAt(Math.floor(Math.random() * chars.length));
+// 从 <code> 的 class / data-lang 上解析语言，取不到时返回 plaintext
+function getCodeLanguage($code){
+	let raw = $code.attr("data-lang") || $code.attr("data-language");
+	if (raw){
+		return raw.toLowerCase();
 	}
-	return res;
+	let className = $code.attr("class") || "";
+	// hexo-renderer-marked 输出 "highlight <lang>"，部分渲染器输出 "lang-<lang>"
+	let matched = className.match(/(?:^|\s)(?:highlight|lang(?:uage)?)[\s-]+([^\s]+)/);
+	if (matched){
+		return matched[1].toLowerCase();
+	}
+	matched = className.match(/(?:^|\s)(?:lang(?:uage)?)-([^\s]+)/);
+	if (matched){
+		return matched[1].toLowerCase();
+	}
+	return "plaintext";
 }
-var codeOfBlocks = {};
+// 语言标签：交给 hljs 给出规范名（sh -> Bash、js -> JavaScript）。
+// plaintext 与 hljs 不认识的语言都不显示：后者 hljs 走的是自动探测，
+// 把原文照抄出来会让人误以为它真的识别了这个语言。
+function getCodeLanguageLabel(lang){
+	if (!lang){
+		return "";
+	}
+	let lower = lang.toLowerCase();
+	if (lower === "plaintext" || lower === "text" || lower === "nohighlight" || lower === "no-highlight"){
+		return "";
+	}
+	if (typeof(hljs.getLanguage) == "function"){
+		try{
+			let langDef = hljs.getLanguage(lower);
+			if (langDef && langDef.name){
+				return langDef.name;
+			}
+		}catch (err){}
+	}
+	return "";
+}
+// 取代码块的纯文本。line-numbers 插件把行号放在独立的 td 里，所以只取 .hljs-ln-code 列
 function getCodeFromBlock(block){
-	if (codeOfBlocks[block.id] != undefined){
-		return codeOfBlocks[block.id];
+	if (!block){
+		return "";
 	}
-	let lines = $(".hljs-ln-code", block);
-	let res = "";
-	for (let i = 0; i < lines.length - 1; i++){
-		res += lines[i].innerText;
-		res += "\n";
+	let code = $("code[hljs-codeblock-inner]", block);
+	if (code.length == 0){
+		return "";
 	}
-	res += lines[lines.length - 1].innerText;
-	codeOfBlocks[block.id] = res;
-	return res;
+	let lines = code.find(".hljs-ln-code");
+	if (lines.length == 0){
+		return code.text();
+	}
+	let arr = [];
+	lines.each(function(){
+		arr.push($(this).text());
+	});
+	return arr.join("\n");
 }
+var highlightBlockSeq = 0;
 function highlightJsRender(){
 	if (typeof(hljs) == "undefined"){
 		return;
@@ -1126,153 +1161,145 @@ function highlightJsRender(){
 	if (!argonEnableCodeHighlight){
 		return;
 	}
-	$("article pre.code").each(function(index, block) {
-		if ($(block).hasClass("no-hljs")){
+	$("article pre.code").each(function(){
+		let pre = $(this);
+		if (pre.hasClass("no-hljs") || pre.find("code").length > 0){
 			return;
 		}
-		$(block).html("<code>" + $(block).html() + "</code>");
+		pre.html("<code>" + pre.html() + "</code>");
 	});
-	$("article pre > code").each(function(index, block) {
-		if ($(block).hasClass("no-hljs")){
+	$("article pre > code").each(function(){
+		let code = $(this);
+		let pre = code.parent();
+		// 幂等：pjax 重入、line-numbers 插件的自动扫描都可能让同一块被处理两次
+		if (pre.hasClass("hljs-codeblock-pre")){
 			return;
 		}
-		$(block).parent().attr("id", randomString());
-		hljs.highlightBlock(block);
-		hljs.lineNumbersBlock(block, {singleLine: true});
-		$(block).parent().addClass("hljs-codeblock");
-		$(block).attr("hljs-codeblock-inner", "");
-		let copyBtnID = "copy_btn_" + randomString();
-		$(block).parent().append(`<div class="hljs-control hljs-title">
-				<div class="hljs-control-btn hljs-control-toggle-linenumber" tooltip-hide-linenumber="` + __("隐藏行号") + `" tooltip-show-linenumber="` + __("显示行号") + `">
-					<i class="fa fa-list"></i>
-				</div>
-				<div class="hljs-control-btn hljs-control-toggle-break-line" tooltip-enable-breakline="` + __("开启折行") + `" tooltip-disable-breakline="` + __("关闭折行") + `">
-					<i class="fa fa-align-left"></i>
-				</div>
-				<div class="hljs-control-btn hljs-control-copy" id=` + copyBtnID + ` tooltip="` + __("复制") + `">
-					<i class="fa fa-clipboard"></i>
-				</div>
-				<div class="hljs-control-btn hljs-control-fullscreen" tooltip-fullscreen="` + __("全屏") + `" tooltip-exit-fullscreen="` + __("退出全屏") + `">
-					<i class="fa fa-arrows-alt"></i>
-				</div>
-			</div>`);
-		let clipboard = new ClipboardJS("#" + copyBtnID, {
-			text: function(trigger) {
-				return getCodeFromBlock($(block).parent()[0]);
+		if (code.hasClass("no-hljs")){
+			return;
+		}
+		try{
+			if (typeof(hljs.highlightElement) == "function"){
+				hljs.highlightElement(this);
+			}else{
+				hljs.highlightBlock(this);
 			}
-		});
-		clipboard.on('success', function(e) {
-			iziToast.show({
-				title: __("复制成功"),
-				message: __("代码已复制到剪贴板"),
-				class: 'shadow',
-				position: 'topRight',
-				backgroundColor: '#2dce89',
-				titleColor: '#ffffff',
-				messageColor: '#ffffff',
-				iconColor: '#ffffff',
-				progressBarColor: '#ffffff',
-				icon: 'fa fa-check',
-				timeout: 5000
-			});
-		});
-		clipboard.on('error', function(e) {
-			iziToast.show({
-				title: __("复制失败"),
-				message: __("请手动复制代码"),
-				class: 'shadow',
-				position: 'topRight',
-				backgroundColor: '#f5365c',
-				titleColor: '#ffffff',
-				messageColor: '#ffffff',
-				iconColor: '#ffffff',
-				progressBarColor: '#ffffff',
-				icon: 'fa fa-close',
-				timeout: 5000
-			});
-		});
-	});
-	// 处理 highlight 类的代码块
-	$('article pre > code.highlight').each(function(index, block) {
-		if ($(block).hasClass("no-hljs")){
+			if (typeof(hljs.lineNumbersBlock) == "function"){
+				hljs.lineNumbersBlock(this, {singleLine: true});
+			}
+		}catch (err){
+			console.error("Highlight.js 渲染失败: ", err);
 			return;
 		}
-		$(block).parent().attr("id", randomString());
-		hljs.highlightBlock(block);
-		hljs.lineNumbersBlock(block, {singleLine: true});
-		$(block).parent().addClass("hljs-codeblock");
-		$(block).attr("hljs-codeblock-inner", "");
-		let copyBtnID = "copy_btn_" + randomString();
-		$(block).parent().append(`<div class="hljs-control hljs-title">
-				<div class="hljs-control-btn hljs-control-toggle-linenumber" tooltip-hide-linenumber="` + __("隐藏行号") + `" tooltip-show-linenumber="` + __("显示行号") + `">
-					<i class="fa fa-list"></i>
-				</div>
-				<div class="hljs-control-btn hljs-control-toggle-break-line" tooltip-enable-breakline="` + __("开启折行") + `" tooltip-disable-breakline="` + __("关闭折行") + `">
-					<i class="fa fa-align-left"></i>
-				</div>
-				<div class="hljs-control-btn hljs-control-copy" id=` + copyBtnID + ` tooltip="` + __("复制") + `">
-					<i class="fa fa-clipboard"></i>
-				</div>
-				<div class="hljs-control-btn hljs-control-fullscreen" tooltip-fullscreen="` + __("全屏") + `" tooltip-exit-fullscreen="` + __("退出全屏") + `">
-					<i class="fa fa-arrows-alt"></i>
-				</div>
-			</div>`);
-		let clipboard = new ClipboardJS("#" + copyBtnID, {
-			text: function(trigger) {
-				return getCodeFromBlock($(block).parent()[0]);
-			}
+		pre.addClass("hljs-codeblock-pre");
+		pre.attr("data-hljs-block", ++highlightBlockSeq);
+		code.attr("hljs-codeblock-inner", "");
+
+		let wrapper = $('<div class="hljs-codeblock"></div>');
+		let header = $('<div class="hljs-header"></div>');
+		let label = getCodeLanguageLabel(getCodeLanguage(code));
+		if (label){
+			header.append($('<span class="hljs-lang"></span>').text(label));
+		}
+		header.append(
+			'<div class="hljs-control">' +
+				'<button type="button" class="hljs-control-btn hljs-control-toggle-linenumber" aria-pressed="true" aria-label="' + __("隐藏行号") + '" tooltip-hide-linenumber="' + __("隐藏行号") + '" tooltip-show-linenumber="' + __("显示行号") + '"><i class="fa fa-list"></i></button>' +
+				'<button type="button" class="hljs-control-btn hljs-control-toggle-break-line" aria-pressed="false" aria-label="' + __("折行") + '" tooltip-enable-breakline="' + __("开启折行") + '" tooltip-disable-breakline="' + __("关闭折行") + '"><i class="fa fa-align-left"></i></button>' +
+				'<button type="button" class="hljs-control-btn hljs-control-copy" aria-label="' + __("复制") + '" tooltip="' + __("复制") + '"><i class="fa fa-clipboard"></i></button>' +
+				'<button type="button" class="hljs-control-btn hljs-control-fullscreen" aria-label="' + __("全屏") + '" tooltip-fullscreen="' + __("全屏") + '" tooltip-exit-fullscreen="' + __("退出全屏") + '"><i class="fa fa-arrows-alt"></i></button>' +
+			'</div>'
+		);
+		wrapper.append(header);
+		pre.before(wrapper);
+		wrapper.append(pre);
+	});
+}
+// 复制按钮只注册一次，事件靠 ClipboardJS 自身的委托，pjax 换页后依然有效
+if (typeof(ClipboardJS) != "undefined"){
+	new ClipboardJS(".hljs-control-copy", {
+		text: function(trigger){
+			return getCodeFromBlock(trigger.closest(".hljs-codeblock"));
+		}
+	}).on("success", function(){
+		iziToast.show({
+			title: __("复制成功"),
+			message: __("代码已复制到剪贴板"),
+			class: 'shadow',
+			position: 'topRight',
+			backgroundColor: '#2dce89',
+			titleColor: '#ffffff',
+			messageColor: '#ffffff',
+			iconColor: '#ffffff',
+			progressBarColor: '#ffffff',
+			icon: 'fa fa-check',
+			timeout: 5000
 		});
-		clipboard.on('success', function(e) {
-			iziToast.show({
-				title: __("复制成功"),
-				message: __("代码已复制到剪贴板"),
-				class: 'shadow',
-				position: 'topRight',
-				backgroundColor: '#2dce89',
-				titleColor: '#ffffff',
-				messageColor: '#ffffff',
-				iconColor: '#ffffff',
-				progressBarColor: '#ffffff',
-				icon: 'fa fa-check',
-				timeout: 5000
-			});
-		});
-		clipboard.on('error', function(e) {
-			iziToast.show({
-				title: __("复制失败"),
-				message: __("请手动复制代码"),
-				class: 'shadow',
-				position: 'topRight',
-				backgroundColor: '#f5365c',
-				titleColor: '#ffffff',
-				messageColor: '#ffffff',
-				iconColor: '#ffffff',
-				progressBarColor: '#ffffff',
-				icon: 'fa fa-close',
-				timeout: 5000
-			});
+	}).on("error", function(){
+		iziToast.show({
+			title: __("复制失败"),
+			message: __("请手动复制代码"),
+			class: 'shadow',
+			position: 'topRight',
+			backgroundColor: '#f5365c',
+			titleColor: '#ffffff',
+			messageColor: '#ffffff',
+			iconColor: '#ffffff',
+			progressBarColor: '#ffffff',
+			icon: 'fa fa-close',
+			timeout: 5000
 		});
 	});
+}
+function codeblockOf(el){
+	return $(el).closest(".hljs-codeblock");
+}
+function setCodeblockFullscreen(enable){
+	let fullscreen = $(".hljs-codeblock-fullscreen");
+	if (enable){
+		if (fullscreen.length == 0){
+			return;
+		}
+		$("body").addClass("hljs-fullscreen-open");
+		$("body").append('<div class="hljs-fullscreen-backdrop"></div>');
+		let btn = fullscreen.find(".hljs-control-fullscreen")[0];
+		if (btn){
+			$(btn).attr("data-hljs-restore-focus", "1");
+			btn.focus();
+		}
+	}else{
+		fullscreen.removeClass("hljs-codeblock-fullscreen");
+		$("body").removeClass("hljs-fullscreen-open");
+		$(".hljs-fullscreen-backdrop").remove();
+		let restore = $("[data-hljs-restore-focus]")[0];
+		if (restore){
+			restore.focus();
+			$(restore).removeAttr("data-hljs-restore-focus");
+		}
+	}
 }
 $(document).ready(function(){
 	highlightJsRender();
 });
 $(document).on("click" , ".hljs-control-fullscreen" , function(){
-	let block = $(this).parent().parent();
-	block.toggleClass("hljs-codeblock-fullscreen");
-	if (block.hasClass("hljs-codeblock-fullscreen")){
-		$("html").addClass("noscroll codeblock-fullscreen");
-	}else{
-		$("html").removeClass("noscroll codeblock-fullscreen");
+	setCodeblockFullscreen(!codeblockOf(this).hasClass("hljs-codeblock-fullscreen"));
+});
+$(document).on("click" , ".hljs-fullscreen-backdrop" , function(){
+	setCodeblockFullscreen(false);
+});
+$(document).on("keydown" , function(e){
+	if ((e.key === "Escape" || e.keyCode === 27) && $(".hljs-codeblock-fullscreen").length > 0){
+		setCodeblockFullscreen(false);
 	}
 });
 $(document).on("click" , ".hljs-control-toggle-break-line" , function(){
-	let block = $(this).parent().parent();
+	let block = codeblockOf(this);
 	block.toggleClass("hljs-break-line");
+	$(this).attr("aria-pressed", block.hasClass("hljs-break-line"));
 });
 $(document).on("click" , ".hljs-control-toggle-linenumber" , function(){
-	let block = $(this).parent().parent();
+	let block = codeblockOf(this);
 	block.toggleClass("hljs-hide-linenumber");
+	$(this).attr("aria-pressed", !block.hasClass("hljs-hide-linenumber"));
 });
 
 /* 时间差计算 */
