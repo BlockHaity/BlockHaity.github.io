@@ -16,6 +16,7 @@ toolbar_menu: # 顶栏菜单，支持二级菜单
   归档: "/archives/"
   标签: "/tags/"
   分类: "/categories/"
+  应用: "/apps/"
 
 
 # Banner
@@ -34,8 +35,7 @@ sidebar_announcement: '' # 侧栏公告，留空则不显示
 leftbar_menu: # 侧栏顶部菜单，支持无限层级菜单嵌套
   首页: /
   归档: /archives
-  标签: /tags
-  分类: /categories
+  应用: /apps/
   节点切换:
     自动选择: "https://bas.blockhaity.eu.org/"
     Cloudflare Pages节点: "https://blockhaity.pages.dev/"

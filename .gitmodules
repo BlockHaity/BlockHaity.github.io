@@ -1,3 +1,6 @@
 [submodule "themes/argon"]
 	path = themes/argon
 	url = https://github.com/blockhaity/hexo-theme-argon.git
+[submodule "apps/AriaNg-Next"]
+	path = apps/AriaNg-Next
+	url = https://github.com/BlockHaity/AriaNg-Next.git

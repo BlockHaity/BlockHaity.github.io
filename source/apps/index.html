@@ -1,0 +1,69 @@
+---
+title: 应用中心
+layout: page
+---
+
+<%# 本文件是内容片段，由主题 layout 包裹渲染。所有样式必须限定在 #apps-center 内， %>
+<%# 否则会污染博客主题的全局渲染。 %>
+<style>
+	#apps-center .apps-lead{
+		margin: 0 0 1.25rem;
+		font-size: .95rem;
+		color: #6c757d;
+	}
+	html.darkmode #apps-center .apps-lead{
+		color: #9aa0aa;
+	}
+	#apps-center .apps-grid{
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+		gap: 1rem;
+	}
+	#apps-center .apps-grid .app-card{
+		display: block;
+		padding: 1.25rem;
+		border: 1px solid rgba(0, 0, 0, .08);
+		border-radius: var(--card-radius, 8px);
+		color: inherit;
+		text-decoration: none;
+		transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+	}
+	html.darkmode #apps-center .apps-grid .app-card{
+		border-color: rgba(255, 255, 255, .14);
+	}
+	#apps-center .apps-grid .app-card:hover{
+		transform: translateY(-4px);
+		box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+		border-color: var(--themecolor);
+	}
+	#apps-center .apps-grid .app-card-icon{
+		font-size: 1.6rem;
+		line-height: 1;
+		margin-bottom: .75rem;
+	}
+	#apps-center .apps-grid .app-card-name{
+		font-size: 1.05rem;
+		font-weight: 600;
+		margin-bottom: .35rem;
+	}
+	#apps-center .apps-grid .app-card-desc{
+		margin: 0;
+		font-size: .875rem;
+		line-height: 1.6;
+		color: #6c757d;
+	}
+	html.darkmode #apps-center .apps-grid .app-card-desc{
+		color: #9aa0aa;
+	}
+</style>
+
+<div id="apps-center">
+	<p class="apps-lead">自托管 Web 应用入口，点击卡片进入对应应用。</p>
+	<div class="apps-grid">
+		<a class="app-card" href="/apps/AriaNg-Next/">
+			<div class="app-card-icon">⬇️</div>
+			<div class="app-card-name">AriaNg-Next</div>
+			<p class="app-card-desc">aria2-next 的现代化 Web 前端，基于 TypeScript + React + Vite 构建。</p>
+		</a>
+	</div>
+</div>
