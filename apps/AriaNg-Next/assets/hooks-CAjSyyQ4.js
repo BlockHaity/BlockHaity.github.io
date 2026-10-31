@@ -1,0 +1,1 @@
+import"./rolldown-runtime-hePW80VL.js";import{h as e}from"./react-CQYUR5bt.js";import{$ as t,mt as n}from"./mdui-BA7slEFe.js";import{M as r}from"./index-Dr3zLpod.js";e();function i(e){return t(t=>t.settings[e])}function a(){return r(e=>n(e.activeProfile()))}export{i as n,a as t};
