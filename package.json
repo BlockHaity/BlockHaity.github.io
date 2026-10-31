@@ -27,5 +27,8 @@
     "hexo-theme-landscape": "^1.0.0",
     "hexo-util": "^4.0.0",
     "js-yaml": "^4.1.1"
-  }
+  },
+  "trustedDependencies": [
+    "hexo-util"
+  ]
 }

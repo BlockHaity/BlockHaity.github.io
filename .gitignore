@@ -7,3 +7,6 @@
 /package-lock.json
 /pnpm-lock.yaml
 /pnpm-workspace.yaml
+
+# bun 锁文件
+bun.lock
